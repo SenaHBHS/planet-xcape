@@ -14,6 +14,13 @@ config/name="Planet Xcape"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameManager="*res://autoload/game_manager.gd"
+SignalManager="*res://autoload/signal_manager.gd"
+DinManager="*res://autoload/din_manager.gd"
+BestTimeManager="*res://autoload/best_time_manager.gd"
+
 [rendering]
 
 renderer/rendering_method="mobile"

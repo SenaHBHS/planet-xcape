@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dbfofcs1i24g4"]
+
+[node name="Weapon" type="StaticBody2D"]
