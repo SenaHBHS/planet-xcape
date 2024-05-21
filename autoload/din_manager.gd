@@ -6,7 +6,7 @@ var _din_amount = 0
 
 func _set_din_amount(amount):
 	_din_amount = amount
-	SignalManager.update_din_amount(_din_amount)
+	SignalManager.update_din_amount.emit(_din_amount)
 
 func get_din_amount():
 	return _din_amount

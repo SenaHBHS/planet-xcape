@@ -1,5 +1,6 @@
-[gd_scene load_steps=61 format=3 uid="uid://j5pjiovx3jfe"]
+[gd_scene load_steps=62 format=3 uid="uid://j5pjiovx3jfe"]
 
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_0cl28"]
 [ext_resource type="Texture2D" uid="uid://cul47vwyrdrpi" path="res://assets/sprites/player/hit.png" id="1_0ok57"]
 [ext_resource type="Texture2D" uid="uid://bntcksxev0sj" path="res://assets/sprites/player/idle.png" id="1_lm24p"]
 [ext_resource type="Texture2D" uid="uid://ro7o226tmbrs" path="res://assets/sprites/player/run.png" id="2_rcfit"]
@@ -264,9 +265,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fe08e")
 }],
-"loop": true,
+"loop": false,
 "name": &"hit",
-"speed": 15.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -405,16 +406,20 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8rig2")
 }],
-"loop": true,
+"loop": false,
 "name": &"shoot",
-"speed": 15.0
+"speed": 20.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_0cl28")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_2u5ak")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fltqo")
-animation = &"idle"
+animation = &"shoot"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
