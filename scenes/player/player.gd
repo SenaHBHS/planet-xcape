@@ -16,7 +16,7 @@ func _physics_process(delta: float) -> void:
 	handle_animations(attack_props, direction)
 
 func handle_firing() -> Dictionary:
-	var animation_name = "shoot"
+	var animation_name = "hit"
 	var just_attacked = null
 	if Input.is_action_just_pressed("attack"):
 		just_attacked = true

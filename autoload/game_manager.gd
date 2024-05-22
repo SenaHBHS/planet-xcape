@@ -1,5 +1,6 @@
 extends Node
 
+# game scene management
 const start_screen_scene: PackedScene = preload("res://scenes/start_screen/start_screen.tscn")
 const story_scene: PackedScene = preload("res://scenes/story/story.tscn")
 const how_to_screen_scene: PackedScene = preload("res://scenes/how_to_screen/how_to_screen.tscn")
