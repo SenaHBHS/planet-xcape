@@ -16,7 +16,7 @@ const weapons_available = [{
 	# a dummy weapon
 	"weapon_type": "handheld",
 	"weapon_name": "beam_blaster",
-	"damage_caused_so_far": 2,
+	"times_fired_so_far": 2,
 }]
 
 var equipped_weapon = "fist" # default (user can choose others later)
@@ -28,5 +28,5 @@ func add_new_available_weapon(type: String, name: String) -> void:
 	weapons_available.append({
 		"weapon_type": type,
 		"weapon_name": name,
-		"damage_caused_so_far": 0
+		"times_fired_so_far": 0
 	})
