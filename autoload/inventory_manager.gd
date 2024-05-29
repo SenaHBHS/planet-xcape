@@ -1,27 +1,82 @@
 extends Node
 
 # global game variable management
-const inventory_limit = 3 # max n(items) in the inventory!
-const available_items = []
+var inventory_limit = 3 # max n(items) in the inventory!
+var available_items = [{
+	"name": "plasma_streamer",
+	"category": "weapon"
+}] # this has a default item for testing purposes
+const dummy_item_template = {
+	"name": "",
+	"category": ""
+}
+# main cateogries: weapon, grenade, defense_system, object
 
-var n_available_slots = inventory_limit
-var selected_item = null
+# these represent indices of the available_items list
+var available_slots = []
+var selected_pos = 0 # index of the available_items list
 
-func add_available_item(item:String) -> bool:
+func _ready():
+	_initialize_available_items()
+	_deploy_funcs_for_selected()
+
+func _initialize_available_items() -> void:
+	# adding item objects to the list
+	for i in range(inventory_limit):
+		available_items.append(dummy_item_template)
+		available_slots.append(i)
+
+# deploy functions related to the current selected position
+func _deploy_funcs_for_selected():
+	var current_item = available_items[selected_pos]
+	if current_item.category == "weapon":
+		WeaponManager.change_equipped_weapon(current_item.name)
+	else:
+		# defaulting the player weapon
+		WeaponManager.change_equipped_weapon("fist")
+
+func add_available_item(item_name:String, item_category:String) -> bool:
 	# returns whether the action was successful or not
-	if n_available_slots > 0:
-		available_items.append(item)
-		n_available_slots -= 1
+	if len(available_slots) > 0:
+		# selecting the inventory bar postion to store the item
+		var inventory_pos = available_slots[0]
+		available_slots.remove_at(0) # removing the slot
+		
+		# filling in the item properties
+		available_items[inventory_pos]["name"] = item_name
+		available_items[inventory_pos]["category"] = item_category
+		
+		if item_category == "weapon":
+			available_items[inventory_pos]["hp_points"] = WeaponManager.get_props_for_weapon(item_name)["hp_points"]
+		
 		return true
 	else:
 		return false
 
-func remove_an_item(item:String) -> bool:
+func remove_current_item(inventory_pos:int) -> void:
 	# returns whether the action was successful
-	# the item must be in available_items
-	if item in available_items: 
-		n_available_slots += 1
-		available_items.erase(item)
-		return true
+	available_slots.append(inventory_pos)
+	available_items[inventory_pos]["name"] = ""
+	available_items[inventory_pos]["category"] = ""
+
+func select_next_item() -> void:
+	if selected_pos < len(available_items) - 1:
+		selected_pos += 1
 	else:
-		return false
+		pass
+		
+	_deploy_funcs_for_selected()
+
+func select_previous_item() -> void:
+	if selected_pos > 0:
+		selected_pos -= 1
+	else:
+		pass
+		
+	_deploy_funcs_for_selected()
+
+# this is available as a power-up
+func unlock_an_extra_slot() -> void:
+	available_items.append(dummy_item_template)
+	available_slots.append(inventory_limit - 1)
+	inventory_limit += 1

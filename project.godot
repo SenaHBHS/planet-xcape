@@ -20,8 +20,8 @@ GameManager="*res://autoload/game_manager.gd"
 SignalManager="*res://autoload/signal_manager.gd"
 DinManager="*res://autoload/din_manager.gd"
 BestTimeManager="*res://autoload/best_time_manager.gd"
-InventoryManager="*res://autoload/inventory_manager.gd"
 WeaponManager="*res://autoload/weapon_manager.gd"
+InventoryManager="*res://autoload/inventory_manager.gd"
 
 [filesystem]
 

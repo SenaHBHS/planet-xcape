@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://debqpp2iv43qw"
-path="res://.godot/imported/Electro Grenade.png-2a7b7f41e62b91ac7ed778c298222138.ctex"
+path="res://.godot/imported/Electro Grenade.png-989f837d29d623f9b054965351ecd976.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/weapons/Electro Grenade.png"
-dest_files=["res://.godot/imported/Electro Grenade.png-2a7b7f41e62b91ac7ed778c298222138.ctex"]
+source_file="res://assets/sprites/grenades/Electro Grenade.png"
+dest_files=["res://.godot/imported/Electro Grenade.png-989f837d29d623f9b054965351ecd976.ctex"]
 
 [params]
 

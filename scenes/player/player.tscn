@@ -1,10 +1,19 @@
-[gd_scene load_steps=62 format=3 uid="uid://j5pjiovx3jfe"]
+[gd_scene load_steps=75 format=3 uid="uid://j5pjiovx3jfe"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_0cl28"]
 [ext_resource type="Texture2D" uid="uid://cul47vwyrdrpi" path="res://assets/sprites/player/hit.png" id="1_0ok57"]
 [ext_resource type="Texture2D" uid="uid://bntcksxev0sj" path="res://assets/sprites/player/idle.png" id="1_lm24p"]
 [ext_resource type="Texture2D" uid="uid://ro7o226tmbrs" path="res://assets/sprites/player/run.png" id="2_rcfit"]
 [ext_resource type="Texture2D" uid="uid://d2da4e4faj8sy" path="res://assets/sprites/player/shoot.png" id="4_oqsn3"]
+[ext_resource type="Texture2D" uid="uid://cjxt8cvbvv856" path="res://assets/sprites/weapons/Beam Blaster.png" id="6_6fry1"]
+[ext_resource type="Texture2D" uid="uid://b2grhruoua16l" path="res://assets/sprites/defense_systems/Electro.png" id="6_dl1md"]
+[ext_resource type="Texture2D" uid="uid://debqpp2iv43qw" path="res://assets/sprites/grenades/Electro Grenade.png" id="7_aexn7"]
+[ext_resource type="Texture2D" uid="uid://d1s35nyruxyyt" path="res://assets/sprites/grenades/Flash Grenade.png" id="8_o8yo6"]
+[ext_resource type="Texture2D" uid="uid://dkuue26jimgyr" path="res://assets/sprites/defense_systems/Nebula Boom.png" id="9_7qsry"]
+[ext_resource type="Texture2D" uid="uid://nujb45j4fwf6" path="res://assets/sprites/defense_systems/Quantum Inferno.png" id="10_7f0yl"]
+[ext_resource type="Texture2D" uid="uid://dn7w4ghpdkfo4" path="res://assets/sprites/objects/space_booster.png" id="11_8kpte"]
+[ext_resource type="Texture2D" uid="uid://b8fmut62j3vm2" path="res://assets/sprites/weapons/Plasma Streamer.png" id="11_lbffr"]
+[ext_resource type="Texture2D" uid="uid://qfce7lh7h64i" path="res://assets/sprites/weapons/Pulse Pistol.png" id="12_ivska"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2u5ak"]
 radius = 138.0
@@ -411,6 +420,124 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_dkhne"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_6fry1")
+}],
+"loop": true,
+"name": &"beam_blaster",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_dl1md")
+}],
+"loop": true,
+"name": &"electro",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_aexn7")
+}],
+"loop": true,
+"name": &"electro_grenade",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_o8yo6")
+}],
+"loop": true,
+"name": &"flash_grenade",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_7qsry")
+}],
+"loop": true,
+"name": &"nebula_boom",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_lbffr")
+}],
+"loop": true,
+"name": &"plasma_streamer",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_ivska")
+}],
+"loop": true,
+"name": &"pulse_pistol",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_7f0yl")
+}],
+"loop": true,
+"name": &"quantum_inferno",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_8kpte")
+}],
+"loop": true,
+"name": &"space_booster",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_3vxow"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SelectedItemHalo:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_unuq4"]
+resource_name = "rotate_halo"
+length = 1.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SelectedItemHalo:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wtckk"]
+_data = {
+"RESET": SubResource("Animation_3vxow"),
+"rotate_halo": SubResource("Animation_unuq4")
+}
+
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.3, 0.3)
 script = ExtResource("1_0cl28")
@@ -421,5 +548,19 @@ shape = SubResource("CapsuleShape2D_2u5ak")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fltqo")
 animation = &"hit"
+
+[node name="SelectedItemHalo" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -3.8147e-06)
+scale = Vector2(0.35, 0.35)
+sprite_frames = SubResource("SpriteFrames_dkhne")
+animation = &"plasma_streamer"
+frame_progress = 0.317003
+offset = Vector2(0, -1076.19)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wtckk")
+}
+autoplay = "rotate_halo"
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]

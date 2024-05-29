@@ -1,32 +1,22 @@
 extends Node
 
 # weapon properties
-const handheld_weapon_props = {
+const weapon_props = {
 	"beam_blaster": {
 		"damage_per_hit": 10,
-		"hp_point": 100
-	}
+		"hp_point": 100 # n_times_it can be fired!
+	},
+	"plasma_streamer": {
+		"damage_per_hit": 10,
+		"hp_point": 100 # n_times_it can be fired!
+	},
 }
-
-# weapons player has bought
-const weapons_available = [{
-	"weapon_type": "default",
-	"weapon_name": "fist"
-}, {
-	# a dummy weapon
-	"weapon_type": "handheld",
-	"weapon_name": "beam_blaster",
-	"times_fired_so_far": 2,
-}]
 
 var equipped_weapon = "fist" # default (user can choose others later)
 
 func change_equipped_weapon(new_equipped_weapon: String) -> void:
+	# this even adds extra properties for the currently selected item!
 	equipped_weapon = new_equipped_weapon
 
-func add_new_available_weapon(type: String, name: String) -> void:
-	weapons_available.append({
-		"weapon_type": type,
-		"weapon_name": name,
-		"times_fired_so_far": 0
-	})
+func get_props_for_weapon(weapon_name) -> Dictionary:
+	return weapon_props[weapon_name]

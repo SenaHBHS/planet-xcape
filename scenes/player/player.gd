@@ -3,11 +3,12 @@ extends CharacterBody2D
 # global variables
 @export var SPEED: int = 500
 var CURRENT_ANIMATION = "idle"
-var ONE_TIME_ANIMATIONS = ["hit", "shoot"]
 var ONE_TIME_ANIMATION_FINISHED = true
 
 # child nodes
 @onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var selected_item_halo = $SelectedItemHalo
+#@onready var handheld_weapon = $HandheldWeapon
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -16,10 +17,16 @@ func _physics_process(delta: float) -> void:
 	handle_animations(attack_props, direction)
 
 func handle_firing() -> Dictionary:
-	var animation_name = "hit"
+	var animation_name = "shoot" if WeaponManager.equipped_weapon != "fist" else "hit"
 	var just_attacked = null
 	if Input.is_action_just_pressed("attack"):
 		just_attacked = true
+		
+		if animation_name == "shoot": # implies a weapon is selected
+			pass
+		else:
+			# this means the player has just attacked
+			pass
 	else:
 		just_attacked = false
 	return {"just_attacked": just_attacked, "animation_name": animation_name}
@@ -50,30 +57,32 @@ func handle_movement() -> Vector2:
 	return direction
 
 func handle_animations(attack_props: Dictionary, direction: Vector2):
-	# ONE_TIME_ANIMATIONS MUST BE PLAYED TILL THE END
+	# ONE_TIME_ANIMATIONS must be played till the end! (e.g. shooting)
 	if ONE_TIME_ANIMATION_FINISHED:
 		if attack_props["just_attacked"]:
 			animated_sprite_2d.play(attack_props["animation_name"])
-			CURRENT_ANIMATION = attack_props["animation_name"]
 			ONE_TIME_ANIMATION_FINISHED = false
+			# hiding the selected halo if handheld weapon
+			if attack_props["animation_name"] != "hit":
+				selected_item_halo.visible = false
 		elif direction.x > 0:
-			if CURRENT_ANIMATION != "right":
-				animated_sprite_2d.flip_h = false
-				animated_sprite_2d.play("run")
-				CURRENT_ANIMATION = "right"
+			animated_sprite_2d.flip_h = false
+			animated_sprite_2d.play("run")
 		elif direction.x < 0:
-			if CURRENT_ANIMATION != "left":
-				animated_sprite_2d.flip_h = true
-				animated_sprite_2d.play("run")
-				CURRENT_ANIMATION = "left"
+			animated_sprite_2d.flip_h = true
+			animated_sprite_2d.play("run")
 		elif direction.y != 0:
-			if CURRENT_ANIMATION != "vertical_motion":
-				animated_sprite_2d.play("run")
-				CURRENT_ANIMATION = "vertical_motion"
+			animated_sprite_2d.play("run")
 		else:
-			if ONE_TIME_ANIMATION_FINISHED:
-				animated_sprite_2d.play("idle")
-				CURRENT_ANIMATION = "idle"
+			animated_sprite_2d.play("idle")
 
+	# updating the halo sprite to match the selection
+	var selected_item_name = InventoryManager.available_items[InventoryManager.selected_pos]["name"]
+	if selected_item_name != "":
+		selected_item_halo.animation = selected_item_name
+	else:
+		selected_item_halo.animation = "empty"
+		
 func _on_animation_finished():
 	ONE_TIME_ANIMATION_FINISHED = true
+	selected_item_halo.visible = true

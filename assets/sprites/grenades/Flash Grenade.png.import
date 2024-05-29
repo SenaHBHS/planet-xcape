@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1s35nyruxyyt"
-path="res://.godot/imported/Flash Grenade.png-7c99f87ad0a54c086539d1c380c201b3.ctex"
+path="res://.godot/imported/Flash Grenade.png-5e64b77ceb3aa866a5f9a7518f40e882.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/defense_systems/Flash Grenade.png"
-dest_files=["res://.godot/imported/Flash Grenade.png-7c99f87ad0a54c086539d1c380c201b3.ctex"]
+source_file="res://assets/sprites/grenades/Flash Grenade.png"
+dest_files=["res://.godot/imported/Flash Grenade.png-5e64b77ceb3aa866a5f9a7518f40e882.ctex"]
 
 [params]
 
