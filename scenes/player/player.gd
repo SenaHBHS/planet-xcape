@@ -24,7 +24,7 @@ func handle_firing() -> Dictionary:
 		
 		if animation_name == "shoot": # implies a weapon is selected
 			handheld_weapon.visible = true
-			handheld_weapon.fire()
+			#handheld_weapon.fire()
 		else:
 			# this means the player has just attacked
 			pass
@@ -48,6 +48,7 @@ func handle_movement() -> Vector2:
 	# Normalize direction and apply speed
 	velocity = direction.normalized() * SPEED
 	
+	print(velocity)
 	# Move the character
 	move_and_slide()
 	
