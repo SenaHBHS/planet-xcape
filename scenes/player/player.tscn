@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://j5pjiovx3jfe"]
+[gd_scene load_steps=76 format=3 uid="uid://j5pjiovx3jfe"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_0cl28"]
 [ext_resource type="Texture2D" uid="uid://cul47vwyrdrpi" path="res://assets/sprites/player/hit.png" id="1_0ok57"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dn7w4ghpdkfo4" path="res://assets/sprites/objects/space_booster.png" id="11_8kpte"]
 [ext_resource type="Texture2D" uid="uid://b8fmut62j3vm2" path="res://assets/sprites/weapons/Plasma Streamer.png" id="11_lbffr"]
 [ext_resource type="Texture2D" uid="uid://qfce7lh7h64i" path="res://assets/sprites/weapons/Pulse Pistol.png" id="12_ivska"]
+[ext_resource type="PackedScene" uid="uid://dbfofcs1i24g4" path="res://scenes/player/handheld_weapon/handheld_weapon.tscn" id="15_0d10l"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2u5ak"]
 radius = 138.0
@@ -547,7 +548,7 @@ shape = SubResource("CapsuleShape2D_2u5ak")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fltqo")
-animation = &"hit"
+animation = &"shoot"
 
 [node name="SelectedItemHalo" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -3.8147e-06)
@@ -562,5 +563,10 @@ libraries = {
 "": SubResource("AnimationLibrary_wtckk")
 }
 autoplay = "rotate_halo"
+
+[node name="HandheldWeapon" parent="." instance=ExtResource("15_0d10l")]
+visible = false
+position = Vector2(170, 6.66667)
+scale = Vector2(0.35, 0.35)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]

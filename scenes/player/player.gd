@@ -8,7 +8,7 @@ var ONE_TIME_ANIMATION_FINISHED = true
 # child nodes
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var selected_item_halo = $SelectedItemHalo
-#@onready var handheld_weapon = $HandheldWeapon
+@onready var handheld_weapon = $HandheldWeapon
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -23,7 +23,8 @@ func handle_firing() -> Dictionary:
 		just_attacked = true
 		
 		if animation_name == "shoot": # implies a weapon is selected
-			pass
+			handheld_weapon.visible = true
+			handheld_weapon.fire()
 		else:
 			# this means the player has just attacked
 			pass
@@ -77,7 +78,7 @@ func handle_animations(attack_props: Dictionary, direction: Vector2):
 			animated_sprite_2d.play("idle")
 
 	# updating the halo sprite to match the selection
-	var selected_item_name = InventoryManager.available_items[InventoryManager.selected_pos]["name"]
+	var selected_item_name = InventoryManager.get_current_item()["name"]
 	if selected_item_name != "":
 		selected_item_halo.animation = selected_item_name
 	else:
@@ -86,3 +87,4 @@ func handle_animations(attack_props: Dictionary, direction: Vector2):
 func _on_animation_finished():
 	ONE_TIME_ANIMATION_FINISHED = true
 	selected_item_halo.visible = true
+	handheld_weapon.visible = false

@@ -4,7 +4,8 @@ extends Node
 var inventory_limit = 3 # max n(items) in the inventory!
 var available_items = [{
 	"name": "plasma_streamer",
-	"category": "weapon"
+	"category": "weapon",
+	"hp_points": 100
 }] # this has a default item for testing purposes
 const dummy_item_template = {
 	"name": "",
@@ -53,7 +54,10 @@ func add_available_item(item_name:String, item_category:String) -> bool:
 	else:
 		return false
 
-func remove_current_item(inventory_pos:int) -> void:
+func get_current_item() -> Dictionary:
+	return available_items[selected_pos]
+
+func remove_item(inventory_pos:int) -> void:
 	# returns whether the action was successful
 	available_slots.append(inventory_pos)
 	available_items[inventory_pos]["name"] = ""
