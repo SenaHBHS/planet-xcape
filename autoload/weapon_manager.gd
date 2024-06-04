@@ -10,6 +10,10 @@ const weapon_props = {
 		"damage_per_hit": 10,
 		"hp_point": 100 # n_times_it can be fired!
 	},
+	"pulse_pistol": {
+		"damage_per_hit": 10,
+		"hp_point": 100 # n_times_it can be fired!
+	}
 }
 
 var equipped_weapon = "fist" # default (user can choose others later)

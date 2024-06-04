@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dbfofcs1i24g4"]
+[gd_scene load_steps=14 format=3 uid="uid://dbfofcs1i24g4"]
 
 [ext_resource type="Script" path="res://scenes/player/handheld_weapon/handheld_weapon.gd" id="1_cu4gd"]
 [ext_resource type="Texture2D" uid="uid://cjxt8cvbvv856" path="res://assets/sprites/weapons/Beam Blaster.png" id="1_srdrw"]
@@ -71,8 +71,8 @@ tracks/1/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_tpc4g"]
-resource_name = "default_fire_movement"
+[sub_resource type="Animation" id="Animation_h8pvk"]
+resource_name = "fire_left"
 length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -84,7 +84,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-42, 0), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(100, 0), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -96,24 +96,53 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, -0.349066, 0.0]
+"values": [0.0, 0.139626, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_tpc4g"]
+resource_name = "fire_right"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-100, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponSprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.139626, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_02vv0"]
 _data = {
 "RESET": SubResource("Animation_aa0m4"),
-"default_fire_movement": SubResource("Animation_tpc4g")
+"fire_left": SubResource("Animation_h8pvk"),
+"fire_right": SubResource("Animation_tpc4g")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pewk7"]
 size = Vector2(528, 267)
 
-[node name="HandheldWeapon" type="StaticBody2D"]
+[node name="HandheldWeapon" type="Area2D"]
 script = ExtResource("1_cu4gd")
 
 [node name="WeaponSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5degj")
-animation = &"beam_blaster"
+animation = &"pulse_pistol"
 
 [node name="WeaponAnimation" type="AnimationPlayer" parent="."]
 libraries = {

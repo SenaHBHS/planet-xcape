@@ -2,13 +2,12 @@ extends CharacterBody2D
 
 # global variables
 @export var SPEED: int = 500
-var CURRENT_ANIMATION = "idle"
 var ONE_TIME_ANIMATION_FINISHED = true
 
 # child nodes
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var selected_item_halo = $SelectedItemHalo
-#@onready var handheld_weapon = $HandheldWeapon
+@onready var handheld_weapon = $HandheldWeapon
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -23,11 +22,8 @@ func handle_firing() -> Dictionary:
 		just_attacked = true
 		
 		if animation_name == "shoot": # implies a weapon is selected
-			#handheld_weapon.visible = true
-			#handheld_weapon.fire()
-			pass
-		else:
-			# this means the player has just attacked
+			handheld_weapon.visible = true
+			handheld_weapon.fire()
 			pass
 	else:
 		just_attacked = false
@@ -70,9 +66,17 @@ func handle_animations(attack_props: Dictionary, direction: Vector2):
 		elif direction.x > 0:
 			animated_sprite_2d.flip_h = false
 			animated_sprite_2d.play("run")
+			
+			# changing the side of the handheld weapon
+			handheld_weapon.position = Vector2(170, 3.333)
+			handheld_weapon.set_direction("right")
 		elif direction.x < 0:
 			animated_sprite_2d.flip_h = true
 			animated_sprite_2d.play("run")
+			
+			# changing the side of the handheld weapon
+			handheld_weapon.position = Vector2(-170, 3.333)
+			handheld_weapon.set_direction("left")
 		elif direction.y != 0:
 			animated_sprite_2d.play("run")
 		else:
@@ -88,4 +92,4 @@ func handle_animations(attack_props: Dictionary, direction: Vector2):
 func _on_animation_finished():
 	ONE_TIME_ANIMATION_FINISHED = true
 	selected_item_halo.visible = true
-	#handheld_weapon.visible = false
+	handheld_weapon.visible = false
