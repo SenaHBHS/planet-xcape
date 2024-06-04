@@ -6,7 +6,7 @@ var available_items = [{
 	"name": "plasma_streamer",
 	"category": "weapon",
 	"hp_points": 100
-}] # this has a default item for testing purposes
+}] # this has a default item for testing purposes.
 const dummy_item_template = {
 	"name": "",
 	"category": ""
@@ -57,14 +57,14 @@ func add_available_item(item_name:String, item_category:String) -> bool:
 func get_current_item() -> Dictionary:
 	return available_items[selected_pos]
 
-func remove_item(inventory_pos:int) -> void:
-	# returns whether the action was successful
-	available_slots.append(inventory_pos)
-	available_items[inventory_pos]["name"] = ""
-	available_items[inventory_pos]["category"] = ""
+func remove_current_item() -> void:
+	if selected_pos not in available_slots:
+		available_slots.append(selected_pos)
+		available_items[selected_pos]["name"] = ""
+		available_items[selected_pos]["category"] = ""
 
 func select_next_item() -> void:
-	if selected_pos < len(available_items) - 1:
+	if selected_pos < inventory_limit:
 		selected_pos += 1
 	else:
 		pass
@@ -78,6 +78,11 @@ func select_previous_item() -> void:
 		pass
 		
 	_deploy_funcs_for_selected()
+
+func select_item_at_pos(inventory_pos: int) -> void:
+	if inventory_pos >= 0 and inventory_pos < inventory_limit:
+		selected_pos = inventory_pos
+		_deploy_funcs_for_selected()
 
 # this is available as a power-up
 func unlock_an_extra_slot() -> void:
