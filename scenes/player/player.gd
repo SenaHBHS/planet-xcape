@@ -8,7 +8,7 @@ var ONE_TIME_ANIMATION_FINISHED = true
 # child nodes
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var selected_item_halo = $SelectedItemHalo
-@onready var handheld_weapon = $HandheldWeapon
+#@onready var handheld_weapon = $HandheldWeapon
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -23,8 +23,9 @@ func handle_firing() -> Dictionary:
 		just_attacked = true
 		
 		if animation_name == "shoot": # implies a weapon is selected
-			handheld_weapon.visible = true
+			#handheld_weapon.visible = true
 			#handheld_weapon.fire()
+			pass
 		else:
 			# this means the player has just attacked
 			pass
@@ -44,11 +45,10 @@ func handle_movement() -> Vector2:
 		direction.y += 1
 	elif Input.is_action_pressed("move_up"):
 		direction.y -= 1
-	
+
 	# Normalize direction and apply speed
 	velocity = direction.normalized() * SPEED
 	
-	print(velocity)
 	# Move the character
 	move_and_slide()
 	
@@ -84,8 +84,8 @@ func handle_animations(attack_props: Dictionary, direction: Vector2):
 		selected_item_halo.animation = selected_item_name
 	else:
 		selected_item_halo.animation = "empty"
-		
+
 func _on_animation_finished():
 	ONE_TIME_ANIMATION_FINISHED = true
 	selected_item_halo.visible = true
-	handheld_weapon.visible = false
+	#handheld_weapon.visible = false
