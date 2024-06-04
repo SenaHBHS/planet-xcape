@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2h0v503j53ee"]
+
+[ext_resource type="Texture2D" uid="uid://bu1nqujgcx5kr" path="res://assets/sprites/aliens/cosmic_ghost/idle.png" id="1_d2vu6"]
+
+[node name="CosmicGhost" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_d2vu6")
