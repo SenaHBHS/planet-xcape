@@ -1,7 +1,7 @@
 extends StaticBody2D
 
-@onready var animated_sprite_2d = $AnimatedSprite2D
-@onready var animation_player = $AnimationPlayer
+@onready var weapon_sprite_2d = $WeaponSprite2D
+@onready var weapon_animation = $WeaponAnimation
 
 func fire():
 	# this assumes it is called after making sure the equipped weapon is handheld
@@ -9,8 +9,8 @@ func fire():
 	var current_weapon_props = WeaponManager.get_props_for_weapon(current_weapon_name)
 	
 	# playing necessary animations
-	animated_sprite_2d.animation = current_weapon_name
-	animation_player.play("default_fire_movement")
+	weapon_sprite_2d.animation = current_weapon_name
+	weapon_animation.play("default_fire_movement")
 	
 	var selected_weapon_inventory_obj = InventoryManager.get_current_item()
 	selected_weapon_inventory_obj["hp_points"] -= 1
