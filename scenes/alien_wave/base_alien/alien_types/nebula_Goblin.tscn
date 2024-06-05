@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://baaq6k0sqtx1r"]
+[gd_scene load_steps=27 format=3 uid="uid://baaq6k0sqtx1r"]
 
 [ext_resource type="Texture2D" uid="uid://b2ygxkjnwutrg" path="res://assets/sprites/aliens/nebula_goblin/attack.png" id="1_bols5"]
+[ext_resource type="Script" path="res://scenes/alien_wave/base_alien/alien_types/nebula_goblin.gd" id="1_w6dg1"]
 [ext_resource type="Texture2D" uid="uid://bdvseud5fx8hk" path="res://assets/sprites/aliens/nebula_goblin/fly.png" id="2_7tpui"]
 [ext_resource type="Texture2D" uid="uid://cm2esrvh57ivx" path="res://assets/sprites/aliens/nebula_goblin/idle.png" id="2_yhpb1"]
 
@@ -170,9 +171,9 @@ animations = [{
 }]
 
 [node name="NebulaGoblin" type="Node2D"]
+script = ExtResource("1_w6dg1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6l0dj")
-animation = &"attack"
-frame = 6
-frame_progress = 0.907769
+animation = &"idle"
+frame_progress = 0.0253238
