@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
 # global variables
-@export var SPEED: int = 500
+@export var SPEED: int = 400
 var ONE_TIME_ANIMATION_FINISHED = true
+var CAN_FIRE = true
+var PAUSE_UNTIL_NEXT_FIRE = 0
 
 # child nodes
 @onready var animated_sprite_2d = $AnimatedSprite2D
@@ -11,22 +13,31 @@ var ONE_TIME_ANIMATION_FINISHED = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	var attack_props = handle_firing()
+	var attack_props = handle_firing(delta)
 	var direction = handle_movement()
 	handle_animations(attack_props, direction)
 
-func handle_firing() -> Dictionary:
+func handle_firing(delta: float) -> Dictionary:
 	var animation_name = "shoot" if WeaponManager.equipped_weapon != "fist" else "hit"
 	var just_attacked = null
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") and CAN_FIRE:
 		just_attacked = true
 		
 		if animation_name == "shoot": # implies a weapon is selected
 			handheld_weapon.visible = true
-			handheld_weapon.fire()
-			pass
+			PAUSE_UNTIL_NEXT_FIRE = handheld_weapon.fire()
+			CAN_FIRE = false
+		else:
+			CAN_FIRE = true
 	else:
 		just_attacked = false
+		
+	if not CAN_FIRE:
+		PAUSE_UNTIL_NEXT_FIRE -= delta
+		
+		if PAUSE_UNTIL_NEXT_FIRE <= 0:
+			CAN_FIRE = true
+		
 	return {"just_attacked": just_attacked, "animation_name": animation_name}
 
 func handle_movement() -> Vector2:

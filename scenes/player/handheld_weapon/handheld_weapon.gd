@@ -19,6 +19,7 @@ var RENDER_PROPERTIES = {
 		"position": Vector2(10, 0)
 	}
 }
+const BULLET = preload("res://scenes/player/handheld_weapon/bullet/bullet.tscn")
 
 func set_direction(direction: String) -> void:
 	if direction == "right":
@@ -28,7 +29,10 @@ func set_direction(direction: String) -> void:
 		weapon_sprite_2d.flip_h = true
 		DIRECTION = "left"
 
-func fire() -> void:
+func fire() -> int:
+	"""
+	Fires the selected weapon and returns the amount of time it takes to get loaded again!
+	"""
 	# this assumes it is called after making sure the equipped weapon is handheld
 	var current_weapon_name = WeaponManager.equipped_weapon
 	var current_weapon_props = WeaponManager.get_props_for_weapon(current_weapon_name)
@@ -44,9 +48,15 @@ func fire() -> void:
 	else:
 		weapon_animation.play("fire_left")
 	
-	var selected_weapon_inventory_obj = InventoryManager.get_current_item()
-	selected_weapon_inventory_obj["hp_points"] -= 1
+	# firing the bullet
+	var fired_bullet = BULLET.instantiate()
+	fired_bullet.position = global_position
+	fired_bullet.DIRECTION = DIRECTION
+	fired_bullet.set_weapon_name(current_weapon_name)
+	get_parent().get_parent().add_child(fired_bullet)
 	
-	# dealing with the weapon's lifetime
-	if selected_weapon_inventory_obj["hp_points"] <= 0:
-		InventoryManager.remove_item(InventoryManager.selected_pos)
+	# emitting the signal!
+	SignalManager.player_fired.emit()
+	
+	return current_weapon_props["load_time"]
+	

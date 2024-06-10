@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://druwh4irklmeg"]
+
+[ext_resource type="Texture2D" uid="uid://cwu0xe33ojoaa" path="res://assets/sprites/bullets/beam_blaster.png" id="1_08edf"]
+[ext_resource type="Script" path="res://scenes/player/handheld_weapon/bullet/bullet.gd" id="1_xrr6j"]
+[ext_resource type="Texture2D" uid="uid://c8wn4i8gr4df4" path="res://assets/sprites/bullets/plasma_streamer.png" id="2_iqx2o"]
+[ext_resource type="Texture2D" uid="uid://7pf1d8mtgvlr" path="res://assets/sprites/bullets/pulse_pistol.png" id="3_5o4b7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2c8bc"]
+atlas = ExtResource("1_08edf")
+region = Rect2(0, 0, 875, 209)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixxdq"]
+atlas = ExtResource("2_iqx2o")
+region = Rect2(0, 0, 1067, 209)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5iqcw"]
+atlas = ExtResource("3_5o4b7")
+region = Rect2(0, 0, 542, 209)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4tbi0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2c8bc")
+}],
+"loop": true,
+"name": &"beam_blaster",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixxdq")
+}],
+"loop": true,
+"name": &"plasma_streamer",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5iqcw")
+}],
+"loop": true,
+"name": &"pulse_pistol",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_reafb"]
+radius = 68.0
+height = 350.0
+
+[node name="Bullet" type="Area2D"]
+z_index = -1
+script = ExtResource("1_xrr6j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4tbi0")
+animation = &"beam_blaster"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_reafb")

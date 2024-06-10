@@ -3,7 +3,7 @@ extends Node
 # global game variable management
 var inventory_limit = 3 # max n(items) in the inventory!
 var available_items = [{
-	"name": "plasma_streamer",
+	"name": "pulse_pistol",
 	"category": "weapon",
 	"hp_points": 100
 }] # this has a default item for testing purposes.
@@ -58,10 +58,12 @@ func get_current_item() -> Dictionary:
 	return available_items[selected_pos]
 
 func remove_current_item() -> void:
+	available_slots = []
 	if selected_pos not in available_slots:
 		available_slots.append(selected_pos)
 		available_items[selected_pos]["name"] = ""
 		available_items[selected_pos]["category"] = ""
+		_deploy_funcs_for_selected()
 
 func select_next_item() -> void:
 	if selected_pos < inventory_limit:
