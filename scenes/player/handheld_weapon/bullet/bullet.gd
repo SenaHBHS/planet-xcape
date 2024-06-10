@@ -53,8 +53,8 @@ func _ready():
 		position.x -= RENDER_PROPERTIES[CURRENT_WEAPON_NAME]["x_offset"]
 	position.y += RENDER_PROPERTIES[CURRENT_WEAPON_NAME]["y_offset"]
 		
-func set_weapon_name(name: String) -> void:
-	CURRENT_WEAPON_NAME = name
+func set_weapon_name(weapon_name: String) -> void:
+	CURRENT_WEAPON_NAME = weapon_name
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

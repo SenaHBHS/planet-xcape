@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cu0c87vxv3yse"]
 
 [ext_resource type="Script" path="res://scenes/alien_wave/base_alien/base_alien.gd" id="1_qgxpc"]
-[ext_resource type="PackedScene" uid="uid://baaq6k0sqtx1r" path="res://scenes/alien_wave/base_alien/alien_types/nebula_goblin.tscn" id="2_kj8j2"]
+[ext_resource type="PackedScene" uid="uid://baaq6k0sqtx1r" path="res://scenes/alien_wave/base_alien/alien_types/nebula_Goblin.tscn" id="2_kj8j2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_reygn"]
 radius = 261.0

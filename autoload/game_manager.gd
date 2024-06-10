@@ -7,6 +7,37 @@ const how_to_screen_scene: PackedScene = preload("res://scenes/how_to_screen/how
 const main_game_scene: PackedScene = preload("res://scenes/game/game.tscn")
 const game_over_scene: PackedScene = preload("res://scenes/game_over_screen/game_over_screen.tscn")
 
+# game level data
+const GAME_LEVEL_PROPS = {
+	"easy": {
+		"duration": 10, # time limit
+		"n_steps_in_each_wave": 4, # n(sub-waves) in each major wave
+		"time_gap_between_waves": 10, # in seconds
+		"initial_alien_count": 5,
+		"alien_count_increment_for_each_step": 1, # by how much the n(aliens) should be increased in the next step
+		"price_of_the_space_booster": 400,
+		"boss_wave_for_each_n_waves": 2,
+	},
+	"medium": {
+		"duration": 10, # time limit
+		"n_steps_in_each_wave": 4, # n(sub-waves) in each major wave
+		"time_gap_between_waves": 10, # in seconds
+		"initial_alien_count": 5,
+		"alien_count_increment_for_each_step": 1, # by how much the n(aliens) should be increased in the next step
+		"price_of_the_space_booster": 400,
+		"boss_wave_for_each_n_waves": 2,
+	},
+	"hard": {
+		"duration": 10, # time limit
+		"n_steps_in_each_wave": 4, # n(sub-waves) in each major wave
+		"time_gap_between_waves": 10, # in seconds
+		"initial_alien_count": 5,
+		"alien_count_increment_for_each_step": 1, # by how much the n(aliens) should be increased in the next step
+		"price_of_the_space_booster": 400,
+		"boss_wave_for_each_n_waves": 2,
+	}
+}
+
 func load_start_screen():
 	get_tree().change_scene_to_packed(start_screen_scene)
 
