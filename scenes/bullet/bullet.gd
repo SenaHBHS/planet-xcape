@@ -44,6 +44,7 @@ var DIRECTION = "right" # by default
 # child nodes of the bullet
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var collision_shape_2d = $CollisionShape2D
+@onready var bullet_area_shape_2d = $Area2D/BulletAreaShape2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -54,6 +55,8 @@ func _ready():
 	scale = RENDER_PROPERTIES[BULLET_NAME]["scale"]
 	collision_shape_2d.shape.radius = RENDER_PROPERTIES[BULLET_NAME]["capsule_radius"]
 	collision_shape_2d.shape.height = RENDER_PROPERTIES[BULLET_NAME]["capsule_height"]
+	bullet_area_shape_2d.shape.radius = RENDER_PROPERTIES[BULLET_NAME]["capsule_radius"]
+	bullet_area_shape_2d.shape.height = RENDER_PROPERTIES[BULLET_NAME]["capsule_height"]
 	
 	if DIRECTION == "right":
 		animated_sprite_2d.flip_h = false
@@ -84,3 +87,8 @@ func _physics_process(delta):
 		queue_free()
 	else:
 		pass
+
+# if the bullet hits something!
+func _on_area_2d_body_entered(body):
+	print(body)
+	queue_free()

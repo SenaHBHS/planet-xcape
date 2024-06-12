@@ -13,12 +13,13 @@ const NEBULA_GOBLIN = preload("res://scenes/alien_wave/base_alien/alien_types/ne
 const STELLAR_BEARD = preload("res://scenes/alien_wave/base_alien/alien_types/stellar_beard.tscn")
 
 # in game variables
+var DIRECTION = "right" # by default
 var ALIEN_MODE = "move" # either attack or move
 var PLAYER_CAN_ATTACK = false # used to respond to a fist hit from the player
 
 # global variables related to attacking
 var ALIGNED_WITH_TARGET = false
-var TARGET_POS = null # used for the position of objects not accessible through game manager
+var TARGET_POS = GameManager.get_rocket_position() # used for objects' positions
 # used to make sure the alien is aligned with the player
 var REPOSITIONING_ALIEN = false
 
@@ -72,10 +73,13 @@ func _apply_render_props(render_props: Dictionary) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	handle_change_in_direction()
 	if ALIEN_MODE == "move":
 		handle_motion()
+		CURRENT_ALIEN_SCENE.play_move_animation(DIRECTION)
 	else:
 		handle_attack()
+		CURRENT_ALIEN_SCENE.play_attack_animation(DIRECTION)
 
 func _get_velocity_vector(target: Vector2) -> Vector2:
 	var delta_x = target.x - position.x
@@ -130,6 +134,18 @@ func handle_attack():
 		_align_with_the_target(GameManager.PLAYER_POS)
 	else:
 		_align_with_the_target(TARGET_POS)
+
+func handle_change_in_direction():
+	var focus_point_x_cor = null
+	if ALIEN_PRIMARY_TARGET == "player":
+		focus_point_x_cor = GameManager.get_player_position().x
+	else:
+		focus_point_x_cor = TARGET_POS.x
+
+	if position.x > focus_point_x_cor:
+		DIRECTION = "left"
+	else:
+		DIRECTION = "right"
 
 func _on_attack_range_body_entered(body):
 	# changing the alien mode based on their primary target

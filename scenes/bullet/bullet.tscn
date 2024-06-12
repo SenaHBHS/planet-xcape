@@ -59,3 +59,11 @@ animation = &"beam_blaster"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_reafb")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="BulletAreaShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_reafb")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
