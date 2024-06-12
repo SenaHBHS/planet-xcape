@@ -63,6 +63,8 @@ func handle_movement() -> Vector2:
 	var screen_size: Vector2 = get_viewport().size
 	position = position.clamp(Vector2.ZERO, screen_size)
 	
+	GameManager.update_player_position(position)
+	
 	return direction
 
 func handle_animations(attack_props: Dictionary, direction: Vector2):

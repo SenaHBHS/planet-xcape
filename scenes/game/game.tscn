@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://vyomsluakekc"]
+[gd_scene load_steps=3 format=3 uid="uid://vyomsluakekc"]
 
 [ext_resource type="PackedScene" uid="uid://j5pjiovx3jfe" path="res://scenes/player/player.tscn" id="1_dm88o"]
+[ext_resource type="PackedScene" uid="uid://cu0c87vxv3yse" path="res://scenes/alien_wave/base_alien/base_alien.tscn" id="2_pkd2n"]
 
 [node name="Game" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_dm88o")]
 position = Vector2(396, 204)
+
+[node name="BaseAlien" parent="." instance=ExtResource("2_pkd2n")]

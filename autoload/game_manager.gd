@@ -7,7 +7,22 @@ const how_to_screen_scene: PackedScene = preload("res://scenes/how_to_screen/how
 const main_game_scene: PackedScene = preload("res://scenes/game/game.tscn")
 const game_over_scene: PackedScene = preload("res://scenes/game_over_screen/game_over_screen.tscn")
 
-# game level data
+func load_start_screen():
+	get_tree().change_scene_to_packed(start_screen_scene)
+
+func load_story_scene():
+	get_tree().change_scene_to_packed(story_scene)
+
+func load_how_to_scene():
+	get_tree().change_scene_to_packed(how_to_screen_scene)
+
+func load_game_scene():
+	get_tree().change_scene_to_packed(main_game_scene)
+
+func load_game_over_scene():
+	get_tree().change_scene_to_packed(game_over_scene)
+
+# game level management
 const GAME_LEVEL_PROPS = {
 	"easy": {
 		"duration": 10, # time limit
@@ -38,17 +53,15 @@ const GAME_LEVEL_PROPS = {
 	}
 }
 
-func load_start_screen():
-	get_tree().change_scene_to_packed(start_screen_scene)
+# globalising the player position
+var PLAYER_POS = Vector2(0, 0)
+var ROCKET_POS = Vector2(100, 100)
 
-func load_story_scene():
-	get_tree().change_scene_to_packed(story_scene)
+func update_player_position(new_position: Vector2) -> void:
+	PLAYER_POS = new_position
+	
+func get_player_position() -> Vector2:
+	return PLAYER_POS
 
-func load_how_to_scene():
-	get_tree().change_scene_to_packed(how_to_screen_scene)
-
-func load_game_scene():
-	get_tree().change_scene_to_packed(main_game_scene)
-
-func load_game_over_scene():
-	get_tree().change_scene_to_packed(game_over_scene)
+func get_rocket_position() -> Vector2:
+	return ROCKET_POS

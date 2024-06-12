@@ -1,20 +1,20 @@
 [gd_scene load_steps=10 format=3 uid="uid://druwh4irklmeg"]
 
-[ext_resource type="Texture2D" uid="uid://cwu0xe33ojoaa" path="res://assets/sprites/bullets/beam_blaster.png" id="1_08edf"]
-[ext_resource type="Script" path="res://scenes/player/handheld_weapon/bullet/bullet.gd" id="1_xrr6j"]
-[ext_resource type="Texture2D" uid="uid://c8wn4i8gr4df4" path="res://assets/sprites/bullets/plasma_streamer.png" id="2_iqx2o"]
-[ext_resource type="Texture2D" uid="uid://7pf1d8mtgvlr" path="res://assets/sprites/bullets/pulse_pistol.png" id="3_5o4b7"]
+[ext_resource type="Script" path="res://scenes/bullet/bullet.gd" id="1_xr7qv"]
+[ext_resource type="Texture2D" uid="uid://cwu0xe33ojoaa" path="res://assets/sprites/bullets/beam_blaster.png" id="2_50lwc"]
+[ext_resource type="Texture2D" uid="uid://c8wn4i8gr4df4" path="res://assets/sprites/bullets/plasma_streamer.png" id="3_wt302"]
+[ext_resource type="Texture2D" uid="uid://7pf1d8mtgvlr" path="res://assets/sprites/bullets/pulse_pistol.png" id="4_1mnqe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2c8bc"]
-atlas = ExtResource("1_08edf")
+atlas = ExtResource("2_50lwc")
 region = Rect2(0, 0, 875, 209)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixxdq"]
-atlas = ExtResource("2_iqx2o")
+atlas = ExtResource("3_wt302")
 region = Rect2(0, 0, 1067, 209)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5iqcw"]
-atlas = ExtResource("3_5o4b7")
+atlas = ExtResource("4_1mnqe")
 region = Rect2(0, 0, 542, 209)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4tbi0"]
@@ -48,9 +48,9 @@ animations = [{
 radius = 68.0
 height = 350.0
 
-[node name="Bullet" type="Area2D"]
+[node name="Bullet" type="Area2D" groups=["bullet"]]
 z_index = -1
-script = ExtResource("1_xrr6j")
+script = ExtResource("1_xr7qv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4tbi0")

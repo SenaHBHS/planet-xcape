@@ -539,7 +539,7 @@ _data = {
 "rotate_halo": SubResource("Animation_unuq4")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(0.3, 0.3)
 script = ExtResource("1_0cl28")
 

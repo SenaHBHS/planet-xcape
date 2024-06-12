@@ -19,7 +19,8 @@ var RENDER_PROPERTIES = {
 		"position": Vector2(10, 0)
 	}
 }
-const BULLET = preload("res://scenes/player/handheld_weapon/bullet/bullet.tscn")
+
+const BULLET = preload("res://scenes/bullet/bullet.tscn")
 
 func set_direction(direction: String) -> void:
 	if direction == "right":
@@ -52,7 +53,8 @@ func fire() -> int:
 	var fired_bullet = BULLET.instantiate()
 	fired_bullet.position = global_position
 	fired_bullet.DIRECTION = DIRECTION
-	fired_bullet.set_weapon_name(current_weapon_name)
+	fired_bullet.config_bullet(current_weapon_name, "player", current_weapon_props["damage_per_hit"])
+	# adding this to the root game node!
 	get_parent().get_parent().add_child(fired_bullet)
 	
 	# emitting the signal!
