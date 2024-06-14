@@ -24,6 +24,10 @@ BestTimeManager="*res://autoload/best_time_manager.gd"
 WeaponManager="*res://autoload/weapon_manager.gd"
 InventoryManager="*res://autoload/inventory_manager.gd"
 
+[display]
+
+window/size/mode=2
+
 [filesystem]
 
 import/blender/enabled=false

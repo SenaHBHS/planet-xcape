@@ -20,6 +20,7 @@ var PLAYER_CAN_ATTACK = false # used to respond to a fist hit from the player
 # global variables related to attacking
 var ALIGNED_WITH_TARGET = false
 var TARGET_POS = GameManager.get_rocket_position() # used for objects' positions
+var CAN_ATTACK = true
 # used to make sure the alien is aligned with the player
 var REPOSITIONING_ALIEN = false
 
@@ -27,6 +28,7 @@ var REPOSITIONING_ALIEN = false
 @onready var alien_collision_shape_2d = $AlienCollisionShape2D
 @onready var alien_body_shape_2d = $AlienBodyArea/AlienBodyShape2D
 @onready var attack_range_shape_2d = $AttackRangeArea/AttackRangeShape2D
+@onready var timer = $Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -58,28 +60,32 @@ func set_alien(name: String) -> void:
 	# fetching the alien props
 	CURRENT_ALIEN_PROPS = CURRENT_ALIEN_SCENE.get_alien_props()
 	ALIEN_PRIMARY_TARGET = CURRENT_ALIEN_PROPS["primary_target"]
+	
+	# configuring the wait time
+	timer.wait_time = CURRENT_ALIEN_PROPS["time_gap_between_attacks"]
 
 func _apply_render_props(render_props: Dictionary) -> void:
 	# configuring the scale
 	scale = render_props["scale"]
 	# configuring the alien's body shape (there are 2 duplicates: one for BaseAlien and the other for Area2D)
-	alien_body_shape_2d.shape.radius = render_props["player_body_area_radius"]
-	alien_body_shape_2d.shape.height = render_props["player_body_area_height"]
-	alien_collision_shape_2d.shape.radius = render_props["player_body_area_radius"]
-	alien_collision_shape_2d.shape.height = render_props["player_body_area_height"]
+	alien_body_shape_2d.shape.radius = render_props["body_area_radius"]
+	alien_body_shape_2d.shape.height = render_props["body_area_height"]
+	alien_collision_shape_2d.shape.radius = render_props["body_collision_shape_radius"]
+	alien_collision_shape_2d.shape.height = render_props["body_collision_shape_height"]
 	
 	# configuring the attack range
-	attack_range_shape_2d.shape.radius = render_props["player_attack_range_radius"]
+	attack_range_shape_2d.shape.radius = render_props["attack_range_radius"]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _physics_process(delta: float):
 	handle_change_in_direction()
 	if ALIEN_MODE == "move":
 		handle_motion()
 		CURRENT_ALIEN_SCENE.play_move_animation(DIRECTION)
 	else:
-		handle_attack()
-		CURRENT_ALIEN_SCENE.play_attack_animation(DIRECTION)
+		var attacked = handle_attack(delta)
+		if attacked:
+			CURRENT_ALIEN_SCENE.play_attack_animation(DIRECTION)
 
 func _get_velocity_vector(target: Vector2) -> Vector2:
 	var delta_x = target.x - position.x
@@ -104,36 +110,43 @@ func handle_motion():
 		
 	move_and_slide()
 
-func _align_with_the_target(target_pos: Vector2) -> void:
+func _align_with_the_target(target_pos: Vector2, delta: float) -> void:
 	# this make sures the alien always attacks the player such that both can shoot bullets to each other!
 	var delta_x = position.x - target_pos.x
 	var delta_y = position.y - target_pos.y
 	
-	if abs(delta_y) > 5:
+	# variables used for circular motion
+	var angular_velocity = CURRENT_ALIEN_PROPS["speed"] * 0.01
+	var current_angle = atan(abs(delta_y) / abs(delta_x))
+	var radius = abs(sqrt((delta_x**2 + delta_y**2)))
+	
+	if current_angle > 0.05:
 		REPOSITIONING_ALIEN = true
 		
-		var shifter = 120
-		var shifted_target_pos = target_pos
-		if delta_x >= 0:
-			shifted_target_pos.x += shifter
-			velocity = _get_velocity_vector(shifted_target_pos)
-		else:
-			shifted_target_pos.x -= shifter
-			velocity = _get_velocity_vector(shifted_target_pos)
-	
-		move_and_slide()
+		current_angle -= angular_velocity * delta
+		var new_delta_x = cos(current_angle) * radius * sign(delta_x)
+		var new_delta_y = sin(current_angle) * radius * sign(delta_y)
+		position = Vector2(target_pos.x + new_delta_x, target_pos.y + new_delta_y)
 	else:
 		REPOSITIONING_ALIEN = false
-		# moving the alien again so that player is inside the attack range
-		if abs(delta_x) >= CURRENT_ALIEN_SCENE.get_render_props()["player_attack_range_radius"]:
-			ALIEN_MODE = "move"
-
-func handle_attack():
+		
+	# moving the alien again so that player is inside the attack range
+	if radius >= CURRENT_ALIEN_SCENE.get_render_props()["attack_range_radius"]:
+		ALIEN_MODE = "move"
+		
+func handle_attack(delta: float):
+	# returns whether the alien attacked
 	if ALIEN_PRIMARY_TARGET == "player":
-		SignalManager.player_was_hit.emit(CURRENT_ALIEN_PROPS["damage_per_attack"])
-		_align_with_the_target(GameManager.PLAYER_POS)
+		_align_with_the_target(GameManager.PLAYER_POS, delta)
+		if CAN_ATTACK and !REPOSITIONING_ALIEN:
+			SignalManager.player_was_hit.emit(CURRENT_ALIEN_PROPS["damage_per_attack"])
+			CAN_ATTACK = false
+			return true
+		else:
+			return false
 	else:
-		_align_with_the_target(TARGET_POS)
+		_align_with_the_target(TARGET_POS, delta)
+		return true
 
 func handle_change_in_direction():
 	var focus_point_x_cor = null
@@ -168,3 +181,6 @@ func _on_alien_body_area_body_exited(body):
 	if body.is_in_group("player"):
 		PLAYER_CAN_ATTACK = false
 		ALIGNED_WITH_TARGET = false
+
+func _on_timer_timeout():
+	CAN_ATTACK = true

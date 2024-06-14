@@ -22,7 +22,7 @@ var RENDER_PROPERTIES = {
 		"capsule_radius": 68,
 		"capsule_height": 350,
 		"speed": 425,
-		"x_offset": 100,
+		"x_offset": 40,
 		"y_offset": -10
 	},
 	"electro_gorgon": {

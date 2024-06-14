@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cu0c87vxv3yse"]
+[gd_scene load_steps=6 format=3 uid="uid://cu0c87vxv3yse"]
 
 [ext_resource type="Script" path="res://scenes/alien_wave/base_alien/base_alien.gd" id="1_qgxpc"]
+[ext_resource type="PackedScene" uid="uid://baaq6k0sqtx1r" path="res://scenes/alien_wave/base_alien/alien_types/nebula_goblin.tscn" id="2_swr0g"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_reygn"]
 radius = 261.0
@@ -31,6 +32,9 @@ visible = false
 
 [node name="AttackRangeShape2D" type="CollisionShape2D" parent="AttackRangeArea"]
 shape = SubResource("CircleShape2D_37v0d")
+
+[node name="NebulaGoblin" parent="." instance=ExtResource("2_swr0g")]
+visible = false
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

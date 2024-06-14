@@ -6,7 +6,7 @@ extends Node2D
 
 var ALIEN_PROPERTIES = {
 	"primary_target": "player",
-	"time_gap_between_attacks": 10, # in seconds
+	"time_gap_between_attacks": 0.5, # in seconds
 	"damage_per_attack": 10,
 	"speed": 150
 }
@@ -14,9 +14,11 @@ var ALIEN_PROPERTIES = {
 # props passed onto the base_alien to render this scene
 var RENDER_PROPERTIES = {
 	"scale": Vector2(0.2, 0.2),
-	"player_body_area_radius": 240,
-	"player_body_area_height": 538,
-	"player_attack_range_radius": 260,
+	"body_area_radius": 240,
+	"body_area_height": 538,
+	"body_collision_shape_radius": 135,
+	"body_collision_shape_height": 480,
+	"attack_range_radius": 260,
 }
 
 func get_render_props() -> Dictionary:
