@@ -27,11 +27,11 @@ var RENDER_PROPERTIES = {
 	},
 	"electro_gorgon": {
 		"scale": Vector2(0.08, 0.08),
-		"capsule_radius": 68,
-		"capsule_height": 350,
-		"speed": 425,
-		"x_offset": 100,
-		"y_offset": -10
+		"capsule_radius": 98,
+		"capsule_height": 466,
+		"speed": 560,
+		"x_offset": 80,
+		"y_offset": 0
 	}
 }
 

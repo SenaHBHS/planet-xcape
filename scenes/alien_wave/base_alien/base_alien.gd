@@ -16,13 +16,16 @@ const STELLAR_BEARD = preload("res://scenes/alien_wave/base_alien/alien_types/st
 var DIRECTION = "right" # by default
 var ALIEN_MODE = "move" # either attack or move
 var PLAYER_CAN_ATTACK = false # used to respond to a fist hit from the player
+var HP_POINTS = null # configured using set_alien()
 
 # global variables related to attacking
-var ALIGNED_WITH_TARGET = false
 var TARGET_POS = GameManager.get_rocket_position() # used for objects' positions
 var CAN_ATTACK = true
 # used to make sure the alien is aligned with the player
 var REPOSITIONING_ALIEN = false
+
+# packed scenes used
+const BULLET = preload("res://scenes/bullet/bullet.tscn")
 
 # nodes in the base alien that are dynamically adjusted
 @onready var alien_collision_shape_2d = $AlienCollisionShape2D
@@ -32,8 +35,8 @@ var REPOSITIONING_ALIEN = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	assert(ALIEN_NAME != null, "Please set the alien name using set_alien(name)")
-	set_alien("nebula_goblin")
+	#assert(ALIEN_NAME != "", "Please set the alien name using set_alien(name)")
+	set_alien("electro_gorgon")
 
 func set_alien(name: String) -> void:
 	ALIEN_NAME = name
@@ -60,6 +63,7 @@ func set_alien(name: String) -> void:
 	# fetching the alien props
 	CURRENT_ALIEN_PROPS = CURRENT_ALIEN_SCENE.get_alien_props()
 	ALIEN_PRIMARY_TARGET = CURRENT_ALIEN_PROPS["primary_target"]
+	HP_POINTS = CURRENT_ALIEN_PROPS["hp_points"]
 	
 	# configuring the wait time
 	timer.wait_time = CURRENT_ALIEN_PROPS["time_gap_between_attacks"]
@@ -118,7 +122,7 @@ func _align_with_the_target(target_pos: Vector2, delta: float) -> void:
 	# variables used for circular motion
 	var angular_velocity = CURRENT_ALIEN_PROPS["speed"] * 0.01
 	var current_angle = atan(abs(delta_y) / abs(delta_x))
-	var radius = abs(sqrt((delta_x**2 + delta_y**2)))
+	var radius = sqrt((delta_x**2 + delta_y**2))
 	
 	if current_angle > 0.05:
 		REPOSITIONING_ALIEN = true
@@ -134,15 +138,28 @@ func _align_with_the_target(target_pos: Vector2, delta: float) -> void:
 	if radius >= CURRENT_ALIEN_SCENE.get_render_props()["attack_range_radius"]:
 		ALIEN_MODE = "move"
 		
+func _fire_bullet():
+	# used to fire the bullets from bullet firing aliens
+	# firing the bullet
+	var fired_bullet = BULLET.instantiate()
+	fired_bullet.position = global_position
+	fired_bullet.DIRECTION = DIRECTION
+	fired_bullet.config_bullet(ALIEN_NAME, "alien", CURRENT_ALIEN_PROPS["damage_per_attack"])
+	# adding this to the root game node!
+	get_parent().add_child(fired_bullet)
+		
 func handle_attack(delta: float):
 	# returns whether the alien attacked
 	if ALIEN_PRIMARY_TARGET == "player":
-		_align_with_the_target(GameManager.PLAYER_POS, delta)
 		if CAN_ATTACK and !REPOSITIONING_ALIEN:
-			SignalManager.player_was_hit.emit(CURRENT_ALIEN_PROPS["damage_per_attack"])
+			if ALIEN_NAME == "electro_gorgon": # a bullet firing alien
+				_fire_bullet()
+			else:
+				SignalManager.player_was_hit.emit(CURRENT_ALIEN_PROPS["damage_per_attack"])
 			CAN_ATTACK = false
-			return true
+			return true # attacked the player
 		else:
+			_align_with_the_target(GameManager.PLAYER_POS, delta)
 			return false
 	else:
 		_align_with_the_target(TARGET_POS, delta)
@@ -170,7 +187,6 @@ func _on_attack_range_body_exited(body):
 	if not REPOSITIONING_ALIEN:
 		if ALIEN_MODE != "move" and body.is_in_group(ALIEN_PRIMARY_TARGET):
 			ALIEN_MODE = "move"
-			ALIGNED_WITH_TARGET = false
 			TARGET_POS = null
 
 func _on_alien_body_area_body_entered(body):
@@ -180,7 +196,6 @@ func _on_alien_body_area_body_entered(body):
 func _on_alien_body_area_body_exited(body):
 	if body.is_in_group("player"):
 		PLAYER_CAN_ATTACK = false
-		ALIGNED_WITH_TARGET = false
 
 func _on_timer_timeout():
 	CAN_ATTACK = true

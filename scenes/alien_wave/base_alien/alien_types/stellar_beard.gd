@@ -6,20 +6,20 @@ extends Node2D
 
 var ALIEN_PROPERTIES = {
 	"primary_target": "player",
-	"time_gap_between_attacks": 0.5, # in seconds
+	"time_gap_between_attacks": 0.4, # in seconds
 	"damage_per_attack": 10,
-	"speed": 150,
+	"speed": 160,
 	"hp_points": 100,
 }
 
 # props passed onto the base_alien to render this scene
 var RENDER_PROPERTIES = {
 	"scale": Vector2(0.2, 0.2),
-	"body_area_radius": 240,
-	"body_area_height": 538,
-	"body_collision_shape_radius": 135,
-	"body_collision_shape_height": 480,
-	"attack_range_radius": 260,
+	"body_area_radius": 190,
+	"body_area_height": 495,
+	"body_collision_shape_radius": 130,
+	"body_collision_shape_height": 460,
+	"attack_range_radius": 240,
 }
 
 func get_render_props() -> Dictionary:
@@ -35,8 +35,8 @@ func play_move_animation(direction: String) -> void:
 	else:
 		animated_sprite_2d.flip_h = false
 	
-	animation_player.play("fly")
-	animated_sprite_2d.play("fly")
+	animation_player.play("move")
+	animated_sprite_2d.play("idle")
 	
 func play_attack_animation(direction: String) -> void:
 	if direction == "right":
