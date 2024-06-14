@@ -22,46 +22,16 @@ func load_game_scene():
 func load_game_over_scene():
 	get_tree().change_scene_to_packed(game_over_scene)
 
-# game level management
-const GAME_LEVEL_PROPS = {
-	"easy": {
-		"duration": 10, # time limit
-		"n_steps_in_each_wave": 4, # n(sub-waves) in each major wave
-		"time_gap_between_waves": 10, # in seconds
-		"initial_alien_count": 5,
-		"alien_count_increment_for_each_step": 1, # by how much the n(aliens) should be increased in the next step
-		"price_of_the_space_booster": 400,
-		"boss_wave_for_each_n_waves": 2,
-	},
-	"medium": {
-		"duration": 10, # time limit
-		"n_steps_in_each_wave": 4, # n(sub-waves) in each major wave
-		"time_gap_between_waves": 10, # in seconds
-		"initial_alien_count": 5,
-		"alien_count_increment_for_each_step": 1, # by how much the n(aliens) should be increased in the next step
-		"price_of_the_space_booster": 400,
-		"boss_wave_for_each_n_waves": 2,
-	},
-	"hard": {
-		"duration": 10, # time limit
-		"n_steps_in_each_wave": 4, # n(sub-waves) in each major wave
-		"time_gap_between_waves": 10, # in seconds
-		"initial_alien_count": 5,
-		"alien_count_increment_for_each_step": 1, # by how much the n(aliens) should be increased in the next step
-		"price_of_the_space_booster": 400,
-		"boss_wave_for_each_n_waves": 2,
-	}
-}
 
 # globalising the player position
-var PLAYER_POS = Vector2(0, 0)
-var ROCKET_POS = Vector2(100, 100)
+var player_pos: Vector2 = Vector2(0, 0)
+var rocket_pos: Vector2 = get_viewport().size / 2
 
 func update_player_position(new_position: Vector2) -> void:
-	PLAYER_POS = new_position
+	player_pos = new_position
 	
 func get_player_position() -> Vector2:
-	return PLAYER_POS
+	return player_pos
 
 func get_rocket_position() -> Vector2:
-	return ROCKET_POS
+	return rocket_pos
