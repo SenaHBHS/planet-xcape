@@ -25,7 +25,7 @@ func load_game_over_scene():
 
 # globalising the player position
 var player_pos: Vector2 = Vector2(0, 0)
-var rocket_pos: Vector2 = get_viewport().size / 2
+var rocket_pos: Vector2 = Vector2(0, 0)
 
 func update_player_position(new_position: Vector2) -> void:
 	player_pos = new_position

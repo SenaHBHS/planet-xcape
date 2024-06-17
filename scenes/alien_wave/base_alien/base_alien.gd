@@ -159,7 +159,7 @@ func handle_attack(delta: float):
 			CAN_ATTACK = false
 			return true # attacked the player
 		else:
-			_align_with_the_target(GameManager.PLAYER_POS, delta)
+			_align_with_the_target(GameManager.get_player_position(), delta)
 			return false
 	else:
 		_align_with_the_target(TARGET_POS, delta)
