@@ -21,7 +21,7 @@ const game_level_props = {
 		"boss_wave_frequency": 3, # a boss wave per n(waves)
 	},
 	"master": {
-		"n_steps_in_each_wave": 4, # n(sub-waves) in each major wave
+		"n_subwaves": 4, # n(sub-waves) in each major wave
 		"time_gap_between_waves": 5, # in seconds
 		"time_gap_between_subwaves": 2, # in seconds
 		"lower_n_alien_bound": 5,
