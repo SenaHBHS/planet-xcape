@@ -90,5 +90,20 @@ func _physics_process(delta):
 
 # if the bullet hits something!
 func _on_area_2d_body_entered(body):
-	print(body)
-	queue_free()
+	if BULLET_TYPE == "player" and body.is_in_group("alien"):
+		body.deduct_hp_points(BULLET_DAMAGE) # aliens have this function for sure
+		queue_free()
+	elif BULLET_TYPE == "alien":
+		if body.is_in_group("player"):
+			SignalManager.player_was_hit.emit(BULLET_DAMAGE)
+			queue_free()
+		elif body.is_in_group("rocket"):
+			SignalManager.rocket_was_hit.emit(BULLET_DAMAGE)
+			queue_free()
+		elif body.is_in_group("object"):
+			body.deduct_hp_points(BULLET_DAMAGE) # every object has this function
+			queue_free()
+		else:
+			pass
+	else:
+		pass

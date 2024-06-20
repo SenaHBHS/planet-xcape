@@ -11,6 +11,10 @@ var PAUSE_UNTIL_NEXT_FIRE = 0
 @onready var selected_item_halo = $SelectedItemHalo
 @onready var handheld_weapon = $HandheldWeapon
 
+func _ready():
+	GameManager.player_hp_points = LevelManager.get_level_props()["player_hp_points"]
+	SignalManager.player_was_hit.connect(handle_player_was_hit)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	var attack_props = handle_firing(delta)
@@ -106,3 +110,11 @@ func _on_animation_finished():
 	ONE_TIME_ANIMATION_FINISHED = true
 	selected_item_halo.visible = true
 	handheld_weapon.visible = false
+
+func handle_player_was_hit(hp_points_to_deduct):
+	GameManager.player_hp_points -= hp_points_to_deduct
+	print(GameManager.player_hp_points)
+	if GameManager.player_hp_points <= 0:
+		GameManager.set_game_over()
+	else:
+		pass

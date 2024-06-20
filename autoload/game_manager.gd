@@ -19,13 +19,18 @@ func load_how_to_scene():
 func load_game_scene():
 	get_tree().change_scene_to_packed(main_game_scene)
 
-func load_game_over_scene():
+func set_game_won():
+	print("GAME WON!")
+
+func set_game_over():
 	get_tree().change_scene_to_packed(game_over_scene)
 
-
-# globalising the player position
+# globalising the player and rocket position and hp points
 var player_pos: Vector2 = Vector2(0, 0)
 var rocket_pos: Vector2 = Vector2(0, 0)
+# hp points are default values (they are configured later)
+var player_hp_points: float = 100.0 
+var rocket_hp_points: float = 250.0
 
 func update_player_position(new_position: Vector2) -> void:
 	player_pos = new_position

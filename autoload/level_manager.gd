@@ -5,6 +5,8 @@ var level = "rookie"
 
 const game_level_props = {
 	"rookie": {
+		"player_hp_points": 50,
+		"rocket_hp_points": 250,
 		"n_subwaves": 2, # n(sub-waves) in each major wave
 		"n_boss_subwaves": 1,
 		"time_gap_between_waves": 10, # in seconds
@@ -15,6 +17,8 @@ const game_level_props = {
 		"difficutly_increase_per_wave_spawned": 0.02
 	},
 	"veteran": {
+		"player_hp_points": 100,
+		"rocket_hp_points": 250,
 		"n_subwaves": 4, # n(sub-waves) in each major wave
 		"n_boss_subwaves": 1,
 		"time_gap_between_waves": 5, # in seconds
@@ -25,6 +29,8 @@ const game_level_props = {
 		"difficutly_increase_per_wave_spawned": 0.02
 	},
 	"master": {
+		"player_hp_points": 100,
+		"rocket_hp_points": 250,
 		"n_subwaves": 4, # n(sub-waves) in each major wave
 		"n_boss_subwaves": 1,
 		"time_gap_between_waves": 5, # in seconds

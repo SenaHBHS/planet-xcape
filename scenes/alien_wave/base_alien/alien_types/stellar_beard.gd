@@ -7,9 +7,9 @@ extends Node2D
 var ALIEN_PROPERTIES = {
 	"primary_target": "player",
 	"time_gap_between_attacks": 0.4, # in seconds
-	"damage_per_attack": 10,
+	"damage_per_attack": 4,
 	"speed": 160,
-	"hp_points": 100,
+	"hp_points": 5,
 }
 
 # props passed onto the base_alien to render this scene

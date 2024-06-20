@@ -14,7 +14,7 @@ height = 440.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_37v0d"]
 radius = 650.0
 
-[node name="BaseAlien" type="CharacterBody2D"]
+[node name="BaseAlien" type="CharacterBody2D" groups=["alien"]]
 z_index = -2
 script = ExtResource("1_qgxpc")
 

@@ -7,6 +7,9 @@ signal player_powered_up(power_up)
 signal player_fired
 signal player_equip_weapon(weapon)
 
+# rocket related signals
+signal rocket_was_hit(hp_points_to_deduct)
+
 # alien related signals
 signal hit_by_player(alien)
 signal spawn_alien_wave(strength)

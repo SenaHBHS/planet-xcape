@@ -184,6 +184,11 @@ func handle_change_in_direction():
 	else:
 		DIRECTION = "right"
 
+func deduct_hp_points(amount):
+	HP_POINTS -= amount
+	if HP_POINTS <= 0:
+		queue_free()
+
 func _on_attack_range_body_entered(body):
 	# changing the alien mode based on their primary target
 	if ALIEN_MODE != "attack" and body.is_in_group(ALIEN_PRIMARY_TARGET):
