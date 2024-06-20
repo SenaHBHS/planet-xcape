@@ -14,7 +14,11 @@ func _ready():
 	spawn_wave_timer.one_shot = false
 	spawn_wave_timer.autostart = true
 	
-	spawn_wave_timer.timeout.connect(_on_spawn_wave_timer_timeout)
+	# Add the Timer node to the scene tree
+	add_child(spawn_wave_timer)
+	
+	# Connect the timeout signal
+	spawn_wave_timer.connect("timeout", _on_spawn_wave_timer_timeout)
 
 func _on_spawn_wave_timer_timeout() -> void:
 	# decrease the countdown time

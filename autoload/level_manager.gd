@@ -5,28 +5,34 @@ var level = "rookie"
 
 const game_level_props = {
 	"rookie": {
-		"n_subwaves": 3, # n(sub-waves) in each major wave
-		"time_gap_between_waves": 5, # in seconds
-		"time_gap_between_subwaves": 2, # in seconds
-		"lower_n_alien_bound": 3,
+		"n_subwaves": 2, # n(sub-waves) in each major wave
+		"n_boss_subwaves": 1,
+		"time_gap_between_waves": 10, # in seconds
+		"time_gap_between_subwaves": 5, # in seconds
+		"lower_n_alien_bound": 2,
 		"price_of_the_space_booster": 400,
 		"boss_wave_frequency": 2, # a boss wave per n(waves)
+		"difficutly_increase_per_wave_spawned": 0.02
 	},
 	"veteran": {
 		"n_subwaves": 4, # n(sub-waves) in each major wave
+		"n_boss_subwaves": 1,
 		"time_gap_between_waves": 5, # in seconds
 		"time_gap_between_subwaves": 2, # in seconds
 		"lower_n_alien_bound": 4,
 		"price_of_the_space_booster": 500,
 		"boss_wave_frequency": 3, # a boss wave per n(waves)
+		"difficutly_increase_per_wave_spawned": 0.02
 	},
 	"master": {
 		"n_subwaves": 4, # n(sub-waves) in each major wave
+		"n_boss_subwaves": 1,
 		"time_gap_between_waves": 5, # in seconds
 		"time_gap_between_subwaves": 2, # in seconds
 		"lower_n_alien_bound": 5,
 		"price_of_the_space_booster": 600,
 		"boss_wave_frequency": 4, # a boss wave per n(waves)
+		"difficutly_increase_per_wave_spawned": 0.02
 	}
 }
 

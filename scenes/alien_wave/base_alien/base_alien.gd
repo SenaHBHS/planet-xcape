@@ -15,8 +15,11 @@ const STELLAR_BEARD = preload("res://scenes/alien_wave/base_alien/alien_types/st
 # in game variables
 var DIRECTION = "right" # by default
 var ALIEN_MODE = "move" # either attack or move
+var ALIEN_SCALE_FACTOR = 1.6 # this value is used if the alien's a boss otherwise this is set to 1.0
 var PLAYER_CAN_ATTACK = false # used to respond to a fist hit from the player
 var HP_POINTS = null # configured using set_alien()
+var IS_BOSS = false # whether the alien is in a boss wave
+var DIFFICULTY = null # used to make the aliens progressively harder
 
 # global variables related to attacking
 var TARGET_POS = GameManager.get_rocket_position() # used for objects' positions
@@ -35,11 +38,19 @@ const BULLET = preload("res://scenes/bullet/bullet.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#assert(ALIEN_NAME != "", "Please set the alien name using set_alien(name)")
-	set_alien("electro_gorgon")
+	assert(ALIEN_NAME != "", "Please set the alien name using set_alien(name)")
+	
+	# fetching the render_props
+	var _render_props = CURRENT_ALIEN_SCENE.get_render_props()
+	# applying the render_props
+	_apply_render_props(_render_props)
+	
+	# configuring the wait time
+	timer.wait_time = CURRENT_ALIEN_PROPS["time_gap_between_attacks"]
 
-func set_alien(name: String) -> void:
+func set_alien(name: String, difficutly: float, is_boss: bool) -> void:
 	ALIEN_NAME = name
+	DIFFICULTY = difficutly
 	
 	# there are only 4 possible names!
 	if ALIEN_NAME == "cosmic_ghost":
@@ -48,37 +59,33 @@ func set_alien(name: String) -> void:
 		CURRENT_ALIEN_SCENE = ELECTRO_GORGON.instantiate()
 	elif ALIEN_NAME == "nebula_goblin":
 		CURRENT_ALIEN_SCENE = NEBULA_GOBLIN.instantiate()
-	else:
+	elif ALIEN_NAME == "stellar_beard":
 		CURRENT_ALIEN_SCENE = STELLAR_BEARD.instantiate()
-	
-	# fetching the render_props
-	var _render_props = CURRENT_ALIEN_SCENE.get_render_props()
-	
-	# applying the render_props
-	_apply_render_props(_render_props)
-	
-	# adding the scene to the BaseAlien
-	add_child(CURRENT_ALIEN_SCENE)
-	
+	else:
+		push_error("Alien name not found!")
+		
 	# fetching the alien props
 	CURRENT_ALIEN_PROPS = CURRENT_ALIEN_SCENE.get_alien_props()
 	ALIEN_PRIMARY_TARGET = CURRENT_ALIEN_PROPS["primary_target"]
-	HP_POINTS = CURRENT_ALIEN_PROPS["hp_points"]
+	HP_POINTS = CURRENT_ALIEN_PROPS["hp_points"] * DIFFICULTY
 	
-	# configuring the wait time
-	timer.wait_time = CURRENT_ALIEN_PROPS["time_gap_between_attacks"]
+	if not is_boss:
+		ALIEN_SCALE_FACTOR = 1.0
+	
+	# adding the scene to the BaseAlien
+	add_child(CURRENT_ALIEN_SCENE)
 
 func _apply_render_props(render_props: Dictionary) -> void:
 	# configuring the scale
-	scale = render_props["scale"]
+	scale = render_props["scale"] * ALIEN_SCALE_FACTOR
 	# configuring the alien's body shape (there are 2 duplicates: one for BaseAlien and the other for Area2D)
-	alien_body_shape_2d.shape.radius = render_props["body_area_radius"]
-	alien_body_shape_2d.shape.height = render_props["body_area_height"]
-	alien_collision_shape_2d.shape.radius = render_props["body_collision_shape_radius"]
-	alien_collision_shape_2d.shape.height = render_props["body_collision_shape_height"]
+	alien_body_shape_2d.shape.radius = render_props["body_area_radius"] * ALIEN_SCALE_FACTOR
+	alien_body_shape_2d.shape.height = render_props["body_area_height"] * ALIEN_SCALE_FACTOR
+	alien_collision_shape_2d.shape.radius = render_props["body_collision_shape_radius"] * ALIEN_SCALE_FACTOR
+	alien_collision_shape_2d.shape.height = render_props["body_collision_shape_height"] * ALIEN_SCALE_FACTOR
 	
 	# configuring the attack range
-	attack_range_shape_2d.shape.radius = render_props["attack_range_radius"]
+	attack_range_shape_2d.shape.radius = render_props["attack_range_radius"] * ALIEN_SCALE_FACTOR
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
@@ -104,7 +111,7 @@ func _get_velocity_vector(target: Vector2) -> Vector2:
 	if delta_vector.y < 0:
 		direction_vec.y *= -1
 		
-	return direction_vec * CURRENT_ALIEN_PROPS["speed"]
+	return direction_vec * CURRENT_ALIEN_PROPS["speed"] * DIFFICULTY
 
 func handle_motion():
 	if ALIEN_PRIMARY_TARGET == "player":
@@ -120,7 +127,7 @@ func _align_with_the_target(target_pos: Vector2, delta: float) -> void:
 	var delta_y = position.y - target_pos.y
 	
 	# variables used for circular motion
-	var angular_velocity = CURRENT_ALIEN_PROPS["speed"] * 0.01
+	var angular_velocity = CURRENT_ALIEN_PROPS["speed"] * DIFFICULTY * 0.01
 	var current_angle = atan(abs(delta_y) / abs(delta_x))
 	var radius = sqrt((delta_x**2 + delta_y**2))
 	
@@ -155,7 +162,7 @@ func handle_attack(delta: float):
 			if ALIEN_NAME == "electro_gorgon": # a bullet firing alien
 				_fire_bullet()
 			else:
-				SignalManager.player_was_hit.emit(CURRENT_ALIEN_PROPS["damage_per_attack"])
+				SignalManager.player_was_hit.emit(CURRENT_ALIEN_PROPS["damage_per_attack"]*DIFFICULTY)
 			CAN_ATTACK = false
 			return true # attacked the player
 		else:
