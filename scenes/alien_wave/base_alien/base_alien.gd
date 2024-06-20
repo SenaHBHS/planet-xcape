@@ -47,6 +47,9 @@ func _ready():
 	
 	# configuring the wait time
 	timer.wait_time = CURRENT_ALIEN_PROPS["time_gap_between_attacks"]
+	
+	# connceting callbacks to signals
+	SignalManager.player_hit_with_fist.connect(_handle_player_fist_attack)
 
 func set_alien(name: String, difficutly: float, is_boss: bool) -> void:
 	ALIEN_NAME = name
@@ -189,6 +192,17 @@ func deduct_hp_points(amount):
 	if HP_POINTS <= 0:
 		queue_free()
 
+func _handle_player_fist_attack(player_direction, damage_points):
+	var delta_x = global_position.x - GameManager.player_pos.x
+	
+	if GameManager.player_can_fist_attack:
+		if delta_x > 0 and player_direction == "right":
+			deduct_hp_points(damage_points)
+		elif delta_x < 0 and player_direction == "left":
+			deduct_hp_points(damage_points)
+		else:
+			pass
+
 func _on_attack_range_body_entered(body):
 	# changing the alien mode based on their primary target
 	if ALIEN_MODE != "attack" and body.is_in_group(ALIEN_PRIMARY_TARGET):
@@ -200,14 +214,6 @@ func _on_attack_range_body_exited(body):
 		if ALIEN_MODE != "move" and body.is_in_group(ALIEN_PRIMARY_TARGET):
 			ALIEN_MODE = "move"
 			TARGET_POS = null
-
-func _on_alien_body_area_body_entered(body):
-	if body.is_in_group("player"):
-		PLAYER_CAN_ATTACK = true
-
-func _on_alien_body_area_body_exited(body):
-	if body.is_in_group("player"):
-		PLAYER_CAN_ATTACK = false
 
 func _on_timer_timeout():
 	CAN_ATTACK = true

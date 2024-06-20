@@ -5,6 +5,7 @@ signal player_was_hit(hp_points_to_deduct)
 signal player_died
 signal player_powered_up(power_up)
 signal player_fired
+signal player_hit_with_fist(player_direction)
 signal player_equip_weapon(weapon)
 
 # rocket related signals

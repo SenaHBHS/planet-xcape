@@ -39,8 +39,6 @@ shape = SubResource("CircleShape2D_37v0d")
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="body_entered" from="AlienBodyArea" to="." method="_on_alien_body_area_body_entered"]
-[connection signal="body_exited" from="AlienBodyArea" to="." method="_on_alien_body_area_body_exited"]
 [connection signal="body_entered" from="AttackRangeArea" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRangeArea" to="." method="_on_attack_range_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

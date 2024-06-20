@@ -4,6 +4,7 @@ extends Node2D
 var DIFFICULTY = 1 # to make the game progressively challenging (changes the alien speed and wait time based on this)
 var DIFFICUTLY_INCREASE_PER_WAVE_SPAWNED = 0.02
 var RANDOM_NUM_GEN = RandomNumberGenerator.new()
+var ALIEN_TYPES_AVAILABLE = 1 # aliens are spawned upto this index from ALIEN_TYPES
 # following are automatically configured in ready()
 var SCREEN_SIZE = null
 var ALIEN_TYPES = null
@@ -77,6 +78,8 @@ func spawn_alien_wave(delta):
 			if IS_BOSS_WAVE:
 				N_WAVES_SPAWNED = 0
 				IS_BOSS_WAVE = false
+				if ALIEN_TYPES_AVAILABLE < ALIEN_TYPES.size():
+					ALIEN_TYPES_AVAILABLE += 1
 				
 			AlienWaveManager.set_can_spawn_a_wave_to_false()
 
@@ -94,7 +97,7 @@ func _spawn_aliens(count: int):
 				continue
 			
 			# choosing a random alien type
-			var random_alien_type_index = RANDOM_NUM_GEN.randi_range(0, ALIEN_TYPES.size() - 1)
+			var random_alien_type_index = RANDOM_NUM_GEN.randi_range(0, ALIEN_TYPES_AVAILABLE-1)
 			var alien_type = ALIEN_TYPES[random_alien_type_index]
 			
 			# instantiating the new alien

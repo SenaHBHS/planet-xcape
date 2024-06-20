@@ -3,7 +3,7 @@ extends Node
 var spawn_wave_timer: Timer = null
 var can_spawn_a_wave: bool = false
 var countdown_time: int = 3  # default value of 3 ensures aliens start spawning 3 secs after the game began
-var alien_types = ["cosmic_ghost", "electro_gorgon", "nebula_goblin", "stellar_beard"]
+var alien_types = ["cosmic_ghost", "stellar_beard", "nebula_goblin", "electro_gorgon"]
 
 func _ready():
 	# Create a new Timer node

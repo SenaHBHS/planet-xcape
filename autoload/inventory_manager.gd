@@ -2,11 +2,7 @@ extends Node
 
 # global game variable management
 var inventory_limit = 3 # max n(items) in the inventory!
-var available_items = [{
-	"name": "pulse_pistol",
-	"category": "weapon",
-	"hp_points": 100
-}] # this has a default item for testing purposes.
+var available_items = [] # this has a default item for testing purposes.
 const dummy_item_template = {
 	"name": "",
 	"category": ""

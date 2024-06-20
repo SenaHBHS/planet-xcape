@@ -5,6 +5,8 @@ extends CharacterBody2D
 var ONE_TIME_ANIMATION_FINISHED = true
 var CAN_FIRE = true
 var PAUSE_UNTIL_NEXT_FIRE = 0
+var DIRECTION = null # configured later!
+var FIST_DAMAGE_POINTS = 1
 
 # child nodes
 @onready var animated_sprite_2d = $AnimatedSprite2D
@@ -18,8 +20,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	var attack_props = handle_firing(delta)
-	var direction = handle_movement()
-	handle_animations(attack_props, direction)
+	DIRECTION = handle_movement()
+	handle_animations(attack_props)
 
 func handle_firing(delta: float) -> Dictionary:
 	var animation_name = "shoot" if WeaponManager.equipped_weapon != "fist" else "hit"
@@ -33,6 +35,13 @@ func handle_firing(delta: float) -> Dictionary:
 			CAN_FIRE = false
 		else:
 			CAN_FIRE = true
+			var player_direction = "right" # default value till configured below
+			if DIRECTION:
+				if DIRECTION.x > 0:
+					player_direction = "right"
+				else:
+					player_direction = "left"
+			SignalManager.player_hit_with_fist.emit(player_direction, FIST_DAMAGE_POINTS)
 	else:
 		just_attacked = false
 		
@@ -71,7 +80,7 @@ func handle_movement() -> Vector2:
 	
 	return direction
 
-func handle_animations(attack_props: Dictionary, direction: Vector2):
+func handle_animations(attack_props: Dictionary):
 	# ONE_TIME_ANIMATIONS must be played till the end! (e.g. shooting)
 	if ONE_TIME_ANIMATION_FINISHED:
 		if attack_props["just_attacked"]:
@@ -80,21 +89,21 @@ func handle_animations(attack_props: Dictionary, direction: Vector2):
 			# hiding the selected halo if handheld weapon
 			if attack_props["animation_name"] != "hit":
 				selected_item_halo.visible = false
-		elif direction.x > 0:
+		elif DIRECTION.x > 0:
 			animated_sprite_2d.flip_h = false
 			animated_sprite_2d.play("run")
 			
 			# changing the side of the handheld weapon
 			handheld_weapon.position = Vector2(170, 3.333)
 			handheld_weapon.set_direction("right")
-		elif direction.x < 0:
+		elif DIRECTION.x < 0:
 			animated_sprite_2d.flip_h = true
 			animated_sprite_2d.play("run")
 			
 			# changing the side of the handheld weapon
 			handheld_weapon.position = Vector2(-170, 3.333)
 			handheld_weapon.set_direction("left")
-		elif direction.y != 0:
+		elif DIRECTION.y != 0:
 			animated_sprite_2d.play("run")
 		else:
 			animated_sprite_2d.play("idle")
@@ -106,11 +115,6 @@ func handle_animations(attack_props: Dictionary, direction: Vector2):
 	else:
 		selected_item_halo.animation = "empty"
 
-func _on_animation_finished():
-	ONE_TIME_ANIMATION_FINISHED = true
-	selected_item_halo.visible = true
-	handheld_weapon.visible = false
-
 func handle_player_was_hit(hp_points_to_deduct):
 	GameManager.player_hp_points -= hp_points_to_deduct
 	print(GameManager.player_hp_points)
@@ -118,3 +122,15 @@ func handle_player_was_hit(hp_points_to_deduct):
 		GameManager.set_game_over()
 	else:
 		pass
+
+func _on_animation_finished():
+	ONE_TIME_ANIMATION_FINISHED = true
+	selected_item_halo.visible = true
+	handheld_weapon.visible = false
+
+func _on_fist_attack_range_body_entered(body):
+	GameManager.set_player_can_fist_attack(true)
+
+func _on_fist_attack_range_body_exited(body):
+	if GameManager.player_can_fist_attack:
+		GameManager.set_player_can_fist_attack(false)
