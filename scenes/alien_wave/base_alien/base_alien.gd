@@ -27,6 +27,10 @@ var CAN_ATTACK = true
 # used to make sure the alien is aligned with the player
 var REPOSITIONING_ALIEN = false
 
+# global variables for post-alien-death animations
+var IS_ALIEN_DEAD = false
+var TIME_TO_WAIT_BEFORE_REMOVE = 2 # in seconds
+
 # packed scenes used
 const BULLET = preload("res://scenes/bullet/bullet.tscn")
 
@@ -35,6 +39,8 @@ const BULLET = preload("res://scenes/bullet/bullet.tscn")
 @onready var alien_body_shape_2d = $AlienBodyArea/AlienBodyShape2D
 @onready var attack_range_shape_2d = $AttackRangeArea/AttackRangeShape2D
 @onready var timer = $Timer
+@onready var damage_label = $DamageLabel
+@onready var animate_damage_label = $AnimateDamageLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -89,14 +95,17 @@ func _apply_render_props(render_props: Dictionary) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
-	handle_change_in_direction()
-	if ALIEN_MODE == "move":
-		handle_motion()
-		CURRENT_ALIEN_SCENE.play_move_animation(DIRECTION)
+	if not IS_ALIEN_DEAD:
+		handle_change_in_direction()
+		if ALIEN_MODE == "move":
+			handle_motion()
+			CURRENT_ALIEN_SCENE.play_move_animation(DIRECTION)
+		else:
+			var attacked = handle_attack(delta)
+			if attacked:
+				CURRENT_ALIEN_SCENE.play_attack_animation(DIRECTION)
 	else:
-		var attacked = handle_attack(delta)
-		if attacked:
-			CURRENT_ALIEN_SCENE.play_attack_animation(DIRECTION)
+		handle_dead_alien(delta)
 
 func _get_velocity_vector(target: Vector2) -> Vector2:
 	var delta_x = target.x - position.x
@@ -185,26 +194,37 @@ func handle_change_in_direction():
 		DIRECTION = "right"
 
 func deduct_hp_points(amount):
-	HP_POINTS -= amount
-	if HP_POINTS <= 0:
+	if not IS_ALIEN_DEAD:
+		HP_POINTS -= amount
+		damage_label.text = str(round(amount))
+		animate_damage_label.play("display_damage")
+		if HP_POINTS <= 0:
+			IS_ALIEN_DEAD = true
+
+func handle_dead_alien(delta):
+	TIME_TO_WAIT_BEFORE_REMOVE -= delta
+	if TIME_TO_WAIT_BEFORE_REMOVE <= 0:
 		queue_free()
 
 func handle_player_fist_attack(player_direction, damage_points):
 	# returns whether the attack was successful
-	var delta_x = global_position.x - GameManager.player_pos.x
-	var attacked = false
-	
-	if delta_x > 0 and player_direction == "right":
-		attacked = true
-	elif delta_x < 0 and player_direction == "left":
-		attacked = true
+	if not IS_ALIEN_DEAD:
+		var delta_x = global_position.x - GameManager.player_pos.x
+		var attacked = false
+		
+		if delta_x > 0 and player_direction == "right":
+			attacked = true
+		elif delta_x < 0 and player_direction == "left":
+			attacked = true
+		else:
+			pass
+		
+		if attacked:
+			deduct_hp_points(damage_points)
+		
+		return attacked
 	else:
-		pass
-	
-	if attacked:
-		deduct_hp_points(damage_points)
-	
-	return attacked
+		return false
 	
 func _on_attack_range_body_entered(body):
 	# changing the alien mode based on their primary target

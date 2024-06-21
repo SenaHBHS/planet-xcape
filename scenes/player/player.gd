@@ -140,7 +140,6 @@ func _on_animation_finished():
 
 func _on_fist_attack_range_body_entered(body):
 	if body.is_in_group("alien"):
-		print("body entered: ", body)
 		CAN_FIST_ATTACK = true
 		ALIEN_BODIES_IN_FIST_RANGE.append(body)
 	else:
@@ -148,7 +147,6 @@ func _on_fist_attack_range_body_entered(body):
 
 func _on_fist_attack_range_body_exited(body):
 	if body.is_in_group("alien"):
-		print("body exited: ", body)
 		if ALIEN_BODIES_IN_FIST_RANGE.has(body):
 			ALIEN_BODIES_IN_FIST_RANGE.erase(body)
 			
