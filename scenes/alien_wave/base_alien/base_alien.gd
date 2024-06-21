@@ -33,6 +33,7 @@ var TIME_TO_WAIT_BEFORE_REMOVE = 2 # in seconds
 
 # packed scenes used
 const BULLET = preload("res://scenes/bullet/bullet.tscn")
+const DIN = preload("res://scenes/din/din.tscn")
 
 # nodes in the base alien that are dynamically adjusted
 @onready var alien_collision_shape_2d = $AlienCollisionShape2D
@@ -57,6 +58,7 @@ func _ready():
 func set_alien(name: String, difficutly: float, is_boss: bool) -> void:
 	ALIEN_NAME = name
 	DIFFICULTY = difficutly
+	IS_BOSS = is_boss
 	
 	# there are only 4 possible names!
 	if ALIEN_NAME == "cosmic_ghost":
@@ -204,6 +206,18 @@ func deduct_hp_points(amount):
 func handle_dead_alien(delta):
 	TIME_TO_WAIT_BEFORE_REMOVE -= delta
 	if TIME_TO_WAIT_BEFORE_REMOVE <= 0:
+		var din_from_alien = DIN.instantiate()
+		var din_multiplier = 1 # this is set to 2 if the alien is a boss
+		if IS_BOSS:
+			din_multiplier = 2
+			
+		din_from_alien.config_din(CURRENT_ALIEN_PROPS["din_value"] * din_multiplier * DIFFICULTY)
+		din_from_alien.global_position = global_position
+		din_from_alien.scale = Vector2(0.05, 0.05)
+		
+		get_parent().get_parent().add_child(din_from_alien) # adding the din to the game tree
+		
+		# deleting the current alien
 		queue_free()
 
 func handle_player_fist_attack(player_direction, damage_points):

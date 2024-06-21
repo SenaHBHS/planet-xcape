@@ -10,6 +10,7 @@ var ALIEN_PROPERTIES = {
 	"damage_per_attack": 4,
 	"speed": 150,
 	"hp_points": 12,
+	"din_value": 24
 }
 
 # props passed onto the base_alien to render this scene

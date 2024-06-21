@@ -13,6 +13,7 @@ func get_din_amount():
 
 func increase_din_amount(amount):
 	_din_amount += amount
+	print("DIN AMOUNT", _din_amount)
 
 func spend_din(amount):
 	# player is only allowed to buy stuff if they have enough din
