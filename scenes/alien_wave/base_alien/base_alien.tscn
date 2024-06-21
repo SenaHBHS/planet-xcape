@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cu0c87vxv3yse"]
+[gd_scene load_steps=7 format=3 uid="uid://cu0c87vxv3yse"]
 
 [ext_resource type="Script" path="res://scenes/alien_wave/base_alien/base_alien.gd" id="1_qgxpc"]
-[ext_resource type="PackedScene" uid="uid://ed53b24db6b3" path="res://scenes/alien_wave/base_alien/alien_types/electro_gorgon.tscn" id="2_s43gp"]
+[ext_resource type="FontFile" uid="uid://dq6ot0pn8i1no" path="res://assets/font/TitilliumWeb-SemiBold.ttf" id="3_73ccx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_reygn"]
 radius = 190.0
@@ -14,12 +14,17 @@ height = 440.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_37v0d"]
 radius = 650.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_2wtmf"]
+font = ExtResource("3_73ccx")
+font_size = 140
+outline_size = 10
+outline_color = Color(0.156863, 0.156863, 0.266667, 1)
+shadow_size = 0
+shadow_color = Color(0.266667, 0.278431, 0.435294, 1)
+
 [node name="BaseAlien" type="CharacterBody2D" groups=["alien"]]
 z_index = -2
 script = ExtResource("1_qgxpc")
-
-[node name="ElectroGorgon" parent="." instance=ExtResource("2_s43gp")]
-visible = false
 
 [node name="AlienBodyArea" type="Area2D" parent="."]
 
@@ -38,6 +43,25 @@ shape = SubResource("CircleShape2D_37v0d")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="Label" type="Label" parent="."]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = -104.0
+offset_right = 78.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(78, 107)
+text = "12"
+label_settings = SubResource("LabelSettings_2wtmf")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="AttackRangeArea" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRangeArea" to="." method="_on_attack_range_body_exited"]

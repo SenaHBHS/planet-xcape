@@ -6,7 +6,9 @@ var ONE_TIME_ANIMATION_FINISHED = true
 var CAN_FIRE = true
 var PAUSE_UNTIL_NEXT_FIRE = 0
 var DIRECTION = null # configured later!
+var CAN_FIST_ATTACK = true
 var FIST_DAMAGE_POINTS = 1
+var ALIEN_BODIES_IN_FIST_RANGE = []
 
 # child nodes
 @onready var animated_sprite_2d = $AnimatedSprite2D
@@ -34,14 +36,22 @@ func handle_firing(delta: float) -> Dictionary:
 			PAUSE_UNTIL_NEXT_FIRE = handheld_weapon.fire()
 			CAN_FIRE = false
 		else:
-			CAN_FIRE = true
-			var player_direction = "right" # default value till configured below
-			if DIRECTION:
-				if DIRECTION.x > 0:
-					player_direction = "right"
-				else:
-					player_direction = "left"
-			SignalManager.player_hit_with_fist.emit(player_direction, FIST_DAMAGE_POINTS)
+			SignalManager.player_hit_with_fist.emit()
+			
+			if CAN_FIST_ATTACK:
+				var player_direction = "right" # default value till configured below
+				if DIRECTION:
+					if DIRECTION.x > 0:
+						player_direction = "right"
+					else:
+						player_direction = "left"
+				
+				for body in ALIEN_BODIES_IN_FIST_RANGE:
+					var fist_attack_succeeded = body.handle_player_fist_attack(player_direction, FIST_DAMAGE_POINTS)
+					if fist_attack_succeeded:
+						break
+					else:
+						continue
 	else:
 		just_attacked = false
 		
@@ -129,8 +139,18 @@ func _on_animation_finished():
 	handheld_weapon.visible = false
 
 func _on_fist_attack_range_body_entered(body):
-	GameManager.set_player_can_fist_attack(true)
+	if body.is_in_group("alien"):
+		print("body entered: ", body)
+		CAN_FIST_ATTACK = true
+		ALIEN_BODIES_IN_FIST_RANGE.append(body)
+	else:
+		pass
 
 func _on_fist_attack_range_body_exited(body):
-	if GameManager.player_can_fist_attack:
-		GameManager.set_player_can_fist_attack(false)
+	if body.is_in_group("alien"):
+		print("body exited: ", body)
+		if ALIEN_BODIES_IN_FIST_RANGE.has(body):
+			ALIEN_BODIES_IN_FIST_RANGE.erase(body)
+			
+		if ALIEN_BODIES_IN_FIST_RANGE.size() <= 0:
+			CAN_FIST_ATTACK = false

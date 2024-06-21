@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://j5pjiovx3jfe"]
+[gd_scene load_steps=77 format=3 uid="uid://j5pjiovx3jfe"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_0cl28"]
 [ext_resource type="Texture2D" uid="uid://cul47vwyrdrpi" path="res://assets/sprites/player/hit.png" id="1_0ok57"]
@@ -17,8 +17,13 @@
 [ext_resource type="PackedScene" uid="uid://dbfofcs1i24g4" path="res://scenes/player/handheld_weapon/handheld_weapon.tscn" id="15_jhk2x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2u5ak"]
-radius = 180.0
+radius = 140.0
 height = 518.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4l3la"]
+custom_solver_bias = 1.0
+radius = 276.667
+height = 553.333
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4nney"]
 atlas = ExtResource("1_0ok57")
@@ -549,7 +554,7 @@ shape = SubResource("CapsuleShape2D_2u5ak")
 [node name="FistAttackRange" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FistAttackRange"]
-shape = SubResource("CapsuleShape2D_2u5ak")
+shape = SubResource("CapsuleShape2D_4l3la")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fltqo")

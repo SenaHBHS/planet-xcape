@@ -32,9 +32,6 @@ var rocket_pos: Vector2 = Vector2(0, 0)
 var player_hp_points: float = 100.0 
 var rocket_hp_points: float = 250.0
 
-# additional player global variables
-var player_can_fist_attack: bool = false
-
 func update_player_position(new_position: Vector2) -> void:
 	player_pos = new_position
 	
@@ -43,6 +40,3 @@ func get_player_position() -> Vector2:
 
 func get_rocket_position() -> Vector2:
 	return rocket_pos
-
-func set_player_can_fist_attack(state: bool):
-	player_can_fist_attack = state
