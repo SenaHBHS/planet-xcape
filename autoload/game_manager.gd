@@ -21,13 +21,16 @@ func load_game_scene():
 
 func set_game_won():
 	print("GAME WON!")
+	get_tree().change_scene_to_packed(game_over_scene)
 
 func set_game_over():
+	print("GAME OVER!")
 	get_tree().change_scene_to_packed(game_over_scene)
 
 # globalising the player and rocket position and hp points
 var player_pos: Vector2 = Vector2(0, 0)
 var rocket_pos: Vector2 = Vector2(0, 0)
+var has_space_booster: bool = false
 # hp points are default values (they are configured later)
 var player_hp_points: float = 100.0 
 var rocket_hp_points: float = 250.0
@@ -40,3 +43,9 @@ func get_player_position() -> Vector2:
 
 func get_rocket_position() -> Vector2:
 	return rocket_pos
+
+func set_space_booster_was_purchased() -> void:
+	has_space_booster = true
+
+func get_space_booster_availability() -> bool:
+	return has_space_booster

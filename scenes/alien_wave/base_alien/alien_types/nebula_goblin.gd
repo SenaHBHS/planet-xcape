@@ -5,7 +5,7 @@ extends Node2D
 @onready var animation_player = $AnimationPlayer
 
 var ALIEN_PROPERTIES = {
-	"primary_target": "player",
+	"primary_target": "object",
 	"time_gap_between_attacks": 0.5, # in seconds
 	"damage_per_attack": 4,
 	"speed": 150,

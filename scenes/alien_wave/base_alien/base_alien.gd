@@ -22,10 +22,12 @@ var IS_BOSS = false # whether the alien is in a boss wave
 var DIFFICULTY = null # used to make the aliens progressively harder
 
 # global variables related to attacking
-var TARGET_POS = GameManager.get_rocket_position() # used for objects' positions
 var CAN_ATTACK = true
 # used to make sure the alien is aligned with the player
 var REPOSITIONING_ALIEN = false
+# following are configured later and used for objects
+var TARGET_POS = null
+var ATTACKABLE_BODY = null
 
 # global variables for post-alien-death animations
 var IS_ALIEN_DEAD = false
@@ -54,6 +56,9 @@ func _ready():
 	
 	# configuring the wait time
 	timer.wait_time = CURRENT_ALIEN_PROPS["time_gap_between_attacks"]
+	
+	# configuring additonal global variables
+	TARGET_POS = GameManager.get_rocket_position()
 
 func set_alien(name: String, difficutly: float, is_boss: bool) -> void:
 	ALIEN_NAME = name
@@ -179,9 +184,20 @@ func handle_attack(delta: float):
 		else:
 			_align_with_the_target(GameManager.get_player_position(), delta)
 			return false
-	else:
-		_align_with_the_target(TARGET_POS, delta)
-		return true
+	else: # there are only 2 primary targets... so... this must be object
+		if CAN_ATTACK and !REPOSITIONING_ALIEN:
+			if ALIEN_NAME == "electro_gorgon": # a bullet firing alien
+				_fire_bullet()
+			else:
+				if ATTACKABLE_BODY.OBJECT_NAME == "rocket":
+					SignalManager.rocket_was_hit.emit(CURRENT_ALIEN_PROPS["damage_per_attack"]*DIFFICULTY)
+				else:
+					ATTACKABLE_BODY.deduct_hp_points(CURRENT_ALIEN_PROPS["damage_per_attack"]*DIFFICULTY)
+			CAN_ATTACK = false
+			return true # attacked the object
+		else:
+			_align_with_the_target(TARGET_POS, delta)
+			return false
 
 func handle_change_in_direction():
 	var focus_point_x_cor = null
@@ -215,7 +231,7 @@ func handle_dead_alien(delta):
 		din_from_alien.global_position = global_position
 		din_from_alien.scale = Vector2(0.05, 0.05)
 		
-		get_parent().get_parent().add_child(din_from_alien) # adding the din to the game tree
+		get_parent().add_child(din_from_alien) # adding the din to the game tree
 		
 		# deleting the current alien
 		queue_free()
@@ -245,12 +261,14 @@ func _on_attack_range_body_entered(body):
 	if ALIEN_MODE != "attack" and body.is_in_group(ALIEN_PRIMARY_TARGET):
 		ALIEN_MODE = "attack"
 		TARGET_POS = body.position
+		ATTACKABLE_BODY = body
 
 func _on_attack_range_body_exited(body):
 	if not REPOSITIONING_ALIEN:
 		if ALIEN_MODE != "move" and body.is_in_group(ALIEN_PRIMARY_TARGET):
 			ALIEN_MODE = "move"
-			TARGET_POS = null
+			TARGET_POS = GameManager.get_rocket_position() # defaults back to the rocket (since this is only used in objects, this is safe)
+			ATTACKABLE_BODY = null
 
 func _on_timer_timeout():
 	CAN_ATTACK = true

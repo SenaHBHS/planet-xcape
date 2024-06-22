@@ -127,7 +127,7 @@ func handle_animations(attack_props: Dictionary):
 
 func handle_player_was_hit(hp_points_to_deduct):
 	GameManager.player_hp_points -= hp_points_to_deduct
-	print(GameManager.player_hp_points)
+	
 	if GameManager.player_hp_points <= 0:
 		GameManager.set_game_over()
 	else:

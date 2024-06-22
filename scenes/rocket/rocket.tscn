@@ -1,57 +1,31 @@
-[gd_scene load_steps=8 format=3 uid="uid://7koke5kk0idy"]
+[gd_scene load_steps=5 format=3 uid="uid://7koke5kk0idy"]
 
 [ext_resource type="Script" path="res://scenes/rocket/rocket.gd" id="1_fhffi"]
 [ext_resource type="Texture2D" uid="uid://cr6r4lfug8amc" path="res://assets/sprites/objects/rocket.png" id="1_ymbyr"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6luxt"]
-atlas = ExtResource("1_ymbyr")
-region = Rect2(0, 0, 369, 512)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_c5h2l"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6luxt")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"player_in_range",
-"speed": 5.0
-}]
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mpbdh"]
-radius = 134.0
-height = 425.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bcnsw"]
-radius = 149.0
-height = 514.0
+radius = 104.0
+height = 258.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_de78a"]
 radius = 532.455
 
-[node name="Rocket" type="StaticBody2D"]
+[node name="Rocket" type="StaticBody2D" groups=["object"]]
 y_sort_enabled = true
 script = ExtResource("1_fhffi")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_c5h2l")
+[node name="Rocket" type="Sprite2D" parent="."]
+texture = ExtResource("1_ymbyr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, 123)
+position = Vector2(0, 117)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_mpbdh")
-
-[node name="AttackableRegion" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackableRegion"]
-shape = SubResource("CapsuleShape2D_bcnsw")
 
 [node name="PlayerActionableRegion" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerActionableRegion"]
 shape = SubResource("CircleShape2D_de78a")
+
+[connection signal="body_entered" from="PlayerActionableRegion" to="." method="_on_actionable_region_body_entered"]
+[connection signal="body_exited" from="PlayerActionableRegion" to="." method="_on_actionable_region_body_exited"]
