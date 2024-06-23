@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcxegedotcylx"]
+[gd_scene load_steps=13 format=3 uid="uid://dcxegedotcylx"]
 
+[ext_resource type="Script" path="res://scenes/builder_box/builder_box.gd" id="1_4ko5f"]
 [ext_resource type="Texture2D" uid="uid://dr77s4lkih3ae" path="res://assets/sprites/objects/builder_box/idle.png" id="1_lfsqo"]
 [ext_resource type="Texture2D" uid="uid://dx31bjjfbpcn0" path="res://assets/sprites/objects/builder_box/active/active-1.png" id="1_rfdev"]
 [ext_resource type="Texture2D" uid="uid://cihxa8jq25ifs" path="res://assets/sprites/objects/builder_box/active/active-2.png" id="2_fi7vg"]
@@ -38,9 +39,69 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_mqune"]
+radius = 600.001
+
+[sub_resource type="Animation" id="Animation_tisj6"]
+resource_name = "active"
+length = 0.4
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -125), Vector2(0, -140), Vector2(0, -125)]
+}
+
+[sub_resource type="Animation" id="Animation_ovdeb"]
+resource_name = "idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vxfbp"]
+_data = {
+"active": SubResource("Animation_tisj6"),
+"idle": SubResource("Animation_ovdeb")
+}
+
 [node name="BuilderBox" type="StaticBody2D"]
+script = ExtResource("1_4ko5f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.48, 0.48)
 sprite_frames = SubResource("SpriteFrames_k1npr")
-animation = &"active"
-frame_progress = 0.963973
+animation = &"idle"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-223, -128, -223, 128, -2, 256, 223, 129, 223, -127)
+
+[node name="PlayerActionableRegion" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerActionableRegion"]
+shape = SubResource("CircleShape2D_mqune")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vxfbp")
+}
+
+[connection signal="body_entered" from="PlayerActionableRegion" to="." method="_on_player_actionable_region_body_entered"]
+[connection signal="body_exited" from="PlayerActionableRegion" to="." method="_on_player_actionable_region_body_exited"]

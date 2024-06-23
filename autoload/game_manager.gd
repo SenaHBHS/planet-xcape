@@ -30,7 +30,7 @@ func set_game_over():
 # globalising the player and rocket position and hp points
 var player_pos: Vector2 = Vector2(0, 0)
 var rocket_pos: Vector2 = Vector2(0, 0)
-var has_space_booster: bool = false
+var has_space_booster: bool = true
 # hp points are default values (they are configured later)
 var player_hp_points: float = 100.0 
 var rocket_hp_points: float = 250.0

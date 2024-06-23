@@ -8,3 +8,6 @@ func _ready():
 
 func set_action_text(text: String):
 	ACTION_TEXT = text
+
+func set_font_size(size: int):
+	action_text_label.font_size

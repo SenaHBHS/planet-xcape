@@ -1,8 +1,9 @@
 extends StaticBody2D
 
 var OBJECT_NAME = "rocket" # accessed in the alien scene to emit approriate signals!
-var E_ACTION_POS = Vector2(30, -300)
 
+# variables related to the e-action
+var E_ACTION_POS = Vector2(30, -300)
 var E_ACTION = null # initialised when the scene is instantiated!
 const E_ACTION_SCENE = preload("res://scenes/common_ui_comps/e_action/e_action.tscn")
 
@@ -25,8 +26,12 @@ func _ready():
 
 func _process(delta):
 	var space_booster_is_available = GameManager.get_space_booster_availability()
-	if Input.is_action_just_pressed("perform_action") and space_booster_is_available:
-		GameManager.set_game_won()
+	var player_is_in_region = E_ACTION.visible # this implies whether the player is in the interactable region
+	if Input.is_action_just_pressed("perform_action"):
+		if player_is_in_region and space_booster_is_available:
+			GameManager.set_game_won()
+		else:
+			pass
 	
 func set_rocket_position():
 	var screen_size = get_viewport().size
