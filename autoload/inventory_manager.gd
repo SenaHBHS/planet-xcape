@@ -11,7 +11,7 @@ const dummy_item_template = {
 	"name": "",
 	"category": ""
 }
-# main cateogries: weapon, grenade, defense_system, object
+# main cateogries: weapon, defense_system, object
 
 # these represent indices of the available_items list
 var available_slots = []

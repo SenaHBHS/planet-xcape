@@ -2,19 +2,22 @@ extends Node
 
 # din is the in-game currency!
 
-var _din_amount = 0
+var _din_amount = 1000
 
 func _set_din_amount(amount):
 	_din_amount = amount
-	SignalManager.update_din_amount.emit(_din_amount)
+	SignalManager.din_amount_updated.emit(_din_amount)
 
 func get_din_amount():
 	return _din_amount
 
 func increase_din_amount(amount):
-	_din_amount += amount
-	print("DIN AMOUNT", _din_amount)
+	_set_din_amount(_din_amount + amount)
 
 func spend_din(amount):
-	# player is only allowed to buy stuff if they have enough din
-	_din_amount -= amount
+	# returns whether the transaction was succesful!
+	if amount < _din_amount:
+		_set_din_amount(_din_amount - amount)
+		return true
+	else:
+		return false

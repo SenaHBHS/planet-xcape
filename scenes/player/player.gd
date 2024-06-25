@@ -18,6 +18,7 @@ var ALIEN_BODIES_IN_FIST_RANGE = []
 func _ready():
 	GameManager.player_hp_points = LevelManager.get_level_props()["player_hp_points"]
 	SignalManager.player_was_hit.connect(handle_player_was_hit)
+	SignalManager.player_speed_powered_up.connect(handle_speed_power_up)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -132,6 +133,10 @@ func handle_player_was_hit(hp_points_to_deduct):
 		GameManager.set_game_over()
 	else:
 		pass
+
+func handle_speed_power_up():
+	# the speed is increased by 10%
+	SPEED *= 1.1
 
 func _on_animation_finished():
 	ONE_TIME_ANIMATION_FINISHED = true

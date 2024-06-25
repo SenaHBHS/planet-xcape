@@ -12,7 +12,7 @@ const game_level_props = {
 		"time_gap_between_waves": 10, # in seconds
 		"time_gap_between_subwaves": 5, # in seconds
 		"lower_n_alien_bound": 2,
-		"price_of_the_space_booster": 400,
+		"space_booster_price": 400,
 		"boss_wave_frequency": 2, # a boss wave per n(waves)
 		"difficutly_increase_per_wave_spawned": 0.02
 	},
@@ -24,7 +24,7 @@ const game_level_props = {
 		"time_gap_between_waves": 5, # in seconds
 		"time_gap_between_subwaves": 2, # in seconds
 		"lower_n_alien_bound": 4,
-		"price_of_the_space_booster": 500,
+		"space_booster_price": 500,
 		"boss_wave_frequency": 3, # a boss wave per n(waves)
 		"difficutly_increase_per_wave_spawned": 0.02
 	},
@@ -36,7 +36,7 @@ const game_level_props = {
 		"time_gap_between_waves": 5, # in seconds
 		"time_gap_between_subwaves": 2, # in seconds
 		"lower_n_alien_bound": 5,
-		"price_of_the_space_booster": 600,
+		"space_booster_price": 600,
 		"boss_wave_frequency": 4, # a boss wave per n(waves)
 		"difficutly_increase_per_wave_spawned": 0.02
 	}
