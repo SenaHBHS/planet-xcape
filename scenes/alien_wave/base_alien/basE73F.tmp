@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://cu0c87vxv3yse"]
+
+[ext_resource type="Script" path="res://scenes/alien_wave/base_alien/base_alien.gd" id="1_qgxpc"]
+[ext_resource type="PackedScene" uid="uid://baaq6k0sqtx1r" path="res://scenes/alien_wave/base_alien/alien_types/nebula_goblin.tscn" id="2_swr0g"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_reygn"]
+radius = 261.0
+height = 538.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y5r8r"]
+radius = 135.0
+height = 480.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_37v0d"]
+radius = 262.992
+
+[node name="BaseAlien" type="CharacterBody2D"]
+z_index = -2
+script = ExtResource("1_qgxpc")
+
+[node name="AlienBodyArea" type="Area2D" parent="."]
+visible = false
+
+[node name="AlienBodyShape2D" type="CollisionShape2D" parent="AlienBodyArea"]
+shape = SubResource("CapsuleShape2D_reygn")
+
+[node name="AlienCollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_y5r8r")
+
+[node name="AttackRangeArea" type="Area2D" parent="."]
+visible = false
+
+[node name="AttackRangeShape2D" type="CollisionShape2D" parent="AttackRangeArea"]
+shape = SubResource("CircleShape2D_37v0d")
+
+[node name="NebulaGoblin" parent="." instance=ExtResource("2_swr0g")]
+visible = false
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="AlienBodyArea" to="." method="_on_alien_body_area_body_entered"]
+[connection signal="body_exited" from="AlienBodyArea" to="." method="_on_alien_body_area_body_exited"]
+[connection signal="body_entered" from="AttackRangeArea" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRangeArea" to="." method="_on_attack_range_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

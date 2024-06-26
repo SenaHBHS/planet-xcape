@@ -1,0 +1,145 @@
+[gd_scene load_steps=19 format=3 uid="uid://cfjqelgfl85ij"]
+
+[ext_resource type="Texture2D" uid="uid://c1o72qlhi7e63" path="res://assets/sprites/aliens/stellar_beard/stellar_beard_attack.png" id="1_4tmq6"]
+[ext_resource type="Script" path="res://scenes/alien_wave/base_alien/alien_types/stellar_beard.gd" id="1_25pth"]
+[ext_resource type="Texture2D" uid="uid://dc6rysn5xkxd1" path="res://assets/sprites/aliens/stellar_beard/Stellar Beard.png" id="2_ycfh8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cm1ny"]
+atlas = ExtResource("1_4tmq6")
+region = Rect2(0, 0, 424, 495)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_af1h7"]
+atlas = ExtResource("1_4tmq6")
+region = Rect2(424, 0, 424, 495)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dok3r"]
+atlas = ExtResource("1_4tmq6")
+region = Rect2(848, 0, 424, 495)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sw67"]
+atlas = ExtResource("1_4tmq6")
+region = Rect2(1272, 0, 424, 495)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt0hw"]
+atlas = ExtResource("1_4tmq6")
+region = Rect2(0, 495, 424, 495)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyp73"]
+atlas = ExtResource("1_4tmq6")
+region = Rect2(424, 495, 424, 495)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ms5xu"]
+atlas = ExtResource("1_4tmq6")
+region = Rect2(848, 495, 424, 495)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5swt7"]
+atlas = ExtResource("1_4tmq6")
+region = Rect2(1272, 495, 424, 495)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bl4kb"]
+atlas = ExtResource("1_4tmq6")
+region = Rect2(0, 990, 424, 495)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tklij"]
+atlas = ExtResource("1_4tmq6")
+region = Rect2(424, 990, 424, 495)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwnvw"]
+atlas = ExtResource("2_ycfh8")
+region = Rect2(0, 0, 418, 494)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_amcw8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cm1ny")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_af1h7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dok3r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7sw67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt0hw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyp73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ms5xu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5swt7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bl4kb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tklij")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwnvw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_0kphh"]
+resource_name = "move"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 60), Vector2(0, -60), Vector2(0, 60)]
+}
+
+[sub_resource type="Animation" id="Animation_hgttw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eb3nn"]
+_data = {
+"RESET": SubResource("Animation_hgttw"),
+"move": SubResource("Animation_0kphh")
+}
+
+[node name="StellarBeard" type="Node2D"]
+script = ExtResource("1_25pth")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_amcw8")
+animation = &"attack"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eb3nn")
+}

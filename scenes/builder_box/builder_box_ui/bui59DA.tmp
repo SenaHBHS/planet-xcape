@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3etqvsepcp2d"]
+
+[ext_resource type="Script" path="res://scenes/builder_box/builder_box_ui/builder_box_ui.gd" id="1_6ne6n"]
+[ext_resource type="Texture2D" uid="uid://bhuaq3m5m6u8s" path="res://assets/ui/builder_box/Builder Box Panel.png" id="1_xrh2w"]
+[ext_resource type="PackedScene" uid="uid://bdex2t53ybdoq" path="res://scenes/builder_box/builder_box_ui/builder_box_slot.tscn" id="2_ddq6p"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sivwm"]
+texture = ExtResource("1_xrh2w")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gjhcw"]
+bg_color = Color(0, 0.6, 0.6, 1)
+
+[node name="BuilderBoxUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6ne6n")
+
+[node name="BuildUi" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -459.0
+offset_top = -315.0
+offset_right = 459.0
+offset_bottom = 315.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_sivwm")
+
+[node name="SlotsContainer" type="Panel" parent="BuildUi"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -366.0
+offset_top = -125.0
+offset_right = 367.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gjhcw")
+
+[node name="BuilderBoxSlot" parent="BuildUi/SlotsContainer" instance=ExtResource("2_ddq6p")]
+visible = false
+layout_mode = 1
+scale = Vector2(0.13, 0.13)

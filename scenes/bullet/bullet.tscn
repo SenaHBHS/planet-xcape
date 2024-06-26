@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://druwh4irklmeg"]
+
+[ext_resource type="Script" path="res://scenes/bullet/bullet.gd" id="1_xr7qv"]
+[ext_resource type="Texture2D" uid="uid://cwu0xe33ojoaa" path="res://assets/sprites/bullets/beam_blaster.png" id="2_50lwc"]
+[ext_resource type="Texture2D" uid="uid://dhqtogvr44ixs" path="res://assets/sprites/bullets/electro_gorgon.png" id="3_qwn8d"]
+[ext_resource type="Texture2D" uid="uid://c8wn4i8gr4df4" path="res://assets/sprites/bullets/plasma_streamer.png" id="3_wt302"]
+[ext_resource type="Texture2D" uid="uid://7pf1d8mtgvlr" path="res://assets/sprites/bullets/pulse_pistol.png" id="4_1mnqe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2c8bc"]
+atlas = ExtResource("2_50lwc")
+region = Rect2(0, 0, 875, 209)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkxsc"]
+atlas = ExtResource("3_qwn8d")
+region = Rect2(0, 0, 584, 209)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixxdq"]
+atlas = ExtResource("3_wt302")
+region = Rect2(0, 0, 1067, 209)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5iqcw"]
+atlas = ExtResource("4_1mnqe")
+region = Rect2(0, 0, 542, 209)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4tbi0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2c8bc")
+}],
+"loop": true,
+"name": &"beam_blaster",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkxsc")
+}],
+"loop": true,
+"name": &"electro_gorgon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixxdq")
+}],
+"loop": true,
+"name": &"plasma_streamer",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5iqcw")
+}],
+"loop": true,
+"name": &"pulse_pistol",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_reafb"]
+radius = 98.0
+height = 466.0
+
+[node name="Bullet" type="Area2D" groups=["bullet"]]
+z_index = -3
+script = ExtResource("1_xr7qv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4tbi0")
+animation = &"electro_gorgon"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_reafb")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="BulletAreaShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_reafb")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

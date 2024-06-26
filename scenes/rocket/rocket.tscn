@@ -1,3 +1,31 @@
-[gd_scene format=3 uid="uid://7koke5kk0idy"]
+[gd_scene load_steps=5 format=3 uid="uid://7koke5kk0idy"]
 
-[node name="Rocket" type="StaticBody2D"]
+[ext_resource type="Script" path="res://scenes/rocket/rocket.gd" id="1_fhffi"]
+[ext_resource type="Texture2D" uid="uid://cr6r4lfug8amc" path="res://assets/sprites/objects/rocket.png" id="1_ymbyr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mpbdh"]
+radius = 104.0
+height = 258.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_de78a"]
+radius = 532.455
+
+[node name="Rocket" type="StaticBody2D" groups=["object"]]
+y_sort_enabled = true
+script = ExtResource("1_fhffi")
+
+[node name="Rocket" type="Sprite2D" parent="."]
+texture = ExtResource("1_ymbyr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 117)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_mpbdh")
+
+[node name="PlayerActionableRegion" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerActionableRegion"]
+shape = SubResource("CircleShape2D_de78a")
+
+[connection signal="body_entered" from="PlayerActionableRegion" to="." method="_on_actionable_region_body_entered"]
+[connection signal="body_exited" from="PlayerActionableRegion" to="." method="_on_actionable_region_body_exited"]

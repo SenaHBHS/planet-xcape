@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rugccswb5by3"
-path="res://.godot/imported/builder_box.png-59df07f514d97a64996f47c10e659a02.ctex"
+uid="uid://cjxt8cvbvv856"
+path="res://.godot/imported/Beam Blaster.png-05e9ccdf0041ca4f06b023ade530dd43.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/objects/builder_box.png"
-dest_files=["res://.godot/imported/builder_box.png-59df07f514d97a64996f47c10e659a02.ctex"]
+source_file="res://assets/sprites/weapons/Beam Blaster.png"
+dest_files=["res://.godot/imported/Beam Blaster.png-05e9ccdf0041ca4f06b023ade530dd43.ctex"]
 
 [params]
 

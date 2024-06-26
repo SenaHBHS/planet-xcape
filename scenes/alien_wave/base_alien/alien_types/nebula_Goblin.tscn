@@ -1,0 +1,221 @@
+[gd_scene load_steps=30 format=3 uid="uid://baaq6k0sqtx1r"]
+
+[ext_resource type="Texture2D" uid="uid://b2ygxkjnwutrg" path="res://assets/sprites/aliens/nebula_goblin/attack.png" id="1_bols5"]
+[ext_resource type="Script" path="res://scenes/alien_wave/base_alien/alien_types/nebula_goblin.gd" id="1_w6dg1"]
+[ext_resource type="Texture2D" uid="uid://bdvseud5fx8hk" path="res://assets/sprites/aliens/nebula_goblin/fly.png" id="2_7tpui"]
+[ext_resource type="Texture2D" uid="uid://cm2esrvh57ivx" path="res://assets/sprites/aliens/nebula_goblin/idle.png" id="2_yhpb1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84kpb"]
+atlas = ExtResource("1_bols5")
+region = Rect2(0, 0, 516, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypc7c"]
+atlas = ExtResource("1_bols5")
+region = Rect2(516, 0, 516, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q57lv"]
+atlas = ExtResource("1_bols5")
+region = Rect2(1032, 0, 516, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lo6j"]
+atlas = ExtResource("1_bols5")
+region = Rect2(0, 512, 516, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15dhj"]
+atlas = ExtResource("1_bols5")
+region = Rect2(516, 512, 516, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6q7dq"]
+atlas = ExtResource("1_bols5")
+region = Rect2(1032, 512, 516, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jxi2"]
+atlas = ExtResource("1_bols5")
+region = Rect2(0, 1024, 516, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_askuy"]
+atlas = ExtResource("1_bols5")
+region = Rect2(516, 1024, 516, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yo6rm"]
+atlas = ExtResource("1_bols5")
+region = Rect2(1032, 1024, 516, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xsij"]
+atlas = ExtResource("1_bols5")
+region = Rect2(0, 1536, 516, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4rw1"]
+atlas = ExtResource("2_7tpui")
+region = Rect2(0, 0, 516, 520)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5k1q"]
+atlas = ExtResource("2_7tpui")
+region = Rect2(516, 0, 516, 520)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fn3ak"]
+atlas = ExtResource("2_7tpui")
+region = Rect2(1032, 0, 516, 520)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecwy6"]
+atlas = ExtResource("2_7tpui")
+region = Rect2(1548, 0, 516, 520)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylbme"]
+atlas = ExtResource("2_7tpui")
+region = Rect2(2064, 0, 516, 520)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3r144"]
+atlas = ExtResource("2_7tpui")
+region = Rect2(2580, 0, 516, 520)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5vwa"]
+atlas = ExtResource("2_7tpui")
+region = Rect2(3096, 0, 516, 520)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rs84a"]
+atlas = ExtResource("2_7tpui")
+region = Rect2(0, 520, 516, 520)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p50jy"]
+atlas = ExtResource("2_7tpui")
+region = Rect2(516, 520, 516, 520)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hw1we"]
+atlas = ExtResource("2_7tpui")
+region = Rect2(1032, 520, 516, 520)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1e432"]
+atlas = ExtResource("2_yhpb1")
+region = Rect2(0, 0, 516, 508)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6l0dj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84kpb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypc7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q57lv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lo6j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15dhj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6q7dq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5jxi2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_askuy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yo6rm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xsij")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4rw1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5k1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fn3ak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecwy6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylbme")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3r144")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5vwa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rs84a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p50jy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hw1we")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1e432")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_tf6b1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cka03"]
+resource_name = "fly"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 25), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hl0gw"]
+_data = {
+"RESET": SubResource("Animation_tf6b1"),
+"fly": SubResource("Animation_cka03")
+}
+
+[node name="NebulaGoblin" type="Node2D"]
+script = ExtResource("1_w6dg1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6l0dj")
+animation = &"attack"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hl0gw")
+}

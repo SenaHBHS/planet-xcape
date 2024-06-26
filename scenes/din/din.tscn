@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://p10vqukrtgc0"]
+
+[ext_resource type="Script" path="res://scenes/din/din.gd" id="1_686t7"]
+[ext_resource type="Texture2D" uid="uid://ccud7spxwcqhe" path="res://assets/sprites/collectibles/din.png" id="1_bhvm4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_envp2"]
+radius = 526.009
+
+[sub_resource type="Animation" id="Animation_wbjah"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_26se1"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.75, 0.75), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ofess"]
+_data = {
+"RESET": SubResource("Animation_wbjah"),
+"idle": SubResource("Animation_26se1")
+}
+
+[node name="Din" type="Area2D"]
+script = ExtResource("1_686t7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.01, 0.01)
+shape = SubResource("CircleShape2D_envp2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bhvm4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ofess")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

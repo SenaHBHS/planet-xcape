@@ -1,0 +1,260 @@
+[gd_scene load_steps=25 format=3 uid="uid://bdex2t53ybdoq"]
+
+[ext_resource type="Texture2D" uid="uid://cckieuyd1yrbg" path="res://assets/ui/builder_box/Beam Blaster.png" id="1_6n0pj"]
+[ext_resource type="Script" path="res://scenes/builder_box/builder_box_ui/builder_box_slot.gd" id="1_nigvl"]
+[ext_resource type="Texture2D" uid="uid://4b0hlr1ov60r" path="res://assets/ui/builder_box/Electro.png" id="2_kin7s"]
+[ext_resource type="Texture2D" uid="uid://b1ldbd7suggn1" path="res://assets/ui/builder_box/Electro Grenade.png" id="3_divmv"]
+[ext_resource type="Texture2D" uid="uid://b8d443sbya4tm" path="res://assets/ui/builder_box/Extra Inventory Slot.png" id="4_3gbyi"]
+[ext_resource type="Texture2D" uid="uid://djyi66t7rqp8s" path="res://assets/ui/builder_box/Speed.png" id="5_c5ntl"]
+[ext_resource type="Texture2D" uid="uid://ckvhlohridw3c" path="res://assets/ui/builder_box/Nebula Boom.png" id="6_6x4jo"]
+[ext_resource type="Texture2D" uid="uid://csv8w5u71gm16" path="res://assets/ui/builder_box/Plasma Streamer.png" id="7_no5hy"]
+[ext_resource type="Texture2D" uid="uid://lv77u7ox0xyn" path="res://assets/ui/builder_box/Pulse Pistol.png" id="8_euscq"]
+[ext_resource type="Texture2D" uid="uid://btikqrrnh6k05" path="res://assets/ui/builder_box/Space Booster.png" id="9_io0rb"]
+[ext_resource type="Texture2D" uid="uid://crsvf85lbg84j" path="res://assets/ui/builder_box/Quantum Inferno.png" id="10_de4rc"]
+[ext_resource type="Texture2D" uid="uid://dmyhlr6m6rgp8" path="res://assets/ui/builder_box/Price Tag.png" id="10_yly4s"]
+[ext_resource type="Texture2D" uid="uid://c67mysjdhup5v" path="res://assets/ui/builder_box/Din Symbol.png" id="11_6f384"]
+[ext_resource type="FontFile" uid="uid://drd3xowq8frki" path="res://assets/font/TitilliumWeb-Bold.ttf" id="12_of32w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_31jdf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wk0m1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6n0pj")
+}],
+"loop": true,
+"name": &"beam_blaster",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kin7s")
+}],
+"loop": true,
+"name": &"electro",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_divmv")
+}],
+"loop": true,
+"name": &"electro_grenade",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_3gbyi")
+}],
+"loop": true,
+"name": &"extra_slot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_c5ntl")
+}],
+"loop": true,
+"name": &"extra_speed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_6x4jo")
+}],
+"loop": true,
+"name": &"nebula_boom",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_no5hy")
+}],
+"loop": true,
+"name": &"plasma_streamer",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_euscq")
+}],
+"loop": true,
+"name": &"pulse_pistol",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_de4rc")
+}],
+"loop": true,
+"name": &"quantum_inferno",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_io0rb")
+}],
+"loop": true,
+"name": &"space_booster",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vjymg"]
+texture = ExtResource("10_yly4s")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0u6tr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vd2np"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nmk77"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tba6u"]
+font = ExtResource("12_of32w")
+font_size = 600
+
+[sub_resource type="Animation" id="Animation_nxmfg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cr6lb"]
+resource_name = "hovered"
+length = 0.6
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -50), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ejpn3"]
+_data = {
+"RESET": SubResource("Animation_nxmfg"),
+"hovered": SubResource("Animation_cr6lb")
+}
+
+[node name="BuilderBoxSlot" type="Panel"]
+offset_right = 1067.0
+offset_bottom = 1287.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_31jdf")
+script = ExtResource("1_nigvl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wk0m1")
+animation = &"quantum_inferno"
+centered = false
+
+[node name="PriceTag" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -401.5
+offset_top = -240.0
+offset_right = 401.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_vjymg")
+
+[node name="Price" type="Panel" parent="PriceTag"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -674.0
+offset_top = -456.5
+offset_right = 674.0
+offset_bottom = 456.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(674, 456.5)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0u6tr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PriceTag/Price"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -725.0
+offset_top = -471.5
+offset_right = 703.0
+offset_bottom = 441.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+pivot_offset = Vector2(725, 472)
+theme_override_constants/separation = 10
+
+[node name="DinSymbol" type="Panel" parent="PriceTag/Price/HBoxContainer"]
+custom_minimum_size = Vector2(420, 400)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vd2np")
+
+[node name="TextureRect" type="TextureRect" parent="PriceTag/Price/HBoxContainer/DinSymbol"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -420.0
+offset_top = -176.5
+offset_right = -33.0
+offset_bottom = 210.5
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("11_6f384")
+expand_mode = 1
+
+[node name="PriceLabel" type="Panel" parent="PriceTag/Price/HBoxContainer"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_nmk77")
+
+[node name="Label" type="Label" parent="PriceTag/Price/HBoxContainer/PriceLabel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -456.5
+offset_right = 1008.0
+offset_bottom = 456.5
+grow_vertical = 2
+size_flags_horizontal = 0
+text = "900"
+label_settings = SubResource("LabelSettings_tba6u")
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ejpn3")
+}
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

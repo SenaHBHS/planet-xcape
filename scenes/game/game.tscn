@@ -1,3 +1,27 @@
-[gd_scene format=3 uid="uid://vyomsluakekc"]
+[gd_scene load_steps=6 format=3 uid="uid://vyomsluakekc"]
+
+[ext_resource type="PackedScene" uid="uid://j5pjiovx3jfe" path="res://scenes/player/player.tscn" id="1_dm88o"]
+[ext_resource type="PackedScene" uid="uid://dcxegedotcylx" path="res://scenes/builder_box/builder_box.tscn" id="1_klq5v"]
+[ext_resource type="PackedScene" uid="uid://7koke5kk0idy" path="res://scenes/rocket/rocket.tscn" id="2_ggvaq"]
+[ext_resource type="PackedScene" uid="uid://4pas3uoya5v1" path="res://scenes/alien_wave/alien_wave.tscn" id="3_mtkg4"]
+[ext_resource type="Texture2D" uid="uid://cv61yrnlrifbg" path="res://assets/background/background.png" id="3_nxomj"]
 
 [node name="Game" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Rocket" parent="." instance=ExtResource("2_ggvaq")]
+scale = Vector2(0.4, 0.4)
+
+[node name="BuilderBox" parent="." instance=ExtResource("1_klq5v")]
+scale = Vector2(0.2, 0.2)
+
+[node name="Player" parent="." instance=ExtResource("1_dm88o")]
+position = Vector2(396, 204)
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(556.444, 313)
+scale = Vector2(1.27822, 1.27822)
+texture = ExtResource("3_nxomj")
+
+[node name="AlienWave" parent="." instance=ExtResource("3_mtkg4")]
