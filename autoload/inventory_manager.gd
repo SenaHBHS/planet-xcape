@@ -2,14 +2,10 @@ extends Node
 
 # global game variable management
 var inventory_limit = 3 # max n(items) in the inventory!
-var available_items = [{
-	"name": "plasma_streamer",
-	"category": "weapon",
-	"hp_points": 100
-}] # this has a default item for testing purposes.
+var available_items = [] # this has a default item for testing purposes.
 const dummy_item_template = {
 	"name": "",
-	"category": ""
+	"category": "",
 }
 # main cateogries: weapon, defense_system, object
 
@@ -24,7 +20,7 @@ func _ready():
 func _initialize_available_items() -> void:
 	# adding item objects to the list
 	for i in range(inventory_limit):
-		available_items.append(dummy_item_template)
+		available_items.append(dummy_item_template.duplicate())
 		available_slots.append(i)
 
 # deploy functions related to the current selected position
@@ -58,7 +54,6 @@ func get_current_item() -> Dictionary:
 	return available_items[selected_pos]
 
 func remove_current_item() -> void:
-	available_slots = []
 	if selected_pos not in available_slots:
 		available_slots.append(selected_pos)
 		available_items[selected_pos]["name"] = ""

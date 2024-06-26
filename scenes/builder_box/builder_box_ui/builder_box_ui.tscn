@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://b3etqvsepcp2d"]
+[gd_scene load_steps=13 format=3 uid="uid://b3etqvsepcp2d"]
 
 [ext_resource type="Script" path="res://scenes/builder_box/builder_box_ui/builder_box_ui.gd" id="1_6ne6n"]
 [ext_resource type="Texture2D" uid="uid://bhuaq3m5m6u8s" path="res://assets/ui/builder_box/Builder Box Panel.png" id="1_xrh2w"]
 [ext_resource type="PackedScene" uid="uid://bdex2t53ybdoq" path="res://scenes/builder_box/builder_box_ui/builder_box_slot.tscn" id="2_ddq6p"]
 [ext_resource type="Texture2D" uid="uid://c67mysjdhup5v" path="res://assets/ui/builder_box/Din Symbol.png" id="4_clor6"]
 [ext_resource type="FontFile" uid="uid://drd3xowq8frki" path="res://assets/font/TitilliumWeb-Bold.ttf" id="5_wmwnr"]
+[ext_resource type="Texture2D" uid="uid://wdeoyhl47dm5" path="res://assets/ui/builder_box/exit.png" id="6_epkbf"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sivwm"]
 texture = ExtResource("1_xrh2w")
@@ -140,12 +141,14 @@ text = "999"
 label_settings = SubResource("LabelSettings_oi5fc")
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="BuildUi"]
+[node name="ExitButton" type="Button" parent="BuildUi"]
 layout_mode = 0
-offset_left = 88.0
-offset_top = 113.0
-offset_right = 205.0
-offset_bottom = 141.0
-theme_override_fonts/font = ExtResource("5_wmwnr")
-theme_override_font_sizes/font_size = 18
-text = "Press E to Exit!"
+offset_left = 131.0
+offset_top = 105.0
+offset_right = 1206.0
+offset_bottom = 1180.0
+scale = Vector2(0.05, 0.05)
+icon = ExtResource("6_epkbf")
+flat = true
+
+[connection signal="pressed" from="BuildUi/ExitButton" to="." method="_on_exit_button_pressed"]

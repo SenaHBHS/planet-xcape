@@ -20,6 +20,7 @@ const E_ACTION_SCENE = preload("res://scenes/common_ui_comps/e_action/e_action.t
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var animation_player = $AnimationPlayer
+@onready var builder_box_ui = $CanvasLayer/BuilderBoxUi
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,11 +40,20 @@ func _ready():
 	add_child(E_ACTION)
 	E_ACTION.visible = false
 	
-func _process(delta):
+func _process(_delta):
 	# if the current animation is active, the player is in the interactable region!
 	if Input.is_action_just_pressed("perform_action") and CURRENT_ANIMATION == "active":
+		open_builder_box()
 		print("Open the Builder Box!")
 	
+	# if the game is not paused
+	if not get_tree().paused:
+		builder_box_ui.visible = false
+	
+func open_builder_box():
+	builder_box_ui.visible = true
+	get_tree().paused = true
+
 func set_builder_box_position():
 	var screen_size = get_viewport().size
 	var new_x_pos = 200 # how much is shifted to the right by default

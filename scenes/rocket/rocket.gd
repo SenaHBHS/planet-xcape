@@ -24,7 +24,7 @@ func _ready():
 	add_child(E_ACTION)
 	E_ACTION.visible = false
 
-func _process(delta):
+func _process(_delta):
 	var space_booster_is_available = GameManager.get_space_booster_availability()
 	var player_is_in_region = E_ACTION.visible # this implies whether the player is in the interactable region
 	if Input.is_action_just_pressed("perform_action"):

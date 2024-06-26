@@ -4,15 +4,15 @@ extends Control
 var ITEMS_LIST = [
 	{
 		"name": "pulse_pistol",
-		"price": 100
+		"price": 5
 	},
 	{
 		"name": "beam_blaster",
-		"price": 100
+		"price": 10
 	},
 	{
 		"name": "plasma_streamer",
-		"price": 1000
+		"price": 20
 	},
 	{
 		"name": "electro_grenade",
@@ -54,22 +54,24 @@ const BUILDER_BOX_SLOT = preload("res://scenes/builder_box/builder_box_ui/builde
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	render_items()
-	SignalManager.din_amount_updated.connect(render_items)
+	render_items(0) # initial din amount is 0
+	SignalManager.din_amount_updated.connect(update_din_amount)
 
-func render_items():
-	# updating the din amount the user has
-	din_amount_available.text = str(DinManager.get_din_amount())
+# handling the player input to close the builder box
+func _process(_delta):
+	if Input.is_action_just_pressed("escape"):
+		exit_builder_box()
+
+func render_items(current_din_amount: int):
+	# setting the din amount the user has
+	update_din_amount(current_din_amount)
 	
 	# there are 2 rows
-	var n_items_per_row = ITEMS_LIST.size() / 2
+	var n_items_per_row = round(float(ITEMS_LIST.size()) / 2)
 	var area_size = slots_container.size
-	print(area_size)
 	var top_left_pos = slots_container.position
-	print(top_left_pos)
 	var slot_size = Vector2((area_size.x/n_items_per_row), (area_size.y/2))
 	var slot_x_padding = 0 # in pixels
-	var slot_y_padding = 0
 	var sprite_x_size = slot_size.x - (2*slot_x_padding) # y_size is dynamically calcuated later to maintain the ratio
 	
 	for i in range(2):
@@ -83,20 +85,21 @@ func render_items():
 			var y_pos = top_left_pos.y + (i * slot_size.y)
 			var sprite_x_pos = x_pos + (slot_size.x/2 - sprite_x_size/2)
 			var sprite_y_pos = y_pos + (slot_size.y/2 - sprite_y_size/2)
-			print("Slot Size: ", slot_size)
-			print("Pos: ", x_pos, " ", y_pos)
-			print("Sprite Pos: ", sprite_x_pos, " ", sprite_y_pos)
 			
 			# applying the size and position props
 			new_item.scale = Vector2(sprite_x_size, sprite_y_size) / Vector2(new_item.size.x, new_item.size.y)
 			new_item.position = Vector2(sprite_x_pos, sprite_y_pos)
 			
 			item_i += n_items_per_row * i
-			var item_props = ITEMS_LIST[item_i]
+			var item_props
+			if item_i < ITEMS_LIST.size():
+				item_props = ITEMS_LIST[item_i]
+			else:
+				continue
 			
 			# calculating whether the player can afford the item
 			var is_affordable
-			if DinManager.get_din_amount() < item_props["price"]:
+			if current_din_amount < item_props["price"]:
 				is_affordable = false
 			else:
 				is_affordable = true
@@ -105,3 +108,14 @@ func render_items():
 			new_item.init_slot(item_props["name"], item_props["price"], is_affordable)
 			
 			build_ui.add_child(new_item)
+
+func update_din_amount(current_din_amount: int):
+	# setting the din amount the user has
+	din_amount_available.text = str(current_din_amount)
+
+func exit_builder_box():
+	# just resuming the game (because the builder box only works when the game is paused)
+	get_tree().paused = false
+
+func _on_exit_button_pressed():
+	exit_builder_box()

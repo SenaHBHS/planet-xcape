@@ -2,7 +2,7 @@ extends Node
 
 # din is the in-game currency!
 
-var _din_amount = 1000
+var _din_amount = 0
 
 func _set_din_amount(amount):
 	_din_amount = amount

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dcxegedotcylx"]
+[gd_scene load_steps=14 format=3 uid="uid://dcxegedotcylx"]
 
 [ext_resource type="Script" path="res://scenes/builder_box/builder_box.gd" id="1_4ko5f"]
 [ext_resource type="Texture2D" uid="uid://dr77s4lkih3ae" path="res://assets/sprites/objects/builder_box/idle.png" id="1_lfsqo"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cihxa8jq25ifs" path="res://assets/sprites/objects/builder_box/active/active-2.png" id="2_fi7vg"]
 [ext_resource type="Texture2D" uid="uid://dx54pcllj4eg" path="res://assets/sprites/objects/builder_box/active/active-3.png" id="3_utvxh"]
 [ext_resource type="Texture2D" uid="uid://bqggu5mwdv6nn" path="res://assets/sprites/objects/builder_box/active/active-4.png" id="4_qemon"]
+[ext_resource type="PackedScene" uid="uid://b3etqvsepcp2d" path="res://scenes/builder_box/builder_box_ui/builder_box_ui.tscn" id="7_jk4pl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xspol"]
 atlas = ExtResource("1_lfsqo")
@@ -102,6 +103,12 @@ shape = SubResource("CircleShape2D_mqune")
 libraries = {
 "": SubResource("AnimationLibrary_vxfbp")
 }
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BuilderBoxUi" parent="CanvasLayer" instance=ExtResource("7_jk4pl")]
+process_mode = 2
+visible = false
 
 [connection signal="body_entered" from="PlayerActionableRegion" to="." method="_on_player_actionable_region_body_entered"]
 [connection signal="body_exited" from="PlayerActionableRegion" to="." method="_on_player_actionable_region_body_exited"]
