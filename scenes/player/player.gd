@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # global variables
-@export var SPEED: int = 400
+var SPEED = 400
 var ONE_TIME_ANIMATION_FINISHED = true
 var CAN_FIRE = true
 var PAUSE_UNTIL_NEXT_FIRE = 0

@@ -42,17 +42,26 @@ func _ready():
 			break
 		else:
 			continue
-
-func init_slot(name: String, price: int, is_available: bool):
-	NAME = name
-	PRICE = price
+	
+	# connecting signals
+	SignalManager.din_amount_updated.connect(handle_din_amount_change)
+	
+func init_slot(item_name: String, item_price: int, is_available: bool):
+	NAME = item_name
+	PRICE = item_price
 	AVAILABLE = is_available
 	
 	for cat in ITEM_CATEGORIES.keys():
-		if name in ITEM_CATEGORIES[cat]:
+		if NAME in ITEM_CATEGORIES[cat]:
 			CATEGORY = cat
 
-func set_availability(new_availability):
+func handle_din_amount_change(current_din_amount: int):
+	if PRICE < current_din_amount:
+		set_availability(true)
+	else:
+		set_availability(false)
+
+func set_availability(new_availability: bool):
 	AVAILABLE = new_availability
 	if AVAILABLE:
 		modulate = Color(1, 1, 1, 1)

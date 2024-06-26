@@ -42,12 +42,8 @@ const game_level_props = {
 	}
 }
 
-func _deploy_funcs_on_selected_level() -> void:
-	game_level_props[level]
-
 func set_level(selected_level: String) -> void:
 	level = selected_level
-	_deploy_funcs_on_selected_level()
 	
 func get_selected_level() -> String:
 	return level
