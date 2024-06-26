@@ -1,7 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cu0c87vxv3yse"]
+[gd_scene load_steps=15 format=3 uid="uid://cu0c87vxv3yse"]
 
 [ext_resource type="Script" path="res://scenes/alien_wave/base_alien/base_alien.gd" id="1_qgxpc"]
 [ext_resource type="FontFile" uid="uid://drd3xowq8frki" path="res://assets/font/TitilliumWeb-Bold.ttf" id="2_c8aae"]
+[ext_resource type="Texture2D" uid="uid://do4hfhgqo8wf7" path="res://assets/sprites/aliens/_death/Death_1.png" id="3_vxt7w"]
+[ext_resource type="Texture2D" uid="uid://bntkastbxuf1q" path="res://assets/sprites/aliens/_death/Death_2.png" id="4_b4u48"]
+[ext_resource type="Texture2D" uid="uid://couiy6xvllyrg" path="res://assets/sprites/aliens/_death/Death_3.png" id="5_kr6p1"]
+[ext_resource type="Texture2D" uid="uid://dg663n27pb0mp" path="res://assets/sprites/aliens/_death/Death_4.png" id="6_x7bh0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_reygn"]
 radius = 190.0
@@ -84,6 +88,26 @@ _data = {
 "display_damage": SubResource("Animation_6ynoq")
 }
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_j5ds0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vxt7w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_b4u48")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_kr6p1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_x7bh0")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}]
+
 [node name="BaseAlien" type="CharacterBody2D" groups=["alien"]]
 z_index = -2
 script = ExtResource("1_qgxpc")
@@ -130,6 +154,13 @@ vertical_alignment = 1
 libraries = {
 "": SubResource("AnimationLibrary_y8nt5")
 }
+
+[node name="DeathAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_j5ds0")
+animation = &"death"
+frame = 3
+frame_progress = 1.0
 
 [connection signal="body_entered" from="AttackRangeArea" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRangeArea" to="." method="_on_attack_range_body_exited"]

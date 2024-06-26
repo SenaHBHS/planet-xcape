@@ -31,7 +31,7 @@ var ATTACKABLE_BODY = null
 
 # global variables for post-alien-death animations
 var IS_ALIEN_DEAD = false
-var TIME_TO_WAIT_BEFORE_REMOVE = 2 # in seconds
+var TIME_TO_WAIT_BEFORE_REMOVE = 0.4 # in seconds
 
 # packed scenes used
 const BULLET = preload("res://scenes/bullet/bullet.tscn")
@@ -44,6 +44,7 @@ const DIN = preload("res://scenes/din/din.tscn")
 @onready var timer = $Timer
 @onready var damage_label = $DamageLabel
 @onready var animate_damage_label = $AnimateDamageLabel
+@onready var death_animation = $DeathAnimation
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -221,6 +222,9 @@ func deduct_hp_points(amount):
 
 func handle_dead_alien(delta):
 	TIME_TO_WAIT_BEFORE_REMOVE -= delta
+	CURRENT_ALIEN_SCENE.visible = false
+	death_animation.visible = true
+	death_animation.play("death")
 	if TIME_TO_WAIT_BEFORE_REMOVE <= 0:
 		var din_from_alien = DIN.instantiate()
 		var din_multiplier = 1 # this is set to 2 if the alien is a boss
