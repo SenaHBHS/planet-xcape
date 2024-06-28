@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfwsucd62km3y"]
+[gd_scene load_steps=8 format=3 uid="uid://cfwsucd62km3y"]
 
 [ext_resource type="Script" path="res://scenes/hud/health_bars/health_bars.gd" id="1_rv15m"]
 [ext_resource type="Texture2D" uid="uid://cvkv21js2kr62" path="res://assets/ui/health_bars/Under.png" id="1_ypex3"]
@@ -7,7 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://bori150travjq" path="res://assets/ui/health_bars/Rocket Over.png" id="4_q1r3d"]
 [ext_resource type="Texture2D" uid="uid://cidjxoab7qf75" path="res://assets/ui/health_bars/Rocket Progress.png" id="5_6ctgi"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1paja"]
+
 [node name="HealthBars" type="Panel"]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1paja")
 script = ExtResource("1_rv15m")
 
 [node name="PlayerHealthBar" type="TextureProgressBar" parent="."]

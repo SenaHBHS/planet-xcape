@@ -1,14 +1,10 @@
-[gd_scene format=3 uid="uid://1cfeij3pf3p2"]
+[gd_scene load_steps=3 format=3 uid="uid://1cfeij3pf3p2"]
 
-[node name="Inventory" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[ext_resource type="Script" path="res://scenes/hud/inventory/inventory.gd" id="1_5l0dq"]
 
-[node name="InventorySlotsContainer" type="Panel" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y6ugu"]
+
+[node name="Inventory" type="Panel"]
+scale = Vector2(0.1, 0.1)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_y6ugu")
+script = ExtResource("1_5l0dq")

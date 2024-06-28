@@ -57,7 +57,7 @@ func init_slot(item_name: String, item_price: int, is_available: bool):
 			CATEGORY = cat
 
 func handle_din_amount_change(current_din_amount: int):
-	if PRICE < current_din_amount:
+	if PRICE <= current_din_amount:
 		set_availability(true)
 	else:
 		set_availability(false)
@@ -82,12 +82,13 @@ func purchase_item():
 			else:
 				# giving the user power ups
 				if NAME == "extra_slot":
-					var can_unlock_a_new_slot = InventoryManager.check_unlock_slot_availability()
-					if can_unlock_a_new_slot:
-						InventoryManager.unlock_an_extra_slot()
-					else:
+					InventoryManager.unlock_an_extra_slot()
+					
+					var can_unlock_a_new_slot_next_time = InventoryManager.check_unlock_slot_availability()
+					if not can_unlock_a_new_slot_next_time:
 						set_availability(false)
 						PERMENANTELY_UNAVAILABLE = true
+						animation_player.play("RESET")
 				else:
 					# this a speed boost
 					SignalManager.player_speed_powered_up.emit()

@@ -17,12 +17,13 @@ signal rocket_hp_points_updated
 signal hit_by_player(alien)
 signal spawn_alien_wave(strength)
 
+# alien waves related signals
+signal alien_wave_countdown_updated
+
 # din related signals
 signal din_amount_updated(amount) # to update the ui!
 
-# builder-box related signals
-signal bought_item(item)
-
-# general signals
-signal update_hud(hud_values_dict)
-signal pause_game
+# ui related signals
+signal one_second_elapsed
+signal set_builder_box_opened(is_open)
+signal rerender_inventory_bar
