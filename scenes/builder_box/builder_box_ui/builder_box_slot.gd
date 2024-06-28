@@ -23,6 +23,7 @@ var NAME = "plasma_streamer"
 var PRICE = 500
 var AVAILABLE = true
 var CATEGORY = null
+var PERMENANTELY_UNAVAILABLE = false # this is used for extra inventory slots (once the player reaches the limit)
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var animation_player = $AnimationPlayer
@@ -62,24 +63,34 @@ func handle_din_amount_change(current_din_amount: int):
 		set_availability(false)
 
 func set_availability(new_availability: bool):
-	AVAILABLE = new_availability
-	if AVAILABLE:
-		modulate = Color(1, 1, 1, 1)
+	if !PERMENANTELY_UNAVAILABLE:
+		AVAILABLE = new_availability
+		if AVAILABLE:
+			modulate = Color(1, 1, 1, 1)
+		else:
+			modulate = Color(1, 1, 1, 0.4)
 	else:
-		modulate = Color(1, 1, 1, 0.4)
+		# if it's permenantly unavailable, it's already set to unavailable
+		pass
 
 func purchase_item():
-	var was_succesful = DinManager.spend_din(PRICE)
-	if was_succesful:
-		if CATEGORY != "power_up":
-			InventoryManager.add_available_item(NAME, CATEGORY)
-		else:
-			# giving the user power ups
-			if NAME == "extra_slot":
-				InventoryManager.unlock_an_extra_slot()
+	if !PERMENANTELY_UNAVAILABLE:
+		var was_succesful = DinManager.spend_din(PRICE)
+		if was_succesful:
+			if CATEGORY != "power_up":
+				InventoryManager.add_available_item(NAME, CATEGORY)
 			else:
-				# this a speed boost
-				SignalManager.player_speed_powered_up.emit()
+				# giving the user power ups
+				if NAME == "extra_slot":
+					var can_unlock_a_new_slot = InventoryManager.check_unlock_slot_availability()
+					if can_unlock_a_new_slot:
+						InventoryManager.unlock_an_extra_slot()
+					else:
+						set_availability(false)
+						PERMENANTELY_UNAVAILABLE = true
+				else:
+					# this a speed boost
+					SignalManager.player_speed_powered_up.emit()
 
 func _on_mouse_entered():
 	if AVAILABLE:

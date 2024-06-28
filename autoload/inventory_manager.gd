@@ -13,6 +13,8 @@ const dummy_item_template = {
 var available_slots = []
 var selected_pos = 0 # index of the available_items list
 
+var n_available_unlock_slot_power_ups = 2
+
 func _ready():
 	_initialize_available_items()
 	_deploy_funcs_for_selected()
@@ -86,3 +88,10 @@ func unlock_an_extra_slot() -> void:
 	available_items.append(dummy_item_template)
 	available_slots.append(inventory_limit - 1)
 	inventory_limit += 1
+	n_available_unlock_slot_power_ups -= 1
+
+func check_unlock_slot_availability() -> bool:
+	if n_available_unlock_slot_power_ups < 2:
+		return false
+	else:
+		return true
