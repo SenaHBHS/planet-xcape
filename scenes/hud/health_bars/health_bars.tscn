@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfwsucd62km3y"]
+
+[ext_resource type="Script" path="res://scenes/hud/health_bars/health_bars.gd" id="1_rv15m"]
+[ext_resource type="Texture2D" uid="uid://cvkv21js2kr62" path="res://assets/ui/health_bars/Under.png" id="1_ypex3"]
+[ext_resource type="Texture2D" uid="uid://wt6madwfn6ks" path="res://assets/ui/health_bars/Player Over.png" id="2_c542c"]
+[ext_resource type="Texture2D" uid="uid://dmjfqwcsref3b" path="res://assets/ui/health_bars/Player Progress.png" id="3_pj642"]
+[ext_resource type="Texture2D" uid="uid://bori150travjq" path="res://assets/ui/health_bars/Rocket Over.png" id="4_q1r3d"]
+[ext_resource type="Texture2D" uid="uid://cidjxoab7qf75" path="res://assets/ui/health_bars/Rocket Progress.png" id="5_6ctgi"]
+
+[node name="HealthBars" type="Panel"]
+script = ExtResource("1_rv15m")
+
+[node name="PlayerHealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture_under = ExtResource("1_ypex3")
+texture_over = ExtResource("2_c542c")
+texture_progress = ExtResource("3_pj642")
+
+[node name="RocketHealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_top = 89.0
+offset_right = 351.0
+offset_bottom = 190.0
+value = 1.0
+texture_under = ExtResource("1_ypex3")
+texture_over = ExtResource("4_q1r3d")
+texture_progress = ExtResource("5_6ctgi")
