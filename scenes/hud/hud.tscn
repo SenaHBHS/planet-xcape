@@ -1,4 +1,19 @@
-[gd_scene format=3 uid="uid://dlom4mgelm7jx"]
+[gd_scene load_steps=9 format=3 uid="uid://dlom4mgelm7jx"]
+
+[ext_resource type="PackedScene" uid="uid://1cfeij3pf3p2" path="res://scenes/hud/inventory/inventory.tscn" id="1_gkvol"]
+[ext_resource type="Script" path="res://scenes/hud/hud.gd" id="1_o2f0e"]
+[ext_resource type="PackedScene" uid="uid://cfwsucd62km3y" path="res://scenes/hud/health_bars/health_bars.tscn" id="2_kvpni"]
+[ext_resource type="Texture2D" uid="uid://c67mysjdhup5v" path="res://assets/ui/builder_box/Din Symbol.png" id="4_mqlgf"]
+[ext_resource type="FontFile" uid="uid://drd3xowq8frki" path="res://assets/font/TitilliumWeb-Bold.ttf" id="5_uddha"]
+[ext_resource type="PackedScene" uid="uid://g4eok4yscib6" path="res://scenes/hud/alien_wave_countdown/alien_wave_countdown.tscn" id="6_qkije"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_02x6o"]
+font = ExtResource("5_uddha")
+font_size = 600
+
+[sub_resource type="LabelSettings" id="LabelSettings_0ewgj"]
+font = ExtResource("5_uddha")
+font_size = 42
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -7,3 +22,61 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_o2f0e")
+
+[node name="HealthBars" parent="." instance=ExtResource("2_kvpni")]
+layout_mode = 2
+offset_left = 35.0
+offset_top = 25.0
+offset_right = 389.0
+offset_bottom = 222.0
+scale = Vector2(0.9, 0.9)
+
+[node name="Inventory" parent="." instance=ExtResource("1_gkvol")]
+layout_mode = 0
+
+[node name="DinAmountLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 336.0
+offset_bottom = 913.0
+scale = Vector2(0.06, 0.06)
+size_flags_horizontal = 0
+text = "0"
+label_settings = SubResource("LabelSettings_02x6o")
+horizontal_alignment = 1
+
+[node name="DinSymbol" type="TextureRect" parent="."]
+layout_mode = 1
+offset_right = 387.0
+offset_bottom = 400.0
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("4_mqlgf")
+expand_mode = 1
+
+[node name="AlienWaveCountdown" parent="." instance=ExtResource("6_qkije")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -213.4
+offset_top = -20.0
+offset_right = -213.4
+offset_bottom = -20.0
+grow_horizontal = 2
+scale = Vector2(0.4, 0.4)
+
+[node name="ElapsedTimeLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -53.5
+offset_top = 10.0
+offset_right = 53.5
+offset_bottom = 75.0
+grow_horizontal = 2
+pivot_offset = Vector2(54, 0)
+text = "00:00"
+label_settings = SubResource("LabelSettings_0ewgj")

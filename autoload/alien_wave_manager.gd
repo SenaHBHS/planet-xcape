@@ -18,11 +18,12 @@ func _ready():
 	add_child(spawn_wave_timer)
 	
 	# Connect the timeout signal
-	spawn_wave_timer.connect("timeout", _on_spawn_wave_timer_timeout)
+	spawn_wave_timer.timeout.connect(_on_spawn_wave_timer_timeout)
 
 func _on_spawn_wave_timer_timeout() -> void:
 	# decrease the countdown time
 	countdown_time -= 1
+	SignalManager.alien_wave_countdown_updated.emit()
 	
 	if countdown_time <= 0:
 		spawn_wave_timer.stop()

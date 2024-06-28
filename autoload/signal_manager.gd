@@ -2,6 +2,7 @@ extends Node
 
 # player related signals
 signal player_was_hit(hp_points_to_deduct)
+signal player_hp_points_updated
 signal player_died
 signal player_speed_powered_up
 signal player_fired
@@ -10,17 +11,19 @@ signal player_equip_weapon(weapon)
 
 # rocket related signals
 signal rocket_was_hit(hp_points_to_deduct)
+signal rocket_hp_points_updated
 
 # alien related signals
 signal hit_by_player(alien)
 signal spawn_alien_wave(strength)
 
+# alien waves related signals
+signal alien_wave_countdown_updated
+
 # din related signals
 signal din_amount_updated(amount) # to update the ui!
 
-# builder-box related signals
-signal bought_item(item)
-
-# general signals
-signal update_hud(hud_values_dict)
-signal pause_game
+# ui related signals
+signal one_second_elapsed
+signal set_builder_box_opened(is_open)
+signal rerender_inventory_bar

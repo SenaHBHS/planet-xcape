@@ -1,13 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://vyomsluakekc"]
+[gd_scene load_steps=9 format=3 uid="uid://vyomsluakekc"]
 
 [ext_resource type="PackedScene" uid="uid://j5pjiovx3jfe" path="res://scenes/player/player.tscn" id="1_dm88o"]
 [ext_resource type="PackedScene" uid="uid://dcxegedotcylx" path="res://scenes/builder_box/builder_box.tscn" id="1_klq5v"]
+[ext_resource type="Script" path="res://scenes/game/game.gd" id="1_uhp3y"]
 [ext_resource type="PackedScene" uid="uid://7koke5kk0idy" path="res://scenes/rocket/rocket.tscn" id="2_ggvaq"]
 [ext_resource type="PackedScene" uid="uid://4pas3uoya5v1" path="res://scenes/alien_wave/alien_wave.tscn" id="3_mtkg4"]
 [ext_resource type="Texture2D" uid="uid://cv61yrnlrifbg" path="res://assets/background/background.png" id="3_nxomj"]
+[ext_resource type="PackedScene" uid="uid://dlom4mgelm7jx" path="res://scenes/hud/hud.tscn" id="6_niivx"]
+[ext_resource type="PackedScene" uid="uid://b3etqvsepcp2d" path="res://scenes/builder_box/builder_box_ui/builder_box_ui.tscn" id="8_bn674"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_uhp3y")
 
 [node name="Rocket" parent="." instance=ExtResource("2_ggvaq")]
 scale = Vector2(0.4, 0.4)
@@ -25,3 +29,13 @@ scale = Vector2(1.27822, 1.27822)
 texture = ExtResource("3_nxomj")
 
 [node name="AlienWave" parent="." instance=ExtResource("3_mtkg4")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("6_niivx")]
+process_mode = 3
+
+[node name="BuilderBoxUi" parent="CanvasLayer" instance=ExtResource("8_bn674")]
+process_mode = 2
+process_priority = 1
+visible = false

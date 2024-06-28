@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://g4eok4yscib6"]
+
+[ext_resource type="Script" path="res://scenes/hud/alien_wave_countdown/alien_wave_countdown.gd" id="1_dabey"]
+[ext_resource type="Texture2D" uid="uid://bv6ug2tnybcft" path="res://assets/ui/alien_wave_countdown/alien_wave_countdown.png" id="2_sxjln"]
+[ext_resource type="FontFile" uid="uid://drd3xowq8frki" path="res://assets/font/TitilliumWeb-Bold.ttf" id="3_np55c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nuvf0"]
+font = ExtResource("3_np55c")
+font_size = 54
+
+[node name="AlienWaveCountdown" type="Panel"]
+script = ExtResource("1_dabey")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1067.0
+offset_bottom = 375.0
+pivot_offset = Vector2(534, 0)
+texture = ExtResource("2_sxjln")
+
+[node name="CountdownLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 717.0
+offset_top = 231.0
+offset_right = 777.0
+offset_bottom = 329.0
+text = "1"
+label_settings = SubResource("LabelSettings_nuvf0")

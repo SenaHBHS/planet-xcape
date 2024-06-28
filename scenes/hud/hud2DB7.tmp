@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlom4mgelm7jx"]
+
+[ext_resource type="PackedScene" uid="uid://1cfeij3pf3p2" path="res://scenes/hud/inventory/inventory.tscn" id="1_gkvol"]
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Inventory" parent="." instance=ExtResource("1_gkvol")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_right = 0.0
+offset_bottom = 0.0
+grow_vertical = 0
+scale = Vector2(0.2, 0.2)

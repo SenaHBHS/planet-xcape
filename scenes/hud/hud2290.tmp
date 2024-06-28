@@ -1,0 +1,104 @@
+[gd_scene load_steps=10 format=3 uid="uid://dlom4mgelm7jx"]
+
+[ext_resource type="PackedScene" uid="uid://1cfeij3pf3p2" path="res://scenes/hud/inventory/inventory.tscn" id="1_gkvol"]
+[ext_resource type="Script" path="res://scenes/hud/hud.gd" id="1_o2f0e"]
+[ext_resource type="PackedScene" uid="uid://cfwsucd62km3y" path="res://scenes/hud/health_bars/health_bars.tscn" id="2_kvpni"]
+[ext_resource type="Texture2D" uid="uid://c67mysjdhup5v" path="res://assets/ui/builder_box/Din Symbol.png" id="4_mqlgf"]
+[ext_resource type="FontFile" uid="uid://drd3xowq8frki" path="res://assets/font/TitilliumWeb-Bold.ttf" id="5_uddha"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nqp3j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p4b6m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o4qkw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_02x6o"]
+font = ExtResource("5_uddha")
+font_size = 600
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_o2f0e")
+
+[node name="HealthBars" parent="." instance=ExtResource("2_kvpni")]
+layout_mode = 2
+offset_left = 35.0
+offset_top = 25.0
+offset_right = 389.0
+offset_bottom = 222.0
+scale = Vector2(0.9, 0.9)
+
+[node name="Inventory" parent="." instance=ExtResource("1_gkvol")]
+layout_mode = 0
+
+[node name="DinAmountContainer" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 347.0
+offset_bottom = 127.0
+scale = Vector2(0.3, 0.3)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_nqp3j")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DinAmountContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -725.5
+offset_top = -470.5
+offset_right = 1067.5
+offset_bottom = 442.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+pivot_offset = Vector2(725, 472)
+theme_override_constants/separation = 10
+
+[node name="DinSymbol" type="Panel" parent="DinAmountContainer/HBoxContainer"]
+custom_minimum_size = Vector2(420, 400)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_p4b6m")
+
+[node name="TextureRect" type="TextureRect" parent="DinAmountContainer/HBoxContainer/DinSymbol"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -420.0
+offset_top = -176.5
+offset_right = -33.0
+offset_bottom = 210.5
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("4_mqlgf")
+expand_mode = 1
+
+[node name="DinLabel" type="Panel" parent="DinAmountContainer/HBoxContainer"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_o4qkw")
+
+[node name="Label" type="Label" parent="DinAmountContainer/HBoxContainer/DinLabel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -456.5
+offset_right = 336.0
+offset_bottom = 456.5
+grow_vertical = 2
+size_flags_horizontal = 0
+text = "9999999999"
+label_settings = SubResource("LabelSettings_02x6o")
+horizontal_alignment = 1

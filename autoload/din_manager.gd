@@ -16,7 +16,7 @@ func increase_din_amount(amount):
 
 func spend_din(amount):
 	# returns whether the transaction was succesful!
-	if amount < _din_amount:
+	if amount <= _din_amount:
 		_set_din_amount(_din_amount - amount)
 		return true
 	else:

@@ -42,6 +42,8 @@ func set_rocket_position():
 
 func handle_rocket_was_hit(damage_points):
 	GameManager.rocket_hp_points -= damage_points
+	SignalManager.rocket_hp_points_updated.emit()
+	
 	if GameManager.rocket_hp_points <= 0:
 		GameManager.set_game_over()
 	else:

@@ -1,0 +1,139 @@
+[gd_scene load_steps=17 format=3 uid="uid://b85sxgsndd8oy"]
+
+[ext_resource type="Script" path="res://scenes/hud/inventory/inventory_slot.gd" id="1_psmy4"]
+[ext_resource type="Texture2D" uid="uid://c35an5p0ywbjr" path="res://assets/ui/inventory/defense_system.png" id="1_rgtv1"]
+[ext_resource type="Texture2D" uid="uid://bh87s7d3hqc8l" path="res://assets/ui/inventory/empty.png" id="2_m7vr1"]
+[ext_resource type="Texture2D" uid="uid://brnwqegtww43u" path="res://assets/ui/inventory/object.png" id="3_bahus"]
+[ext_resource type="Texture2D" uid="uid://b83gfu5n6nsuj" path="res://assets/ui/inventory/weapon.png" id="4_nqy6x"]
+[ext_resource type="Texture2D" uid="uid://dxcro5cfo6m4n" path="res://assets/ui/inventory/indicator.png" id="5_yahav"]
+[ext_resource type="Texture2D" uid="uid://dyfxtpmtr1xs4" path="res://assets/ui/inventory/weapon_thumbnails/Beam Blaster.png" id="6_wapkp"]
+[ext_resource type="Texture2D" uid="uid://cp3pxa5do752n" path="res://assets/ui/inventory/weapon_thumbnails/Electro.png" id="7_aqler"]
+[ext_resource type="Texture2D" uid="uid://dk1fokj367uxy" path="res://assets/ui/inventory/weapon_thumbnails/Electro Grenade.png" id="8_1bmuv"]
+[ext_resource type="Texture2D" uid="uid://b1he81xc4xmbc" path="res://assets/ui/inventory/weapon_thumbnails/Nebula Boom.png" id="9_hnkl0"]
+[ext_resource type="Texture2D" uid="uid://betjvvt1mrb8v" path="res://assets/ui/inventory/weapon_thumbnails/Plasma Streamer.png" id="10_emlqa"]
+[ext_resource type="Texture2D" uid="uid://c4jjwlcl3yhkx" path="res://assets/ui/inventory/weapon_thumbnails/Pulse Pistol.png" id="11_st885"]
+[ext_resource type="Texture2D" uid="uid://bx2bmqm4f7bxf" path="res://assets/ui/inventory/weapon_thumbnails/Quantum Inferno.png" id="12_n6lli"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aqkya"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_klvcg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rgtv1")
+}],
+"loop": true,
+"name": &"defense_system",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_m7vr1")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bahus")
+}],
+"loop": true,
+"name": &"object",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_nqy6x")
+}],
+"loop": true,
+"name": &"weapon",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ycks"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_wapkp")
+}],
+"loop": true,
+"name": &"beam_blaster",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_aqler")
+}],
+"loop": true,
+"name": &"electro",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_1bmuv")
+}],
+"loop": true,
+"name": &"electro_grenade",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_hnkl0")
+}],
+"loop": true,
+"name": &"nebula_boom",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_emlqa")
+}],
+"loop": true,
+"name": &"plasma_streamer",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_st885")
+}],
+"loop": true,
+"name": &"pulse_pistol",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_n6lli")
+}],
+"loop": true,
+"name": &"quantum_inferno",
+"speed": 5.0
+}]
+
+[node name="InventorySlot" type="Panel"]
+offset_right = 1067.0
+offset_bottom = 1286.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_aqkya")
+script = ExtResource("1_psmy4")
+
+[node name="InventorySlotSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 219)
+sprite_frames = SubResource("SpriteFrames_klvcg")
+animation = &"weapon"
+centered = false
+
+[node name="IndicatorSprite" type="Sprite2D" parent="."]
+position = Vector2(526, 107)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_yahav")
+
+[node name="ThumbnailSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(534, 664)
+scale = Vector2(0.540183, 0.540183)
+sprite_frames = SubResource("SpriteFrames_3ycks")
+animation = &"plasma_streamer"
