@@ -12,7 +12,7 @@ const game_level_props = {
 		"time_gap_between_waves": 10, # in seconds
 		"time_gap_between_subwaves": 5, # in seconds
 		"lower_n_alien_bound": 2,
-		"space_booster_price": 400,
+		"space_booster_price": 50,
 		"boss_wave_frequency": 2, # a boss wave per n(waves)
 		"difficutly_increase_per_wave_spawned": 0.02,
 		"n_stars_to_spawn": 1 # in the victory screen

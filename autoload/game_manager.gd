@@ -3,7 +3,6 @@ extends Node
 # globalising the player and rocket position and hp points
 var player_pos: Vector2 = Vector2(0, 0)
 var rocket_pos: Vector2 = Vector2(0, 0)
-var has_space_booster: bool = true
 # max hp points
 var player_max_hp_points: float = LevelManager.get_level_props()["player_hp_points"]
 var rocket_max_hp_points: float = LevelManager.get_level_props()["rocket_hp_points"]
@@ -27,12 +26,6 @@ func get_player_position() -> Vector2:
 
 func get_rocket_position() -> Vector2:
 	return rocket_pos
-
-func set_space_booster_was_purchased() -> void:
-	has_space_booster = true
-
-func get_space_booster_availability() -> bool:
-	return has_space_booster
 
 func _on_level_changed():
 	# resetting hp points

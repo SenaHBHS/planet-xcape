@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b85sxgsndd8oy"]
+[gd_scene load_steps=18 format=3 uid="uid://b85sxgsndd8oy"]
 
 [ext_resource type="Script" path="res://scenes/hud/inventory/inventory_slot.gd" id="1_psmy4"]
 [ext_resource type="Texture2D" uid="uid://c35an5p0ywbjr" path="res://assets/ui/inventory/defense_system.png" id="1_rgtv1"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://betjvvt1mrb8v" path="res://assets/ui/inventory/weapon_thumbnails/Plasma Streamer.png" id="10_emlqa"]
 [ext_resource type="Texture2D" uid="uid://c4jjwlcl3yhkx" path="res://assets/ui/inventory/weapon_thumbnails/Pulse Pistol.png" id="11_st885"]
 [ext_resource type="Texture2D" uid="uid://bx2bmqm4f7bxf" path="res://assets/ui/inventory/weapon_thumbnails/Quantum Inferno.png" id="12_n6lli"]
+[ext_resource type="Texture2D" uid="uid://bqbo8o5bmrwvf" path="res://assets/ui/inventory/weapon_thumbnails/space_booster.png" id="14_0tga4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aqkya"]
 
@@ -113,6 +114,14 @@ animations = [{
 "loop": true,
 "name": &"quantum_inferno",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_0tga4")
+}],
+"loop": true,
+"name": &"space_booster",
+"speed": 5.0
 }]
 
 [node name="InventorySlot" type="Panel"]
@@ -136,4 +145,4 @@ texture = ExtResource("5_yahav")
 position = Vector2(534, 664)
 scale = Vector2(0.540183, 0.540183)
 sprite_frames = SubResource("SpriteFrames_3ycks")
-animation = &"plasma_streamer"
+animation = &"space_booster"
