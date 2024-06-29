@@ -66,7 +66,7 @@ func add_stars():
 	stars_container.size = Vector2(star_current_x_pos+star_spacing+star_width*2, star_height)
 
 func _return_home():
-	GameManager.change_to_home_scene()
+	SceneManager.change_to_home_scene()
 
 func _get_total_element_height(elements_list):
 	var _total_height = 0
