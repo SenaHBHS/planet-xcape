@@ -34,6 +34,7 @@ var PERMENANTELY_UNAVAILABLE = false # this is used for extra inventory slots (o
 func _ready():
 	assert(NAME != name, "Please initialize the slot using init_slot")
 	animated_sprite_2d.animation = NAME
+	tooltip_text = _snake_to_title_case(NAME)
 	price_label.text = str(PRICE)
 	set_availability(AVAILABLE)
 	
@@ -67,8 +68,10 @@ func set_availability(new_availability: bool):
 		AVAILABLE = new_availability
 		if AVAILABLE:
 			modulate = Color(1, 1, 1, 1)
+			mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 		else:
 			modulate = Color(1, 1, 1, 0.4)
+			mouse_default_cursor_shape = Control.CURSOR_ARROW
 	else:
 		# if it's permenantly unavailable, it's already set to unavailable
 		pass
@@ -92,6 +95,12 @@ func purchase_item():
 				else:
 					# this a speed boost
 					SignalManager.player_speed_powered_up.emit()
+
+func _snake_to_title_case(snake_case_str: String) -> String:
+	var parts = snake_case_str.split("_")
+	for i in range(parts.size()):
+		parts[i] = parts[i].capitalize()
+	return " ".join(parts)
 
 func _on_mouse_entered():
 	if AVAILABLE:

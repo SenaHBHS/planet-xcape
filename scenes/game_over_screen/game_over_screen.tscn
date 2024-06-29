@@ -5,6 +5,21 @@
 [ext_resource type="Texture2D" uid="uid://cwd7b4jhibx2u" path="res://assets/ui/end_game/Game Over.png" id="2_bb8so"]
 [ext_resource type="Texture2D" uid="uid://cgestuj25oc2q" path="res://assets/ui/end_game/Game Over Sprite.png" id="3_fgtqi"]
 
+[sub_resource type="Animation" id="Animation_q8rqo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerFace:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_xulvf"]
 resource_name = "player_face_rotate"
 length = 0.6
@@ -20,21 +35,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 0.0349066, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_q8rqo"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerFace:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pom3i"]

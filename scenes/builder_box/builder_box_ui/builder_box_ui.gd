@@ -43,6 +43,7 @@ var ITEMS_LIST = [
 		"price": LevelManager.get_level_props()["space_booster_price"]
 	}
 ]
+var BUILDER_BOX_IS_OPEN = null
 
 # child nodes used
 @onready var slots_container = $BuildUi/SlotsContainer
@@ -59,7 +60,7 @@ func _ready():
 
 # handling the player input to close the builder box
 func _process(_delta):
-	if Input.is_action_just_pressed("escape"):
+	if Input.is_action_just_pressed("escape") and BUILDER_BOX_IS_OPEN:
 		exit_builder_box()
 
 func render_items(current_din_amount: int):

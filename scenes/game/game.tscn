@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://vyomsluakekc"]
+[gd_scene load_steps=10 format=3 uid="uid://vyomsluakekc"]
 
 [ext_resource type="PackedScene" uid="uid://j5pjiovx3jfe" path="res://scenes/player/player.tscn" id="1_dm88o"]
 [ext_resource type="PackedScene" uid="uid://dcxegedotcylx" path="res://scenes/builder_box/builder_box.tscn" id="1_klq5v"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cv61yrnlrifbg" path="res://assets/background/background.png" id="3_nxomj"]
 [ext_resource type="PackedScene" uid="uid://dlom4mgelm7jx" path="res://scenes/hud/hud.tscn" id="6_niivx"]
 [ext_resource type="PackedScene" uid="uid://b3etqvsepcp2d" path="res://scenes/builder_box/builder_box_ui/builder_box_ui.tscn" id="8_bn674"]
+[ext_resource type="PackedScene" uid="uid://c3rlyatomfp05" path="res://scenes/pause_screen/pause_screen.tscn" id="9_wp5q5"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -20,7 +21,7 @@ scale = Vector2(0.4, 0.4)
 scale = Vector2(0.2, 0.2)
 
 [node name="Player" parent="." instance=ExtResource("1_dm88o")]
-position = Vector2(396, 204)
+position = Vector2(396, 258)
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -100
@@ -38,4 +39,8 @@ process_mode = 3
 [node name="BuilderBoxUi" parent="CanvasLayer" instance=ExtResource("8_bn674")]
 process_mode = 2
 process_priority = 1
+visible = false
+
+[node name="PauseScreen" parent="CanvasLayer" instance=ExtResource("9_wp5q5")]
+process_mode = 2
 visible = false

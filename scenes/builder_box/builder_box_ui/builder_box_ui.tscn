@@ -148,6 +148,7 @@ offset_top = 105.0
 offset_right = 1206.0
 offset_bottom = 1180.0
 scale = Vector2(0.05, 0.05)
+mouse_default_cursor_shape = 2
 icon = ExtResource("6_epkbf")
 flat = true
 

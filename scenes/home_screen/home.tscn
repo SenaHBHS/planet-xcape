@@ -1,4 +1,8 @@
-[gd_scene format=3 uid="uid://bp2p0qjsvof3p"]
+[gd_scene load_steps=4 format=3 uid="uid://bp2p0qjsvof3p"]
+
+[ext_resource type="Script" path="res://scenes/home_screen/home.gd" id="1_j43xp"]
+[ext_resource type="Texture2D" uid="uid://cf04cywdraicq" path="res://assets/logo/Title.png" id="1_n5m1y"]
+[ext_resource type="Texture2D" uid="uid://lr8g0sc8q1tg" path="res://assets/background/home_screen.png" id="2_c2t3d"]
 
 [node name="Home" type="Control"]
 layout_mode = 3
@@ -7,3 +11,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_j43xp")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2000.0
+offset_top = -1125.0
+offset_right = 2000.0
+offset_bottom = 1125.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(2000, 1125)
+texture = ExtResource("2_c2t3d")
+
+[node name="TitleLogo" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 2134.0
+offset_bottom = 625.0
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_n5m1y")

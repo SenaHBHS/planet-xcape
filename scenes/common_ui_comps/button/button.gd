@@ -37,9 +37,9 @@ func _ready():
 	# setting the label
 	label.text = BUTTON_LABEL
 	
-func config(label: String, category: String, callback_bound: Callable):
-	BUTTON_LABEL = label
-	BUTTON_CATEGORY = category
+func config(btn_label: String, btn_category: String, callback_bound: Callable):
+	BUTTON_LABEL = btn_label
+	BUTTON_CATEGORY = btn_category
 	CALLBACK_BOUND = callback_bound
 
 func _process(delta):
