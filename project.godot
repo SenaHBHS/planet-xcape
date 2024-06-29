@@ -13,11 +13,14 @@ config_version=5
 config/name="Planet Xcape"
 run/main_scene="res://scenes/game/game.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
-boot_splash/image="res://assets/splash_screen/sample.png"
+boot_splash/bg_color=Color(0.0901961, 0.137255, 0.298039, 1)
+boot_splash/image="res://assets/splash_screen/splash_screen.png"
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
 [autoload]
 
+SceneManager="*res://autoload/scene_manager.gd"
 LevelManager="*res://autoload/level_manager.gd"
 GameManager="*res://autoload/game_manager.gd"
 SignalManager="*res://autoload/signal_manager.gd"

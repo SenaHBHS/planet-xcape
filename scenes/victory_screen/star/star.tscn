@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://blv567a3xcvof"]
+
+[ext_resource type="Texture2D" uid="uid://b52ndk04bxulv" path="res://assets/ui/end_game/Star.png" id="1_k65am"]
+
+[sub_resource type="Animation" id="Animation_d7r74"]
+resource_name = "pulse"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wgdhp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ks6l"]
+_data = {
+"RESET": SubResource("Animation_wgdhp"),
+"pulse": SubResource("Animation_d7r74")
+}
+
+[node name="Star" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1067.0
+offset_bottom = 1067.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1067.0
+offset_bottom = 1067.0
+pivot_offset = Vector2(534, 534)
+texture = ExtResource("1_k65am")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4ks6l")
+}
+autoplay = "pulse"

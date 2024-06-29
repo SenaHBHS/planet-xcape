@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://cwqihi7pb40su"]
+
+[ext_resource type="Script" path="res://scenes/common_ui_comps/button/button.gd" id="1_5kurc"]
+[ext_resource type="Texture2D" uid="uid://cetgrylmpawow" path="res://assets/background/Extra Special.png" id="2_k7wq4"]
+[ext_resource type="FontFile" uid="uid://drd3xowq8frki" path="res://assets/font/TitilliumWeb-Bold.ttf" id="3_tyykj"]
+
+[sub_resource type="Animation" id="Animation_2r1ed"]
+resource_name = "hovered"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonNode:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sx640"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonNode:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_am483"]
+_data = {
+"RESET": SubResource("Animation_sx640"),
+"hovered": SubResource("Animation_2r1ed")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_5ec3i"]
+font = ExtResource("3_tyykj")
+font_size = 130
+
+[node name="Button" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5kurc")
+
+[node name="ButtonNode" type="TextureButton" parent="."]
+layout_mode = 1
+offset_right = 1067.0
+offset_bottom = 469.0
+pivot_offset = Vector2(534, 235)
+texture_normal = ExtResource("2_k7wq4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_am483")
+}
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 327.0
+offset_top = 216.0
+offset_right = 328.0
+offset_bottom = 415.0
+label_settings = SubResource("LabelSettings_5ec3i")
+
+[connection signal="mouse_entered" from="ButtonNode" to="." method="_on_button_node_mouse_entered"]
+[connection signal="mouse_exited" from="ButtonNode" to="." method="_on_button_node_mouse_exited"]
+[connection signal="pressed" from="ButtonNode" to="." method="_on_button_pressed"]

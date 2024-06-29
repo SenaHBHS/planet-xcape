@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://bq7qf0uxap11f"]
+
+[ext_resource type="Script" path="res://scenes/victory_screen/victory_screen.gd" id="1_i2rdp"]
+[ext_resource type="Texture2D" uid="uid://cv61yrnlrifbg" path="res://assets/background/background.png" id="1_pu4si"]
+[ext_resource type="Texture2D" uid="uid://dxxs6btdcq38m" path="res://assets/ui/end_game/Victory.png" id="2_y8376"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8nq75"]
+
+[node name="VictoryScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i2rdp")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2000.0
+offset_top = -1125.0
+offset_right = 2000.0
+offset_bottom = 1125.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_pu4si")
+
+[node name="VictoryLabel" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_y8376")
+
+[node name="StarsContainer" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8nq75")

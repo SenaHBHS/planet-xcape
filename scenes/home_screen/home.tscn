@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://4bdcataltyxy"]
+[gd_scene format=3 uid="uid://bp2p0qjsvof3p"]
 
-[node name="StartScreen" type="Control"]
+[node name="Home" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
