@@ -1,8 +1,8 @@
 extends Panel
 
 # global variables
-var INITIAL_PLAYER_HP
-var INTIIAL_ROCKET_HP
+var MAX_PLAYER_HP
+var MAX_ROCKET_HP
 var HEALTH_BAR_VISIBLE_RANGE = Vector2(25, 100)
 
 # health bar nodes
@@ -11,8 +11,8 @@ var HEALTH_BAR_VISIBLE_RANGE = Vector2(25, 100)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	INITIAL_PLAYER_HP = GameManager.player_hp_points
-	INTIIAL_ROCKET_HP = GameManager.rocket_hp_points
+	MAX_PLAYER_HP = GameManager.player_max_hp_points
+	MAX_ROCKET_HP = GameManager.rocket_max_hp_points
 	
 	player_health_bar.value = 100
 	rocket_health_bar.value = 100
@@ -27,8 +27,8 @@ func _get_new_health_bar_value(current_hp_value, initial_hp_points):
 	
 func handle_player_hp_points_update():
 	var current_hp = GameManager.player_hp_points
-	player_health_bar.value = _get_new_health_bar_value(current_hp, INITIAL_PLAYER_HP)
+	player_health_bar.value = _get_new_health_bar_value(current_hp, MAX_PLAYER_HP)
 
 func handle_rocket_hp_points_update():
 	var current_hp = GameManager.rocket_hp_points
-	rocket_health_bar.value = _get_new_health_bar_value(current_hp, INITIAL_PLAYER_HP)
+	rocket_health_bar.value = _get_new_health_bar_value(current_hp, MAX_PLAYER_HP)

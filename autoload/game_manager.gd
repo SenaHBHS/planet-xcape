@@ -1,5 +1,8 @@
 extends Node
 
+func _ready():
+	pass
+
 # game scene management
 const start_screen_scene: PackedScene = preload("res://scenes/start_screen/start_screen.tscn")
 const story_scene: PackedScene = preload("res://scenes/story/story.tscn")
@@ -31,9 +34,12 @@ func set_game_over():
 var player_pos: Vector2 = Vector2(0, 0)
 var rocket_pos: Vector2 = Vector2(0, 0)
 var has_space_booster: bool = true
-# hp points are default values (they are configured later)
-var player_hp_points: float = 100.0 
-var rocket_hp_points: float = 250.0
+# max hp points
+var player_max_hp_points: float = LevelManager.get_level_props()["player_hp_points"]
+var rocket_max_hp_points: float = LevelManager.get_level_props()["rocket_hp_points"]
+# current hp points (can be configured later)
+var player_hp_points: float = LevelManager.get_level_props()["player_hp_points"]
+var rocket_hp_points: float = LevelManager.get_level_props()["rocket_hp_points"]
 
 func update_player_position(new_position: Vector2) -> void:
 	player_pos = new_position
@@ -49,3 +55,10 @@ func set_space_booster_was_purchased() -> void:
 
 func get_space_booster_availability() -> bool:
 	return has_space_booster
+
+func _on_level_changed():
+	# resetting hp points
+	player_max_hp_points = LevelManager.get_level_props()["player_hp_points"]
+	rocket_max_hp_points = LevelManager.get_level_props()["rocket_hp_points"]
+	player_hp_points = LevelManager.get_level_props()["player_hp_points"]
+	rocket_hp_points = LevelManager.get_level_props()["rocket_hp_points"]
