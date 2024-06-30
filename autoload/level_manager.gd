@@ -47,6 +47,7 @@ const game_level_props = {
 
 func set_level(selected_level: String) -> void:
 	level = selected_level
+	SignalManager.level_changed.emit()
 	
 func get_selected_level() -> String:
 	return level

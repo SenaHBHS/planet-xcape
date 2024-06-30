@@ -1,5 +1,8 @@
 extends Node
 
+# level related signals
+signal level_changed
+
 # player related signals
 signal player_was_hit(hp_points_to_deduct)
 signal player_hp_points_updated

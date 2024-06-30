@@ -10,6 +10,9 @@ var rocket_max_hp_points: float = LevelManager.get_level_props()["rocket_hp_poin
 var player_hp_points: float = LevelManager.get_level_props()["player_hp_points"]
 var rocket_hp_points: float = LevelManager.get_level_props()["rocket_hp_points"]
 
+func _ready():
+	SignalManager.level_changed.connect(_on_level_changed)
+
 func set_game_won():
 	print("GAME WON!")
 	SceneManager.change_to_victory_scene()
