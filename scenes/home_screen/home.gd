@@ -41,7 +41,7 @@ func _ready():
 	get_viewport().size_changed.connect(rescale_background)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	position_elements()
 	
 func rescale_background():

@@ -19,7 +19,7 @@ func _ready():
 	_initialize_available_items()
 	_deploy_common_funcs()
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("remove_selected_item"):
 		remove_current_item()
 

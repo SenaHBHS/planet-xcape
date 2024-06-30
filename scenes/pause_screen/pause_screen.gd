@@ -24,7 +24,7 @@ func _ready():
 	place_buttons()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	position_elements()
 
 func place_buttons():

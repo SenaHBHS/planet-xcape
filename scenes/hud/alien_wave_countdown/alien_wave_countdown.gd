@@ -11,7 +11,7 @@ func _ready():
 	SignalManager.alien_wave_countdown_updated.connect(update_countdown)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if visible != !AlienWaveManager.can_spawn_a_wave:
 		visible = !AlienWaveManager.can_spawn_a_wave
 		set_label_to_loading()

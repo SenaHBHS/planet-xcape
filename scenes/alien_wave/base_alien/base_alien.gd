@@ -61,8 +61,8 @@ func _ready():
 	# configuring additonal global variables
 	TARGET_POS = GameManager.get_rocket_position()
 
-func set_alien(name: String, difficutly: float, is_boss: bool) -> void:
-	ALIEN_NAME = name
+func set_alien(alien_name: String, difficutly: float, is_boss: bool) -> void:
+	ALIEN_NAME = alien_name
 	DIFFICULTY = difficutly
 	IS_BOSS = is_boss
 	

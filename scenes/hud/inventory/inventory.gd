@@ -8,7 +8,7 @@ func _ready():
 	render_inventory_bar()
 	SignalManager.rerender_inventory_bar.connect(render_inventory_bar)
 
-func _process(delta):
+func _process(_delta):
 	# handling user inputs
 	if Input.is_action_just_pressed("select_right_inventory"):
 		InventoryManager.select_next_item()

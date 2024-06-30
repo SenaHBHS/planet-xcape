@@ -51,7 +51,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("escape"):
 		_skip_story_lines()
 
-func _display_line(delta):
+func _display_line(_delta):
 	if ELAPSED_TIME_SINCE_LINE >= TIME_PRE_LINE:
 		CURRENT_LINE_INDEX += 1
 		if CURRENT_LINE_INDEX < STORY_LINES.size():

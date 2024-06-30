@@ -42,7 +42,7 @@ func config(btn_label: String, btn_category: String, callback_bound: Callable):
 	BUTTON_CATEGORY = btn_category
 	CALLBACK_BOUND = callback_bound
 
-func _process(delta):
+func _process(_delta):
 	_position_label()
 
 func _position_label():

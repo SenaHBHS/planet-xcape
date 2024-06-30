@@ -16,7 +16,7 @@ func _ready():
 	get_viewport().size_changed.connect(_rescale_how_to_info)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	_position_how_to_info()
 	_position_done_button()
 

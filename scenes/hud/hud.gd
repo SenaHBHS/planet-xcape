@@ -21,7 +21,7 @@ func _ready():
 	SignalManager.rerender_inventory_bar.connect(position_inventory_bar)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	position_din_amount()
 
 func position_dynamic_elements():
