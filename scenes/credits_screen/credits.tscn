@@ -1,4 +1,9 @@
-[gd_scene format=3 uid="uid://fuj1ihr83drm"]
+[gd_scene load_steps=5 format=3 uid="uid://fuj1ihr83drm"]
+
+[ext_resource type="Script" path="res://scenes/credits_screen/credits.gd" id="1_8nbe3"]
+[ext_resource type="FontFile" uid="uid://dq6ot0pn8i1no" path="res://assets/font/TitilliumWeb-SemiBold.ttf" id="2_aauki"]
+[ext_resource type="Texture2D" uid="uid://lr8g0sc8q1tg" path="res://assets/background/home_screen.png" id="2_c8t8l"]
+[ext_resource type="FontFile" uid="uid://drd3xowq8frki" path="res://assets/font/TitilliumWeb-Bold.ttf" id="2_id4nu"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -7,3 +12,45 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_8nbe3")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2000.0
+offset_top = -1125.0
+offset_right = 2000.0
+offset_bottom = 1125.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(2000, 1125)
+texture = ExtResource("2_c8t8l")
+
+[node name="CreditsText" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_aauki")
+theme_override_fonts/bold_font = ExtResource("2_id4nu")
+bbcode_enabled = true
+text = "[center]
+[font_size=64][b]Credits[/b][/font_size]
+
+[font_size=48]
+[ul]
+[b]UI Assets Inspiration:[/b] [url=https://www.freepik.com/free-vector/hand-drawn-video-game-set-elements_40484586.htm#query=game%20ui&position=4&from_view=keyword&track=ais_user&uuid=97f7e4d9-e450-471a-a281-502d2ee2cd7b]Freepik[/url]
+[b]Theme Song:[/b] [url=https://opengameart.org/content/death-is-just-another-path]Otto Halmén[/url]
+[b]Sound Effects:[/b]  [url=https://opengameart.org/]Open Game Art[/url]
+[/ul]
+[/font_size]
+
+[/center]"
+
+[connection signal="meta_clicked" from="CreditsText" to="." method="_on_credits_text_meta_clicked"]

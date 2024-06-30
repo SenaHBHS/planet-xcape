@@ -45,9 +45,9 @@ func position_elements():
 
 func place_button(btn_label: String, btn_category: String, callback_name: String):
 	# placing the home button
-	var return_home_callback = Callable(self, callback_name)
+	var btn_callback = Callable(self, callback_name)
 	var button = BUTTON.instantiate()
-	button.config(btn_label, btn_category, return_home_callback)
+	button.config(btn_label, btn_category, btn_callback)
 	button.scale = Vector2(0.4, 0.4)
 	TO_RENDER_ELEMENTS.append(button)
 	add_child(button)
