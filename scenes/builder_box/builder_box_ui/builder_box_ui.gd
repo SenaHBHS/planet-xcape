@@ -8,35 +8,35 @@ var ITEMS_LIST = [
 	},
 	{
 		"name": "beam_blaster",
-		"price": 10
+		"price": 25
 	},
 	{
 		"name": "plasma_streamer",
-		"price": 20
+		"price": 50
 	},
 	{
 		"name": "electro_grenade",
-		"price": 100
+		"price": 1000
 	},
 	{
 		"name": "electro",
-		"price": 100
+		"price": 1000
 	},
 	{
 		"name": "quantum_inferno",
-		"price": 100
+		"price": 1000
 	},
 	{
 		"name": "nebula_boom",
-		"price": 100
+		"price": 1000
 	},
 	{
 		"name": "extra_slot",
-		"price": 10
+		"price": 100
 	},
 	{
 		"name": "extra_speed",
-		"price": 5
+		"price": 75
 	},
 	{
 		"name": "space_booster",

@@ -5,42 +5,42 @@ var level = "rookie"
 
 const game_level_props = {
 	"rookie": {
-		"player_hp_points": 50,
-		"rocket_hp_points": 250,
+		"player_hp_points": 150,
+		"rocket_hp_points": 300,
 		"n_subwaves": 2, # n(sub-waves) in each major wave
 		"n_boss_subwaves": 1,
 		"time_gap_between_waves": 10, # in seconds
-		"time_gap_between_subwaves": 5, # in seconds
-		"lower_n_alien_bound": 2,
-		"space_booster_price": 50,
-		"boss_wave_frequency": 2, # a boss wave per n(waves)
+		"time_gap_between_subwaves": 3, # in seconds
+		"lower_n_alien_bound": 1,
+		"space_booster_price": 500,
+		"boss_wave_frequency": 4, # a boss wave per n(waves)
 		"difficutly_increase_per_wave_spawned": 0.02,
 		"n_stars_to_spawn": 1 # in the victory screen
 	},
 	"veteran": {
-		"player_hp_points": 100,
-		"rocket_hp_points": 250,
-		"n_subwaves": 4, # n(sub-waves) in each major wave
+		"player_hp_points": 180,
+		"rocket_hp_points": 350,
+		"n_subwaves": 2, # n(sub-waves) in each major wave
 		"n_boss_subwaves": 1,
-		"time_gap_between_waves": 5, # in seconds
+		"time_gap_between_waves": 13, # in seconds
 		"time_gap_between_subwaves": 2, # in seconds
-		"lower_n_alien_bound": 4,
-		"space_booster_price": 500,
+		"lower_n_alien_bound": 2,
+		"space_booster_price": 700,
 		"boss_wave_frequency": 3, # a boss wave per n(waves)
-		"difficutly_increase_per_wave_spawned": 0.02,
+		"difficutly_increase_per_wave_spawned": 0.04,
 		"n_stars_to_spawn": 2 # in the victory screen
 	},
 	"master": {
-		"player_hp_points": 100,
-		"rocket_hp_points": 250,
-		"n_subwaves": 4, # n(sub-waves) in each major wave
-		"n_boss_subwaves": 1,
-		"time_gap_between_waves": 5, # in seconds
+		"player_hp_points": 250,
+		"rocket_hp_points": 400,
+		"n_subwaves": 3, # n(sub-waves) in each major wave
+		"n_boss_subwaves": 2,
+		"time_gap_between_waves": 15, # in seconds
 		"time_gap_between_subwaves": 2, # in seconds
-		"lower_n_alien_bound": 5,
-		"space_booster_price": 600,
-		"boss_wave_frequency": 4, # a boss wave per n(waves)
-		"difficutly_increase_per_wave_spawned": 0.02,
+		"lower_n_alien_bound": 4,
+		"space_booster_price": 900,
+		"boss_wave_frequency": 2, # a boss wave per n(waves)
+		"difficutly_increase_per_wave_spawned": 0.08,
 		"n_stars_to_spawn": 3 # in the victory screen
 	}
 }

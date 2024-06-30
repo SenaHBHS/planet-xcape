@@ -19,6 +19,10 @@ func _ready():
 	_initialize_available_items()
 	_deploy_common_funcs()
 
+func _process(delta):
+	if Input.is_action_just_pressed("remove_selected_item"):
+		remove_current_item()
+
 func _initialize_available_items() -> void:
 	# adding item objects to the list
 	for i in range(inventory_limit):
@@ -63,7 +67,12 @@ func get_current_item() -> Dictionary:
 
 func remove_current_item() -> void:
 	if selected_pos not in available_slots:
+		# making the current position available
 		available_slots.append(selected_pos)
+		# sorting the available positions
+		available_slots.sort()
+		
+		# emptying the item
 		available_items[selected_pos]["name"] = ""
 		available_items[selected_pos]["category"] = ""
 		_deploy_common_funcs()
