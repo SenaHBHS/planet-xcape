@@ -21,7 +21,7 @@ scale = Vector2(0.4, 0.4)
 scale = Vector2(0.2, 0.2)
 
 [node name="Player" parent="." instance=ExtResource("1_dm88o")]
-position = Vector2(396, 258)
+position = Vector2(400, 250)
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -100

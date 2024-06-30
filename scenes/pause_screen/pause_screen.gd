@@ -13,16 +13,6 @@ var BUTTONS = [
 		"callback_bound": "_on_continue"
 	},
 	{
-		"label": "OPTIONS",
-		"category": "normal",
-		"callback_bound": "_on_options"
-	},
-	{
-		"label": "HELP",
-		"category": "normal",
-		"callback_bound": "_on_help"
-	},
-	{
 		"label": "SAVE & EXIT",
 		"category": "reddish",
 		"callback_bound": "_on_save_and_exit"
@@ -55,9 +45,9 @@ func position_elements():
 
 func place_button(btn_label: String, btn_category: String, callback_name: String):
 	# placing the home button
-	var return_home_callback = Callable(self, callback_name)
+	var btn_callback = Callable(self, callback_name)
 	var button = BUTTON.instantiate()
-	button.config(btn_label, btn_category, return_home_callback)
+	button.config(btn_label, btn_category, btn_callback)
 	button.scale = Vector2(0.4, 0.4)
 	TO_RENDER_ELEMENTS.append(button)
 	add_child(button)
@@ -77,12 +67,6 @@ func _get_x_pos(item_size_x, item_scale_x, screen_size):
 
 func _on_continue():
 	get_tree().paused = false
-	
-func _on_options():
-	print("OPTIONS OPENED")
-	
-func _on_help():
-	print("HELP OPENED")
 	
 func _on_save_and_exit():
 	get_tree().quit()

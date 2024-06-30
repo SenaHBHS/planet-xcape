@@ -2,9 +2,16 @@ extends Node2D
 
 @onready var builder_box_ui = $CanvasLayer/BuilderBoxUi
 @onready var pause_screen = $CanvasLayer/PauseScreen
+@onready var player = $Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if get_tree().paused:
+		pause_screen.visible = true
+		
+	# positioning the player
+	player.global_position = GameManager.get_player_position()
+	
 	pause_screen.position_elements()
 	
 	SignalManager.set_builder_box_opened.connect(handle_builder_box)

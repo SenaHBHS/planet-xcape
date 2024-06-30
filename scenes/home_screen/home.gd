@@ -69,9 +69,9 @@ func position_elements():
 
 func place_button(btn_label: String, btn_category: String, callback_name: String):
 	# placing the home button
-	var return_home_callback = Callable(self, callback_name)
+	var btn_callback = Callable(self, callback_name)
 	var button = BUTTON.instantiate()
-	button.config(btn_label, btn_category, return_home_callback)
+	button.config(btn_label, btn_category, btn_callback)
 	button.scale = Vector2(0.4, 0.4)
 	TO_RENDER_ELEMENTS.append(button)
 	add_child(button)
@@ -90,13 +90,13 @@ func _get_x_pos(item_size_x, item_scale_x, screen_size):
 	return x_pos
 
 func _on_start_game():
-	print("GAME STARTED")
+	SceneManager.change_to_select_level_scene()
 	
 func _on_options():
 	print("OPTIONS OPENED")
 
 func _on_credits():
-	print("CREDITS_OPENED")
+	SceneManager.change_to_credits_scene()
 	
 func _on_quit():
 	get_tree().quit()

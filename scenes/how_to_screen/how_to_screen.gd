@@ -34,9 +34,9 @@ func _position_how_to_info():
 	how_to_info.position = Vector2(x_pos, y_pos)
 
 func place_done_button():
-	var return_home_callback = Callable(self, "_on_done")
+	var btn_callback = Callable(self, "_on_done")
 	DONE_BUTTON = BUTTON.instantiate()
-	DONE_BUTTON.config("DONE", "extra_special", return_home_callback)
+	DONE_BUTTON.config("DONE", "extra_special", btn_callback)
 	DONE_BUTTON.scale = Vector2(0.18, 0.18)
 	add_child(DONE_BUTTON)
 	
