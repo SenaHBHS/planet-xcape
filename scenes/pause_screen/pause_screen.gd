@@ -13,16 +13,6 @@ var BUTTONS = [
 		"callback_bound": "_on_continue"
 	},
 	{
-		"label": "OPTIONS",
-		"category": "normal",
-		"callback_bound": "_on_options"
-	},
-	{
-		"label": "HELP",
-		"category": "normal",
-		"callback_bound": "_on_help"
-	},
-	{
 		"label": "SAVE & EXIT",
 		"category": "reddish",
 		"callback_bound": "_on_save_and_exit"
@@ -77,12 +67,6 @@ func _get_x_pos(item_size_x, item_scale_x, screen_size):
 
 func _on_continue():
 	get_tree().paused = false
-	
-func _on_options():
-	print("OPTIONS OPENED")
-	
-func _on_help():
-	print("HELP OPENED")
 	
 func _on_save_and_exit():
 	get_tree().quit()

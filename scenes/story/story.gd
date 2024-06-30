@@ -73,16 +73,18 @@ func _skip_story_lines():
 	SceneManager.change_to_how_to_scene()
 
 func _position_story_line():
-	var screen_size = get_viewport().size
-	var x_pos = (screen_size.x/2) - (story_line.size.x/2)
-	var y_pos = (screen_size.y/2) - (story_line.size.y/2)
-	story_line.position = Vector2(x_pos, y_pos)
+	if get_viewport() != null:
+		var screen_size = get_viewport().size
+		var x_pos = (screen_size.x/2) - (story_line.size.x/2)
+		var y_pos = (screen_size.y/2) - (story_line.size.y/2)
+		story_line.position = Vector2(x_pos, y_pos)
 
 func _position_skip_button():
-	var screen_size = get_viewport().size
-	var x_pos = screen_size.x - (skip_button.size.x*skip_button.scale.x) - 50
-	var y_pos = screen_size.y - (skip_button.size.y*skip_button.scale.y) - 50
-	skip_button.position = Vector2(x_pos, y_pos)
+	if get_viewport() != null:
+		var screen_size = get_viewport().size
+		var x_pos = screen_size.x - (skip_button.size.x*skip_button.scale.x) - 50
+		var y_pos = screen_size.y - (skip_button.size.y*skip_button.scale.y) - 50
+		skip_button.position = Vector2(x_pos, y_pos)
 
 func _place_skip_button():
 	# placing the home button

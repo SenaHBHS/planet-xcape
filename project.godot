@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Planet Xcape"
-run/main_scene="res://scenes/game/game.tscn"
+run/main_scene="res://scenes/home_screen/home.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 boot_splash/bg_color=Color(0.0901961, 0.137255, 0.298039, 1)
 boot_splash/image="res://assets/splash_screen/splash_screen.png"

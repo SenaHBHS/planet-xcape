@@ -1,7 +1,7 @@
 extends Node
 
 # globalising the player and rocket position and hp points
-var player_pos: Vector2 = Vector2(0, 0)
+var player_pos: Vector2 = Vector2(400, 250) # initial position
 var rocket_pos: Vector2 = Vector2(0, 0)
 # max hp points
 var player_max_hp_points: float = LevelManager.get_level_props()["player_hp_points"]

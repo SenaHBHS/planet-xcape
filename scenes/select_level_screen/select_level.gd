@@ -76,9 +76,12 @@ func _get_x_pos(item_size_x, item_scale_x, screen_size):
 
 func _on_rookie():
 	LevelManager.set_level("rookie")
+	SceneManager.change_to_story_scene()
 
 func _on_veteran():
 	LevelManager.set_level("veteran")
+	SceneManager.change_to_story_scene()
 
 func _on_master():
 	LevelManager.set_level("master")
+	SceneManager.change_to_story_scene()

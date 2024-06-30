@@ -90,7 +90,7 @@ func _get_x_pos(item_size_x, item_scale_x, screen_size):
 	return x_pos
 
 func _on_start_game():
-	print("GAME STARTED")
+	SceneManager.change_to_select_level_scene()
 	
 func _on_options():
 	print("OPTIONS OPENED")
