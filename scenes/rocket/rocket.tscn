@@ -10,7 +10,7 @@ height = 362.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_de78a"]
 radius = 532.455
 
-[node name="Rocket" type="StaticBody2D" groups=["object"]]
+[node name="Rocket" type="StaticBody2D" groups=["object", "rocket"]]
 y_sort_enabled = true
 script = ExtResource("1_fhffi")
 

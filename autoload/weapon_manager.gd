@@ -4,17 +4,17 @@ extends Node
 const weapon_props = {
 	"beam_blaster": {
 		"damage_per_hit": 4,
-		"hp_points": 100, # n_times_it can be fired!
+		"hp_points": 25, # n_times_it can be fired!
 		"load_time": 0.8 # in seconds
 	},
 	"plasma_streamer": {
 		"damage_per_hit": 6,
-		"hp_points": 100, # n_times_it can be fired!
+		"hp_points": 30, # n_times_it can be fired!
 		"load_time": 0.6 # in seconds
 	},
 	"pulse_pistol": {
 		"damage_per_hit": 2,
-		"hp_points": 100, # n_times_it can be fired!
+		"hp_points": 15, # n_times_it can be fired!
 		"load_time": 0.9 # in seconds
 	}
 }
