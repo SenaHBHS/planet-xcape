@@ -29,7 +29,6 @@ func position_dynamic_elements():
 	position_inventory_bar()
 	
 func position_health_bars():
-	var screen_size = get_viewport().size
 	# since it is located exactly at 0, 0,
 	health_bars.position = MARGIN
 

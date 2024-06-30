@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cr6r4lfug8amc" path="res://assets/sprites/objects/rocket.png" id="1_ymbyr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mpbdh"]
-radius = 104.0
-height = 258.0
+radius = 114.0
+height = 362.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_de78a"]
 radius = 532.455
@@ -18,11 +18,12 @@ script = ExtResource("1_fhffi")
 texture = ExtResource("1_ymbyr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 117)
+position = Vector2(0, 103)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_mpbdh")
 
 [node name="PlayerActionableRegion" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerActionableRegion"]
 shape = SubResource("CircleShape2D_de78a")

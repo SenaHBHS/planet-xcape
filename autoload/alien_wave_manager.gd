@@ -12,7 +12,7 @@ func _ready():
 	# Configure the Timer node
 	spawn_wave_timer.wait_time = 1.0
 	spawn_wave_timer.one_shot = false
-	spawn_wave_timer.autostart = true
+	spawn_wave_timer.autostart = false
 	
 	# Add the Timer node to the scene tree
 	add_child(spawn_wave_timer)
@@ -36,3 +36,7 @@ func set_can_spawn_a_wave_to_false() -> void:
 
 func get_alien_types() -> Array:
 	return alien_types
+
+# this is used to start the timer for the first time in the main game scene
+func start_timer() -> void:
+	spawn_wave_timer.start()

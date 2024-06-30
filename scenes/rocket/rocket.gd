@@ -25,14 +25,21 @@ func _ready():
 	E_ACTION.visible = false
 
 func _process(_delta):
-	var space_booster_is_available = GameManager.get_space_booster_availability()
+	var space_booster_is_available = check_space_booster_availability()
 	var player_is_in_region = E_ACTION.visible # this implies whether the player is in the interactable region
 	if Input.is_action_just_pressed("perform_action"):
 		if player_is_in_region and space_booster_is_available:
 			GameManager.set_game_won()
 		else:
 			pass
-	
+
+func check_space_booster_availability():
+	var selected_item = InventoryManager.get_current_item()
+	if selected_item.name == "space_booster":
+		return true
+	else:
+		return false
+
 func set_rocket_position():
 	var screen_size = get_viewport().size
 	var new_rocket_pos = screen_size / 2
@@ -50,7 +57,7 @@ func handle_rocket_was_hit(damage_points):
 		pass
 
 func _on_actionable_region_body_entered(body):
-	var player_has_space_booster = GameManager.get_space_booster_availability()
+	var player_has_space_booster = check_space_booster_availability()
 	if body.is_in_group("player") and player_has_space_booster:
 		E_ACTION.visible = true
 

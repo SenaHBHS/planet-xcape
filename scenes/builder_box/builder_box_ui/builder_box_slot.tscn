@@ -154,6 +154,7 @@ _data = {
 [node name="BuilderBoxSlot" type="Panel"]
 offset_right = 1067.0
 offset_bottom = 1287.0
+mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_31jdf")
 script = ExtResource("1_nigvl")
 

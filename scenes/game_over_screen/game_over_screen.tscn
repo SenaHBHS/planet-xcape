@@ -1,4 +1,47 @@
-[gd_scene format=3 uid="uid://ehugykaimdrg"]
+[gd_scene load_steps=8 format=3 uid="uid://ehugykaimdrg"]
+
+[ext_resource type="Texture2D" uid="uid://cv61yrnlrifbg" path="res://assets/background/background.png" id="1_1iipu"]
+[ext_resource type="Script" path="res://scenes/game_over_screen/game_over_screen.gd" id="1_ly0fo"]
+[ext_resource type="Texture2D" uid="uid://cwd7b4jhibx2u" path="res://assets/ui/end_game/Game Over.png" id="2_bb8so"]
+[ext_resource type="Texture2D" uid="uid://cgestuj25oc2q" path="res://assets/ui/end_game/Game Over Sprite.png" id="3_fgtqi"]
+
+[sub_resource type="Animation" id="Animation_q8rqo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerFace:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xulvf"]
+resource_name = "player_face_rotate"
+length = 0.6
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerFace:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0349066, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pom3i"]
+_data = {
+"RESET": SubResource("Animation_q8rqo"),
+"player_face_rotate": SubResource("Animation_xulvf")
+}
 
 [node name="GameOverScreen" type="Control"]
 layout_mode = 3
@@ -7,3 +50,41 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ly0fo")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2000.0
+offset_top = -1125.0
+offset_right = 2000.0
+offset_bottom = 1125.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_1iipu")
+
+[node name="GameOverLabel" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 82.0
+offset_right = 1067.0
+offset_bottom = 366.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_bb8so")
+
+[node name="PlayerFace" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 196.0
+offset_right = 1067.0
+offset_bottom = 1263.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_fgtqi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pom3i")
+}
+autoplay = "player_face_rotate"

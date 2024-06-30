@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://4bdcataltyxy"]
+[gd_scene format=3 uid="uid://fuj1ihr83drm"]
 
-[node name="StartScreen" type="Control"]
+[node name="Credits" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
