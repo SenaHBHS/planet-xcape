@@ -18,6 +18,11 @@ var BUTTONS = [
 		"callback_bound": "_on_options"
 	},
 	{
+		"label": "HELP",
+		"category": "normal",
+		"callback_bound": "_on_help"
+	},
+	{
 		"label": "SAVE & EXIT",
 		"category": "reddish",
 		"callback_bound": "_on_save_and_exit"
@@ -75,6 +80,9 @@ func _on_continue():
 	
 func _on_options():
 	print("OPTIONS OPENED")
+	
+func _on_help():
+	print("HELP OPENED")
 	
 func _on_save_and_exit():
 	get_tree().quit()
