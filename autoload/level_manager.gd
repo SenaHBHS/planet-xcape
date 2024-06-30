@@ -1,7 +1,7 @@
 extends Node
 
 # game level management
-var level = "veteran"
+var level = "rookie"
 
 const game_level_props = {
 	"rookie": {
