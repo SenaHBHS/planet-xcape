@@ -1,4 +1,65 @@
-[gd_scene format=3 uid="uid://mi4j1temubvm"]
+[gd_scene load_steps=8 format=3 uid="uid://mi4j1temubvm"]
+
+[ext_resource type="FontFile" uid="uid://drd3xowq8frki" path="res://assets/font/TitilliumWeb-Bold.ttf" id="1_0ykej"]
+[ext_resource type="Script" path="res://scenes/story/story.gd" id="1_8tndy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6xaxs"]
+font = ExtResource("1_0ykej")
+font_size = 36
+
+[sub_resource type="Animation" id="Animation_6vrra"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StoryLine:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yrivx"]
+resource_name = "fade_in"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StoryLine:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_060c5"]
+resource_name = "fade_out"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StoryLine:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e2u3y"]
+_data = {
+"RESET": SubResource("Animation_6vrra"),
+"fade_in": SubResource("Animation_yrivx"),
+"fade_out": SubResource("Animation_060c5")
+}
 
 [node name="Story" type="Control"]
 layout_mode = 3
@@ -7,3 +68,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_8tndy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="StoryLine" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1.0
+offset_bottom = 55.0
+label_settings = SubResource("LabelSettings_6xaxs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e2u3y")
+}
+
+[node name="Timer" type="Timer" parent="."]
