@@ -24,6 +24,7 @@ var PRICE = 500
 var AVAILABLE = true
 var CATEGORY = null
 var PERMENANTELY_UNAVAILABLE = false # this is used for extra inventory slots (once the player reaches the limit)
+var INVENTORY_FULL = false
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var animation_player = $AnimationPlayer
@@ -47,6 +48,14 @@ func _ready():
 	
 	# connecting signals
 	SignalManager.din_amount_updated.connect(handle_din_amount_change)
+
+func _process(_delta):
+	if InventoryManager.available_slots.size() == 0 and CATEGORY != "power_up":
+		INVENTORY_FULL = true
+		set_availability(false)
+	else:
+		INVENTORY_FULL = false
+		handle_din_amount_change(DinManager.get_din_amount())
 	
 func init_slot(item_name: String, item_price: int, is_available: bool):
 	NAME = item_name
@@ -77,7 +86,7 @@ func set_availability(new_availability: bool):
 		pass
 
 func purchase_item():
-	if !PERMENANTELY_UNAVAILABLE:
+	if !PERMENANTELY_UNAVAILABLE and not INVENTORY_FULL:
 		var was_succesful = DinManager.spend_din(PRICE)
 		if was_succesful:
 			if CATEGORY != "power_up":

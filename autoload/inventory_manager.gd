@@ -13,7 +13,7 @@ const dummy_item_template = {
 var available_slots = []
 var selected_pos = 0 # index of the available_items list
 
-var n_available_unlock_slot_power_ups = 2
+var n_available_unlock_slot_power_ups = 6
 
 func _ready():
 	_initialize_available_items()
@@ -100,8 +100,8 @@ func select_item_at_pos(inventory_pos: int) -> void:
 
 # this is available as a power-up
 func unlock_an_extra_slot() -> void:
-	available_items.append(dummy_item_template)
-	available_slots.append(inventory_limit - 1)
+	available_slots.append(available_items.size())
+	available_items.append(dummy_item_template.duplicate())
 	inventory_limit += 1
 	n_available_unlock_slot_power_ups -= 1
 	

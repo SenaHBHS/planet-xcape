@@ -32,7 +32,7 @@ var ITEMS_LIST = [
 	},
 	{
 		"name": "extra_slot",
-		"price": 80
+		"price": 2
 	},
 	{
 		"name": "extra_speed",
