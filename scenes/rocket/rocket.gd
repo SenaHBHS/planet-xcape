@@ -19,7 +19,7 @@ func _ready():
 	
 	# setting up the e action node!
 	E_ACTION = E_ACTION_SCENE.instantiate()
-	E_ACTION.set_action_text("LAUNCH!")
+	E_ACTION.set_action_text("XCAPE!")
 	E_ACTION.position = E_ACTION_POS
 	add_child(E_ACTION)
 	E_ACTION.visible = false
