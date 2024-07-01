@@ -1,13 +1,14 @@
 extends Control
 
 # rendering related global variables
-var Y_GAP_BETWEEN_ELEMENTS = -50
+var Y_GAP_BETWEEN_ELEMENTS = -20
 
 const BUTTON = preload("res://scenes/common_ui_comps/button/button.tscn")
 
 # child nodes
 @onready var background = $Background
 @onready var title_logo = $TitleLogo
+@onready var background_music_player = $BackgroundMusicPlayer
 
 var TO_RENDER_ELEMENTS = null
 var BUTTONS = [
@@ -39,6 +40,10 @@ func _ready():
 	place_buttons()
 	rescale_background()
 	get_viewport().size_changed.connect(rescale_background)
+	
+	# playing music
+	play_background_music()
+	SignalManager.options_chagned.connect(play_background_music)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -75,6 +80,12 @@ func place_button(btn_label: String, btn_category: String, callback_name: String
 	button.scale = Vector2(0.4, 0.4)
 	TO_RENDER_ELEMENTS.append(button)
 	add_child(button)
+
+func play_background_music():
+	if OptionsManager.get_options_dict()["sound"]:
+		background_music_player.play()
+	else:
+		background_music_player.stop()
 
 func _get_total_element_height(elements_list):
 	var _total_height = 0

@@ -11,11 +11,16 @@ var BTN_Y_OFFSET = 50
 # chlid nodes
 @onready var victory_label = $VictoryLabel
 @onready var stars_container = $StarsContainer
+@onready var background_music_player = $BackgroundMusicPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	place_home_button()
 	add_stars()
+	
+	# playing music
+	play_background_music()
+	SignalManager.options_chagned.connect(play_background_music)
 	
 func _process(_delta):
 	position_elements()
@@ -43,6 +48,12 @@ func place_home_button():
 	HOME_BUTTON.config("BACK HOME", "special", return_home_callback)
 	HOME_BUTTON.scale = Vector2(0.3, 0.3)
 	add_child(HOME_BUTTON)
+
+func play_background_music():
+	if OptionsManager.get_options_dict()["sound"]:
+		background_music_player.play()
+	else:
+		background_music_player.stop()
 
 func add_stars():
 	var n_stars_to_spawn = LevelManager.get_level_props()["n_stars_to_spawn"]

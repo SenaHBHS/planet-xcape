@@ -9,6 +9,7 @@ const MARGIN = Vector2(10, 10)
 @onready var elapsed_time_label = $ElapsedTimeLabel
 @onready var din_symbol = $DinSymbol
 @onready var din_amount_label = $DinAmountLabel
+@onready var focus_switched_sound_player = $FocusSwitchedSoundPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,6 +20,7 @@ func _ready():
 	SignalManager.din_amount_updated.connect(handle_update_din_amount)
 	SignalManager.one_second_elapsed.connect(handle_elapsed_time)
 	SignalManager.rerender_inventory_bar.connect(position_inventory_bar)
+	SignalManager.inventory_focus_changed.connect(play_inventory_focus_changed_sound)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -72,3 +74,6 @@ func handle_elapsed_time():
 			
 	elapsed_time_label.text = "%s:%s" % [elapsed_time_list[0], elapsed_time_list[1]]
 	
+func play_inventory_focus_changed_sound():
+	if OptionsManager.get_options_dict()["sound"]:
+		focus_switched_sound_player.play()

@@ -42,15 +42,14 @@ theme_override_fonts/bold_font = ExtResource("2_id4nu")
 bbcode_enabled = true
 text = "[center]
 [font_size=64][b]Credits[/b][/font_size]
-
-[font_size=48]
-[ul]
-[b]UI Assets Inspiration:[/b] [url=https://www.freepik.com/free-vector/hand-drawn-video-game-set-elements_40484586.htm#query=game%20ui&position=4&from_view=keyword&track=ais_user&uuid=97f7e4d9-e450-471a-a281-502d2ee2cd7b]Freepik[/url]
+[font_size=48][ul]
+[b]UI Assets Inspiration:[/b] [url=https://www.freepik.com/]Freepik[/url]
 [b]Theme Song:[/b] [url=https://opengameart.org/content/death-is-just-another-path]Otto Halmén[/url]
-[b]Sound Effects:[/b]  [url=https://opengameart.org/]Open Game Art[/url]
-[/ul]
-[/font_size]
-
+[b]Welcome Song:[/b] [url=https://soundcloud.com/alexandr-zhelanov]Alexandr Zhelanov[/url]
+[b]Storyline Song:[/b] [url=https://matthewpablo.com/]Matthew Pablo[/url]
+[b]Weapon SFX:[/b] [url=https://opengameart.org/users/dklon]dklon[/url] & [url=https://opengameart.org/users/mobeyee-sounds]Mobeyee Sounds[/url]
+[b]Other Sound Effects:[/b]  [url=https://opengameart.org/]Open Game Art[/url]
+[/ul][/font_size]
 [/center]"
 
 [connection signal="meta_clicked" from="CreditsText" to="." method="_on_credits_text_meta_clicked"]

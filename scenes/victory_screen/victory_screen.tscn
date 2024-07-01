@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bq7qf0uxap11f"]
+[gd_scene load_steps=6 format=3 uid="uid://bq7qf0uxap11f"]
 
 [ext_resource type="Script" path="res://scenes/victory_screen/victory_screen.gd" id="1_i2rdp"]
 [ext_resource type="Texture2D" uid="uid://cv61yrnlrifbg" path="res://assets/background/background.png" id="1_pu4si"]
 [ext_resource type="Texture2D" uid="uid://dxxs6btdcq38m" path="res://assets/ui/end_game/Victory.png" id="2_y8376"]
+[ext_resource type="AudioStream" uid="uid://bxru738ee1tqi" path="res://assets/audio/victory.mp3" id="4_ivjjg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8nq75"]
 
@@ -42,3 +43,7 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_8nq75")
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ivjjg")
+volume_db = -15.0

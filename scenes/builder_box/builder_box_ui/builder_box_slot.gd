@@ -30,6 +30,7 @@ var INVENTORY_FULL = false
 @onready var animation_player = $AnimationPlayer
 @onready var price_tag = $PriceTag/Price
 @onready var price_label = $PriceTag/Price/HBoxContainer/PriceLabel/Label
+@onready var audio_stream_player = $AudioStreamPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -104,7 +105,10 @@ func purchase_item():
 				else:
 					# this a speed boost
 					SignalManager.player_speed_powered_up.emit()
-
+			
+			# playing the sound
+			if OptionsManager.get_options_dict()["sound"]:
+				audio_stream_player.play()
 func _snake_to_title_case(snake_case_str: String) -> String:
 	var parts = snake_case_str.split("_")
 	for i in range(parts.size()):

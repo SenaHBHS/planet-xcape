@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bp2p0qjsvof3p"]
+[gd_scene load_steps=5 format=3 uid="uid://bp2p0qjsvof3p"]
 
 [ext_resource type="Script" path="res://scenes/home_screen/home.gd" id="1_j43xp"]
 [ext_resource type="Texture2D" uid="uid://cf04cywdraicq" path="res://assets/logo/Title.png" id="1_n5m1y"]
 [ext_resource type="Texture2D" uid="uid://lr8g0sc8q1tg" path="res://assets/background/home_screen.png" id="2_c2t3d"]
+[ext_resource type="AudioStream" uid="uid://de6f0lr6xupxn" path="res://assets/audio/home.mp3" id="4_22y35"]
 
 [node name="Home" type="Control"]
 layout_mode = 3
@@ -35,3 +36,8 @@ offset_right = 2134.0
 offset_bottom = 625.0
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("1_n5m1y")
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_22y35")
+volume_db = -15.0
+autoplay = true

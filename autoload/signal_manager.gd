@@ -24,9 +24,16 @@ signal spawn_alien_wave(strength)
 signal alien_wave_countdown_updated
 
 # din related signals
+signal din_collected # to play the sound
 signal din_amount_updated(amount) # to update the ui!
 
 # ui related signals
 signal one_second_elapsed
 signal set_builder_box_opened(is_open)
+
+# inventory related signals
+signal inventory_focus_changed
 signal rerender_inventory_bar
+
+# options related signals
+signal options_chagned

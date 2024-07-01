@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://baaq6k0sqtx1r"]
+[gd_scene load_steps=31 format=3 uid="uid://baaq6k0sqtx1r"]
 
 [ext_resource type="Texture2D" uid="uid://b2ygxkjnwutrg" path="res://assets/sprites/aliens/nebula_goblin/attack.png" id="1_bols5"]
 [ext_resource type="Script" path="res://scenes/alien_wave/base_alien/alien_types/nebula_goblin.gd" id="1_w6dg1"]
 [ext_resource type="Texture2D" uid="uid://bdvseud5fx8hk" path="res://assets/sprites/aliens/nebula_goblin/fly.png" id="2_7tpui"]
 [ext_resource type="Texture2D" uid="uid://cm2esrvh57ivx" path="res://assets/sprites/aliens/nebula_goblin/idle.png" id="2_yhpb1"]
+[ext_resource type="AudioStream" uid="uid://b4gfcntiokjhj" path="res://assets/audio/nebula_goblin.mp3" id="5_2l4vo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_84kpb"]
 atlas = ExtResource("1_bols5")
@@ -219,3 +220,8 @@ animation = &"attack"
 libraries = {
 "": SubResource("AnimationLibrary_hl0gw")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_2l4vo")
+volume_db = -0.5
+pitch_scale = 1.2

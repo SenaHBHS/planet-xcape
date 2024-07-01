@@ -14,6 +14,7 @@ var ALIEN_BODIES_IN_FIST_RANGE = []
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var selected_item_halo = $SelectedItemHalo
 @onready var handheld_weapon = $HandheldWeapon
+@onready var punch_sound_player = $PunchSoundPlayer
 
 func _ready():
 	GameManager.player_hp_points = LevelManager.get_level_props()["player_hp_points"]
@@ -37,15 +38,18 @@ func handle_firing(delta: float) -> Dictionary:
 			PAUSE_UNTIL_NEXT_FIRE = handheld_weapon.fire()
 			CAN_FIRE = false
 		else:
-			SignalManager.player_hit_with_fist.emit()
-			
 			if CAN_FIST_ATTACK:
+				SignalManager.player_hit_with_fist.emit()
 				var player_direction = "right" # default value till configured below
 				if DIRECTION:
 					if DIRECTION.x > 0:
 						player_direction = "right"
 					else:
 						player_direction = "left"
+						
+				# playing the punch sound
+				if OptionsManager.get_options_dict()["sound"]:
+					punch_sound_player.play()
 				
 				for body in ALIEN_BODIES_IN_FIST_RANGE:
 					var fist_attack_succeeded = body.handle_player_fist_attack(player_direction, FIST_DAMAGE_POINTS)

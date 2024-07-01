@@ -2,6 +2,7 @@ extends Node2D
 
 # child nodes
 @onready var animation_player = $AnimationPlayer
+@onready var audio_stream_player = $AudioStreamPlayer
 
 var ALIEN_PROPERTIES = {
 	"primary_target": "player",
@@ -42,3 +43,6 @@ func play_attack_animation(_direction: String) -> void:
 	animation_player.seek(0, true)  # Reset the animation to its start
 	animation_player.play("attack")
 	CURRENT_ANIMATION = "attack"
+	
+	if OptionsManager.get_options_dict()["sound"]:
+		audio_stream_player.play()

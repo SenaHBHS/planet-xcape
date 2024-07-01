@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://j5pjiovx3jfe"]
+[gd_scene load_steps=79 format=3 uid="uid://j5pjiovx3jfe"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_0cl28"]
 [ext_resource type="Texture2D" uid="uid://cul47vwyrdrpi" path="res://assets/sprites/player/hit.png" id="1_0ok57"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://b8fmut62j3vm2" path="res://assets/sprites/weapons/Plasma Streamer.png" id="11_lbffr"]
 [ext_resource type="Texture2D" uid="uid://qfce7lh7h64i" path="res://assets/sprites/weapons/Pulse Pistol.png" id="12_ivska"]
 [ext_resource type="PackedScene" uid="uid://dbfofcs1i24g4" path="res://scenes/player/handheld_weapon/handheld_weapon.tscn" id="15_jhk2x"]
+[ext_resource type="AudioStream" uid="uid://m8xonabekje2" path="res://assets/audio/player_punch.mp3" id="17_lq8gw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2u5ak"]
 radius = 140.0
@@ -581,6 +582,10 @@ autoplay = "rotate_halo"
 visible = false
 position = Vector2(170, 3.33333)
 scale = Vector2(0.4, 0.4)
+
+[node name="PunchSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_lq8gw")
+pitch_scale = 1.2
 
 [connection signal="body_entered" from="FistAttackRange" to="." method="_on_fist_attack_range_body_entered"]
 [connection signal="body_exited" from="FistAttackRange" to="." method="_on_fist_attack_range_body_exited"]

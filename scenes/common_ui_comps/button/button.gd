@@ -15,6 +15,7 @@ const REDDISH = preload("res://assets/ui/btns/Reddish.png")
 @onready var button_node = $ButtonNode
 @onready var animation_player = $AnimationPlayer
 @onready var label = $Label
+@onready var audio_stream_player = $AudioStreamPlayer
 
 func sample_func():
 	print("CLICKED!")
@@ -59,6 +60,9 @@ func _on_button_pressed():
 	CALLBACK_BOUND.call()
 
 func _on_button_node_mouse_entered():
+	if OptionsManager.get_options_dict()["sound"]:
+		audio_stream_player.play()
+	
 	animation_player.play("hovered")
 
 func _on_button_node_mouse_exited():

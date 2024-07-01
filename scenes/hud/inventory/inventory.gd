@@ -12,12 +12,15 @@ func _process(_delta):
 	# handling user inputs
 	if Input.is_action_just_pressed("select_right_inventory"):
 		InventoryManager.select_next_item()
+		SignalManager.inventory_focus_changed.emit()
 	if Input.is_action_just_pressed("select_left_inventory"):
 		InventoryManager.select_previous_item()
+		SignalManager.inventory_focus_changed.emit()
 	# handling num key inputs
 	for i in range(9):
 		if Input.is_action_just_pressed("inventory_%d"%i):
 			InventoryManager.select_item_at_pos(i)
+			SignalManager.inventory_focus_changed.emit()
 
 func _remove_all_children():
 	for child in get_children():
@@ -57,3 +60,5 @@ func render_inventory_bar():
 		
 	# rescaling the parent panel
 	_rescale_parent_panel(_slot_size, InventoryManager.available_items.size())
+
+

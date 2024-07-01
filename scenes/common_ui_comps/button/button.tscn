@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwqihi7pb40su"]
+[gd_scene load_steps=9 format=3 uid="uid://cwqihi7pb40su"]
 
 [ext_resource type="Script" path="res://scenes/common_ui_comps/button/button.gd" id="1_5kurc"]
 [ext_resource type="Texture2D" uid="uid://cetgrylmpawow" path="res://assets/background/Extra Special.png" id="2_k7wq4"]
 [ext_resource type="FontFile" uid="uid://drd3xowq8frki" path="res://assets/font/TitilliumWeb-Bold.ttf" id="3_tyykj"]
+[ext_resource type="AudioStream" uid="uid://da53q2rlpl05r" path="res://assets/audio/button_click.mp3" id="4_2261g"]
 
 [sub_resource type="Animation" id="Animation_sx640"]
 length = 0.001
@@ -71,6 +72,11 @@ offset_top = 216.0
 offset_right = 328.0
 offset_bottom = 415.0
 label_settings = SubResource("LabelSettings_5ec3i")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2261g")
+volume_db = -0.5
+pitch_scale = 1.75
 
 [connection signal="mouse_entered" from="ButtonNode" to="." method="_on_button_node_mouse_entered"]
 [connection signal="mouse_exited" from="ButtonNode" to="." method="_on_button_node_mouse_exited"]
