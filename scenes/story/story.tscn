@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://mi4j1temubvm"]
+[gd_scene load_steps=9 format=3 uid="uid://mi4j1temubvm"]
 
 [ext_resource type="FontFile" uid="uid://drd3xowq8frki" path="res://assets/font/TitilliumWeb-Bold.ttf" id="1_0ykej"]
 [ext_resource type="Script" path="res://scenes/story/story.gd" id="1_8tndy"]
+[ext_resource type="AudioStream" uid="uid://dwufcr1kuk6td" path="res://assets/audio/story.mp3" id="3_ly8px"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6xaxs"]
 font = ExtResource("1_0ykej")
@@ -91,3 +92,7 @@ libraries = {
 }
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ly8px")
+volume_db = -25.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dlom4mgelm7jx"]
+[gd_scene load_steps=10 format=3 uid="uid://dlom4mgelm7jx"]
 
 [ext_resource type="PackedScene" uid="uid://1cfeij3pf3p2" path="res://scenes/hud/inventory/inventory.tscn" id="1_gkvol"]
 [ext_resource type="Script" path="res://scenes/hud/hud.gd" id="1_o2f0e"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c67mysjdhup5v" path="res://assets/ui/builder_box/Din Symbol.png" id="4_mqlgf"]
 [ext_resource type="FontFile" uid="uid://drd3xowq8frki" path="res://assets/font/TitilliumWeb-Bold.ttf" id="5_uddha"]
 [ext_resource type="PackedScene" uid="uid://g4eok4yscib6" path="res://scenes/hud/alien_wave_countdown/alien_wave_countdown.tscn" id="6_qkije"]
+[ext_resource type="AudioStream" uid="uid://cduv8rgwecvsm" path="res://assets/audio/inventory_switch.mp3" id="7_ma76s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_02x6o"]
 font = ExtResource("5_uddha")
@@ -80,3 +81,6 @@ grow_horizontal = 2
 pivot_offset = Vector2(54, 0)
 text = "00:00"
 label_settings = SubResource("LabelSettings_0ewgj")
+
+[node name="FocusSwitchedSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ma76s")

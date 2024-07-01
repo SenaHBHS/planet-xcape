@@ -22,6 +22,7 @@ config/icon="res://assets/logo/logo.png"
 
 SignalManager="*res://autoload/signal_manager.gd"
 SceneManager="*res://autoload/scene_manager.gd"
+OptionsManager="*res://autoload/options_manager.gd"
 LevelManager="*res://autoload/level_manager.gd"
 GameManager="*res://autoload/game_manager.gd"
 DinManager="*res://autoload/din_manager.gd"

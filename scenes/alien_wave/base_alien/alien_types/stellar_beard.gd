@@ -3,6 +3,7 @@ extends Node2D
 # child nodes
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var animation_player = $AnimationPlayer
+@onready var audio_stream_player = $AudioStreamPlayer
 
 var ALIEN_PROPERTIES = {
 	"primary_target": "player",
@@ -47,3 +48,6 @@ func play_attack_animation(direction: String) -> void:
 	
 	animation_player.play("RESET")
 	animated_sprite_2d.play("attack")
+	
+	if OptionsManager.get_options_dict()["sound"]:
+		audio_stream_player.play()

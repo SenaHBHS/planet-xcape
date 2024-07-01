@@ -12,6 +12,7 @@ func get_din_amount():
 	return _din_amount
 
 func increase_din_amount(amount):
+	SignalManager.din_collected.emit()
 	_set_din_amount(_din_amount + amount)
 
 func spend_din(amount):

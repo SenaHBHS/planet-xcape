@@ -1,9 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://dbfofcs1i24g4"]
+[gd_scene load_steps=17 format=3 uid="uid://dbfofcs1i24g4"]
 
 [ext_resource type="Script" path="res://scenes/player/handheld_weapon/handheld_weapon.gd" id="1_cu4gd"]
 [ext_resource type="Texture2D" uid="uid://cjxt8cvbvv856" path="res://assets/sprites/weapons/Beam Blaster.png" id="1_srdrw"]
 [ext_resource type="Texture2D" uid="uid://b8fmut62j3vm2" path="res://assets/sprites/weapons/Plasma Streamer.png" id="2_4xfdf"]
 [ext_resource type="Texture2D" uid="uid://qfce7lh7h64i" path="res://assets/sprites/weapons/Pulse Pistol.png" id="3_68eur"]
+[ext_resource type="AudioStream" uid="uid://bt6xnmltqvxub" path="res://assets/audio/beam_blaster.mp3" id="5_x7a42"]
+[ext_resource type="AudioStream" uid="uid://cwwj3os8l5tfk" path="res://assets/audio/pulse_pistol.mp3" id="6_jn6ua"]
+[ext_resource type="AudioStream" uid="uid://crbi56ledh8da" path="res://assets/audio/plasma_streamer.mp3" id="7_dcyy3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vadv8"]
 atlas = ExtResource("1_srdrw")
@@ -153,3 +156,16 @@ libraries = {
 visible = false
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_pewk7")
+
+[node name="BeamBlasterPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_x7a42")
+volume_db = -8.0
+
+[node name="PulsePistolPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_jn6ua")
+pitch_scale = 1.2
+
+[node name="PlasmaStreamerPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_dcyy3")
+volume_db = -13.0
+pitch_scale = 1.2

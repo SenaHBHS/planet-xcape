@@ -10,10 +10,15 @@ var BTN_Y_OFFSET = 50
 # chlid nodes
 @onready var player_face = $PlayerFace
 @onready var game_over_label = $GameOverLabel
+@onready var background_music_player = $BackgroundMusicPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	place_home_button()
+	
+	# playing music
+	play_background_music()
+	SignalManager.options_chagned.connect(play_background_music)
 	
 func _process(_delta):
 	position_elements()
@@ -41,6 +46,12 @@ func place_home_button():
 	HOME_BUTTON.config("BACK HOME", "special", return_home_callback)
 	HOME_BUTTON.scale = Vector2(0.3, 0.3)
 	add_child(HOME_BUTTON)
+	
+func play_background_music():
+	if OptionsManager.get_options_dict()["sound"]:
+		background_music_player.play()
+	else:
+		background_music_player.stop()
 
 func _return_home():
 	SceneManager.change_to_home_scene()

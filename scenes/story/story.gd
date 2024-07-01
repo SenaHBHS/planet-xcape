@@ -26,6 +26,7 @@ const BUTTON = preload("res://scenes/common_ui_comps/button/button.tscn")
 @onready var timer = $Timer
 @onready var animation_player = $AnimationPlayer
 @onready var story_line = $StoryLine
+@onready var background_music_player = $BackgroundMusicPlayer
 var skip_button
 
 # Called when the node enters the scene tree for the first time.
@@ -35,6 +36,10 @@ func _ready():
 	
 	# placing the skip button
 	_place_skip_button()
+	
+	# playing music
+	play_background_music()
+	SignalManager.options_chagned.connect(play_background_music)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -50,6 +55,12 @@ func _process(delta):
 	# handling inputs
 	if Input.is_action_just_pressed("escape"):
 		_skip_story_lines()
+
+func play_background_music():
+	if OptionsManager.get_options_dict()["sound"]:
+		background_music_player.play()
+	else:
+		background_music_player.stop()
 
 func _display_line(_delta):
 	if ELAPSED_TIME_SINCE_LINE >= TIME_PRE_LINE:

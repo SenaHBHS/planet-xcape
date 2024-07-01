@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://ehugykaimdrg"]
+[gd_scene load_steps=9 format=3 uid="uid://ehugykaimdrg"]
 
 [ext_resource type="Texture2D" uid="uid://cv61yrnlrifbg" path="res://assets/background/background.png" id="1_1iipu"]
 [ext_resource type="Script" path="res://scenes/game_over_screen/game_over_screen.gd" id="1_ly0fo"]
 [ext_resource type="Texture2D" uid="uid://cwd7b4jhibx2u" path="res://assets/ui/end_game/Game Over.png" id="2_bb8so"]
 [ext_resource type="Texture2D" uid="uid://cgestuj25oc2q" path="res://assets/ui/end_game/Game Over Sprite.png" id="3_fgtqi"]
+[ext_resource type="AudioStream" uid="uid://42xsr6jr1y6e" path="res://assets/audio/game_over.mp3" id="5_bdl2m"]
 
 [sub_resource type="Animation" id="Animation_q8rqo"]
 length = 0.001
@@ -88,3 +89,7 @@ libraries = {
 "": SubResource("AnimationLibrary_pom3i")
 }
 autoplay = "player_face_rotate"
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_bdl2m")
+volume_db = -18.0

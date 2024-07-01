@@ -2,21 +2,25 @@ extends Area2D
 
 @onready var weapon_sprite_2d = $WeaponSprite2D
 @onready var weapon_animation = $WeaponAnimation
+# sound players
+@onready var beam_blaster_player = $BeamBlasterPlayer
+@onready var pulse_pistol_player = $PulsePistolPlayer
+@onready var plasma_streamer_player = $PlasmaStreamerPlayer
 
 # global variables
 var DIRECTION = "right" # by default
 var RENDER_PROPERTIES = {
 	"beam_blaster": {
 		"scale": Vector2(1, 1),
-		"position": Vector2(0, 0)
+		"position": Vector2(0, 0),
 	},
 	"plasma_streamer": {
 		"scale": Vector2(1, 1),
-		"position": Vector2(0, 0)
+		"position": Vector2(0, 0),
 	},
 	"pulse_pistol": {
 		"scale": Vector2(0.8, 0.8),
-		"position": Vector2(10, 0)
+		"position": Vector2(10, 0),
 	}
 }
 
@@ -56,6 +60,15 @@ func fire() -> int:
 	fired_bullet.config_bullet(current_weapon_name, "player", current_weapon_props["damage_per_hit"])
 	# adding this to the root game node!
 	get_parent().get_parent().add_child(fired_bullet)
+	
+	# playing the sound
+	if OptionsManager.get_options_dict()["sound"]:
+		if current_weapon_name == "plasma_streamer":
+			plasma_streamer_player.play()
+		elif current_weapon_name == "beam_blaster":
+			beam_blaster_player.play()
+		else:
+			pulse_pistol_player.play()
 	
 	# emitting the signal!
 	SignalManager.player_fired.emit()
