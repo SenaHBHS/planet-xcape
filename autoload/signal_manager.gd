@@ -37,3 +37,6 @@ signal rerender_inventory_bar
 
 # options related signals
 signal options_chagned
+
+# saving related signals
+signal reset_current_profile

@@ -5,6 +5,10 @@ var can_spawn_a_wave: bool = false
 var countdown_time: int = 3  # default value of 3 ensures aliens start spawning 3 secs after the game began
 var alien_types = ["cosmic_ghost", "stellar_beard", "nebula_goblin", "electro_gorgon"]
 
+# variables used in alien_wave.gd (globablised for saving purposes)
+var difficulty: float = 2.0 # to make the game progressively challenging (changes the alien speed and wait time based on this)
+var alien_types_available: int = 1 # aliens are spawned upto this index from ALIEN_TYPES
+
 func _ready():
 	# Create a new Timer node
 	spawn_wave_timer = Timer.new()

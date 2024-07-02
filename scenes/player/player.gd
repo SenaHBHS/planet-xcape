@@ -17,7 +17,11 @@ var ALIEN_BODIES_IN_FIST_RANGE = []
 @onready var punch_sound_player = $PunchSoundPlayer
 
 func _ready():
-	GameManager.player_hp_points = LevelManager.get_level_props()["player_hp_points"]
+	if OptionsManager.get_options_dict()["selected_item_halo"]:
+		selected_item_halo.visible = true
+	else:
+		selected_item_halo.visible = false
+	
 	SignalManager.player_was_hit.connect(handle_player_was_hit)
 	SignalManager.player_speed_powered_up.connect(handle_speed_power_up)
 
@@ -135,6 +139,7 @@ func handle_player_was_hit(hp_points_to_deduct):
 	SignalManager.player_hp_points_updated.emit()
 	
 	if GameManager.player_hp_points <= 0:
+		SignalManager.player_died.emit()
 		GameManager.set_game_over()
 	else:
 		pass
@@ -145,8 +150,9 @@ func handle_speed_power_up():
 
 func _on_animation_finished():
 	ONE_TIME_ANIMATION_FINISHED = true
-	selected_item_halo.visible = true
 	handheld_weapon.visible = false
+	if OptionsManager.get_options_dict()["selected_item_halo"]:
+		selected_item_halo.visible = true
 
 func _on_fist_attack_range_body_entered(body):
 	if body.is_in_group("alien"):

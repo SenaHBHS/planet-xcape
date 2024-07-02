@@ -566,6 +566,7 @@ sprite_frames = SubResource("SpriteFrames_fltqo")
 animation = &"idle"
 
 [node name="SelectedItemHalo" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(0, -3.8147e-06)
 scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_dkhne")

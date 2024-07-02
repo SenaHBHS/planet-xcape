@@ -10,15 +10,13 @@ const EXTRA_SPECIAL = preload("res://assets/ui/btns/Extra Special.png")
 const SPECIAL = preload("res://assets/ui/btns/Special.png")
 const NORMAL = preload("res://assets/ui/btns/Normal.png")
 const REDDISH = preload("res://assets/ui/btns/Reddish.png")
+const BLANK = preload("res://assets/ui/btns/Blank.png")
 
 # child nodes
 @onready var button_node = $ButtonNode
 @onready var animation_player = $AnimationPlayer
 @onready var label = $Label
 @onready var audio_stream_player = $AudioStreamPlayer
-
-func sample_func():
-	print("CLICKED!")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,6 +29,8 @@ func _ready():
 			button_node.texture_normal = SPECIAL
 		"reddish":
 			button_node.texture_normal = REDDISH
+		"blank":
+			button_node.texture_normal = BLANK
 		_:
 			# default skin
 			button_node.texture_normal = NORMAL

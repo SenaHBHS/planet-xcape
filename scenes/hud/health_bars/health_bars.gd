@@ -14,8 +14,11 @@ func _ready():
 	MAX_PLAYER_HP = GameManager.player_max_hp_points
 	MAX_ROCKET_HP = GameManager.rocket_max_hp_points
 	
-	player_health_bar.value = 100
-	rocket_health_bar.value = 100
+	# setting initial values
+	player_health_bar.value = GameManager.player_hp_points
+	rocket_health_bar.value = GameManager.rocket_hp_points
+	handle_player_hp_points_update()
+	handle_rocket_hp_points_update()
 	
 	SignalManager.player_hp_points_updated.connect(handle_player_hp_points_update)
 	SignalManager.rocket_hp_points_updated.connect(handle_rocket_hp_points_update)

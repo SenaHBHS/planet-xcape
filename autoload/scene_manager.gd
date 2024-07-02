@@ -2,6 +2,8 @@ extends Node
 
 # defining the scenes
 const home_scene: PackedScene = preload("res://scenes/home_screen/home.tscn")
+const select_profile_scene: PackedScene = preload("res://scenes/select_profile_screen/select_profile.tscn")
+const name_profile_scene: PackedScene = preload("res://scenes/select_profile_screen/name_profile.tscn")
 const select_level_scene: PackedScene = preload("res://scenes/select_level_screen/select_level.tscn")
 const story_scene: PackedScene = preload("res://scenes/story/story.tscn")
 const how_to_screen_scene: PackedScene = preload("res://scenes/how_to_screen/how_to_screen.tscn")
@@ -13,6 +15,12 @@ const victory_scene: PackedScene = preload("res://scenes/victory_screen/victory_
 
 func change_to_home_scene():
 	get_tree().change_scene_to_packed(home_scene)
+
+func change_to_select_profile_scene():
+	get_tree().change_scene_to_packed(select_profile_scene)
+	
+func change_to_name_profile_scene():
+	get_tree().change_scene_to_packed(name_profile_scene)
 
 func change_to_select_level_scene():
 	get_tree().change_scene_to_packed(select_level_scene)

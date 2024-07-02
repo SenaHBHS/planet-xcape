@@ -2,7 +2,6 @@ extends Control
 
 # rendering related global variables
 var Y_GAP_BETWEEN_ELEMENTS = -20
-
 const BUTTON = preload("res://scenes/common_ui_comps/button/button.tscn")
 
 # child nodes
@@ -40,6 +39,9 @@ func _ready():
 	place_buttons()
 	rescale_background()
 	get_viewport().size_changed.connect(rescale_background)
+	
+	# unpausing paused stuff
+	get_tree().paused = false
 	
 	# playing music
 	play_background_music()
@@ -101,7 +103,7 @@ func _get_x_pos(item_size_x, item_scale_x, screen_size):
 	return x_pos
 
 func _on_start_game():
-	SceneManager.change_to_select_level_scene()
+	SceneManager.change_to_select_profile_scene()
 	
 func _on_options():
 	print("OPTIONS OPENED")

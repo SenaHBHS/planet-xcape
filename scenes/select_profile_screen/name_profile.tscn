@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyofiibahsajb"]
+
+[ext_resource type="FontFile" uid="uid://drd3xowq8frki" path="res://assets/font/TitilliumWeb-Bold.ttf" id="1_4u2kx"]
+[ext_resource type="Script" path="res://scenes/select_profile_screen/name_profile.gd" id="1_6s1n0"]
+[ext_resource type="Texture2D" uid="uid://cv61yrnlrifbg" path="res://assets/background/background.png" id="1_iynyl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h6qpg"]
+resource_local_to_scene = true
+font = ExtResource("1_4u2kx")
+font_size = 42
+
+[node name="NameProfile" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6s1n0")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2000.0
+offset_top = -1125.0
+offset_right = 2000.0
+offset_bottom = 1125.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_iynyl")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.5
+offset_top = -44.5
+offset_right = 150.5
+offset_bottom = 44.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_4u2kx")
+theme_override_font_sizes/font_size = 42
+alignment = 1
+expand_to_text_length = true
+clear_button_enabled = true
+caret_blink = true
+
+[node name="EnterNameLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -221.5
+offset_top = -137.0
+offset_right = 221.5
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ENTER A PROFILE NAME"
+label_settings = SubResource("LabelSettings_h6qpg")
+
+[connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]

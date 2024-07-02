@@ -12,6 +12,8 @@ config_version=5
 
 config/name="Planet Xcape"
 run/main_scene="res://scenes/home_screen/home.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="PlanetXcape"
 config/features=PackedStringArray("4.2", "Mobile")
 boot_splash/bg_color=Color(0.0901961, 0.137255, 0.298039, 1)
 boot_splash/image="res://assets/splash_screen/splash_screen.png"
@@ -31,6 +33,7 @@ WeaponManager="*res://autoload/weapon_manager.gd"
 InventoryManager="*res://autoload/inventory_manager.gd"
 AlienWaveManager="*res://autoload/alien_wave_manager.gd"
 ElapsedTimeManager="*res://autoload/elapsed_time_manager.gd"
+GameProfilesManager="*res://autoload/game_profiles_manager.gd"
 
 [display]
 
