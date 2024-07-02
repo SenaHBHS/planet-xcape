@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://de6f0lr6xupxn" path="res://assets/audio/home.mp3" id="4_22y35"]
 
 [node name="Home" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,4 +41,3 @@ texture = ExtResource("1_n5m1y")
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_22y35")
 volume_db = -15.0
-autoplay = true

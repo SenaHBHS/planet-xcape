@@ -15,6 +15,11 @@ const MARGIN = Vector2(10, 10)
 func _ready():
 	position_dynamic_elements()
 	
+	# setting the initial values
+	handle_elapsed_time()
+	handle_update_din_amount(DinManager.get_din_amount())
+	SignalManager.rerender_inventory_bar.emit()
+	
 	# connecting callbacks to signals
 	get_viewport().size_changed.connect(position_dynamic_elements)
 	SignalManager.din_amount_updated.connect(handle_update_din_amount)

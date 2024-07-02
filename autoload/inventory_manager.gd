@@ -1,6 +1,10 @@
 extends Node
 
-# global game variable management
+## THESE DEFAULT VALUES HAVE NO EFFECT SINCE THEY ARE OVERWRITTEN BY game_profiles.gd
+# whether the inventory was loaded from a saved profile
+var loaded_inventory = false
+
+# global variables
 var inventory_limit = 3 # max n(items) in the inventory!
 var available_items = []
 const dummy_item_template = {
@@ -15,11 +19,12 @@ var selected_pos = 0 # index of the available_items list
 
 var n_available_unlock_slot_power_ups = 6
 
-func _ready():
-	_initialize_available_items()
-	_deploy_common_funcs()
-
 func _process(_delta):
+	if not loaded_inventory:
+		loaded_inventory = true
+		_initialize_available_items()
+		_deploy_common_funcs()
+	
 	if Input.is_action_just_pressed("remove_selected_item"):
 		remove_current_item()
 

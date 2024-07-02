@@ -14,11 +14,11 @@ func _ready():
 	SignalManager.level_changed.connect(_on_level_changed)
 
 func set_game_won():
-	print("GAME WON!")
+	SignalManager.reset_current_profile.emit()
 	SceneManager.change_to_victory_scene()
 
 func set_game_over():
-	print("GAME OVER!")
+	SignalManager.reset_current_profile.emit()
 	SceneManager.change_to_game_over_scene()
 
 func update_player_position(new_position: Vector2) -> void:
