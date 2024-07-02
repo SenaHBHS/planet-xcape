@@ -35,6 +35,7 @@ func _set_din_skin():
 		sprite_2d.self_modulate = din_skins_values[2]
 
 func _on_body_entered(body):
-	if body.is_in_group("player"):
+	# both the player and the objects (e.g. rocket, builder box) can collect din
+	if body.is_in_group("player") or body.is_in_group("object"):
 		DinManager.increase_din_amount(DIN_VALUE)
 		queue_free()
