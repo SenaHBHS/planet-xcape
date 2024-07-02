@@ -94,7 +94,7 @@ func _load_saved_game_profiles():
 	if not FileAccess.file_exists(save_path):
 		_create_a_new_profiles_set()
 	else:
-		var file = FileAccess.open(save_path, FileAccess.READ)
+		var file = FileAccess.open_encrypted_with_pass(save_path, FileAccess.READ, "TOP SECRET PLANET X")
 		
 		var json_data = file.get_as_text()
 		var json = JSON.new()
@@ -110,7 +110,7 @@ func _load_saved_game_profiles():
 func save_game_profiles():
 	_save_current_profile()
 	
-	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	var file = FileAccess.open_encrypted_with_pass(save_path, FileAccess.WRITE, "TOP SECRET PLANET X")
 	if file:
 		var json_data = JSON.stringify(loaded_profiles)
 		file.store_string(json_data)
