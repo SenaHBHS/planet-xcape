@@ -55,3 +55,9 @@ visible = false
 [node name="PauseScreen" parent="CanvasLayer" instance=ExtResource("9_wp5q5")]
 process_mode = 2
 visible = false
+
+[node name="AutoSaveTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="AutoSaveTimer" to="." method="_on_auto_save_timer_timeout"]

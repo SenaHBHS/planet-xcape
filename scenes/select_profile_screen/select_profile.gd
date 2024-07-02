@@ -99,14 +99,10 @@ func _on_new_3_profile():
 	_new_game()
 
 func _on_continue_0_profile():
-	print("Chosen profile is 0")
 	_continue_game(0)
 func _on_continue_1_profile():
-	print("Chosen profile is 1")
 	_continue_game(1)
 func _on_continue_2_profile():
-	print("Chosen profile is 2")
 	_continue_game(2)
 func _on_continue_3_profile():
-	print("Chosen profile is 3")
 	_continue_game(3)
