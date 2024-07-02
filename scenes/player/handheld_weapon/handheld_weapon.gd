@@ -72,6 +72,7 @@ func fire() -> int:
 	
 	# emitting the signal!
 	SignalManager.player_fired.emit()
+	SignalManager.rerender_inventory_bar.emit()
 	
 	return current_weapon_props["load_time"]
 	

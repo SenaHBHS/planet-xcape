@@ -120,3 +120,4 @@ func handle_reset_current_profile():
 	var new_dummy_profile = dummy_profile.duplicate(true)
 	new_dummy_profile["inventory"] = dummy_saved_inventory.duplicate(true)
 	loaded_profiles[current_profile_index] = new_dummy_profile
+	save_game_profiles()

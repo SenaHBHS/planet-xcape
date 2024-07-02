@@ -42,6 +42,9 @@ func render_inventory_bar():
 		var item_props = InventoryManager.available_items[item_i]
 		var item_name = item_props["name"]
 		var item_category = item_props["category"]
+		var hp_points = 0 # used for weapons
+		if item_category == "weapon":
+			hp_points = item_props["hp_points"]
 		
 		# configuring if it's active
 		var is_active = false
@@ -55,7 +58,7 @@ func render_inventory_bar():
 		inventory_slot.position = Vector2(slot_x_pos, start_pos.y) # relative to the origin
 		
 		# initialising the slot
-		inventory_slot.init_slot(item_name, item_category, is_active)
+		inventory_slot.init_slot(item_name, item_category, is_active, hp_points)
 		add_child(inventory_slot)
 		
 	# rescaling the parent panel
