@@ -11,6 +11,8 @@ const SPECIAL = preload("res://assets/ui/btns/Special.png")
 const NORMAL = preload("res://assets/ui/btns/Normal.png")
 const REDDISH = preload("res://assets/ui/btns/Reddish.png")
 const BLANK = preload("res://assets/ui/btns/Blank.png")
+const OFF_TOGGLED = preload("res://assets/ui/btns/Off Toggled.png")
+const ON_TOGGLED = preload("res://assets/ui/btns/On Toggled.png")
 
 # child nodes
 @onready var button_node = $ButtonNode
@@ -31,6 +33,10 @@ func _ready():
 			button_node.texture_normal = REDDISH
 		"blank":
 			button_node.texture_normal = BLANK
+		"on_toggled":
+			button_node.texture_normal = ON_TOGGLED
+		"off_toggled":
+			button_node.texture_normal = OFF_TOGGLED
 		_:
 			# default skin
 			button_node.texture_normal = NORMAL

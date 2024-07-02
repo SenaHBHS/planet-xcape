@@ -1,7 +1,7 @@
 extends Control
 
 # rendering related global variables
-var Y_GAP_BETWEEN_ELEMENTS = -15
+var Y_GAP_BETWEEN_ELEMENTS = -40
 
 const BUTTON = preload("res://scenes/common_ui_comps/button/button.tscn")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b85sxgsndd8oy"]
+[gd_scene load_steps=20 format=3 uid="uid://b85sxgsndd8oy"]
 
 [ext_resource type="Script" path="res://scenes/hud/inventory/inventory_slot.gd" id="1_psmy4"]
 [ext_resource type="Texture2D" uid="uid://c35an5p0ywbjr" path="res://assets/ui/inventory/defense_system.png" id="1_rgtv1"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://c4jjwlcl3yhkx" path="res://assets/ui/inventory/weapon_thumbnails/Pulse Pistol.png" id="11_st885"]
 [ext_resource type="Texture2D" uid="uid://bx2bmqm4f7bxf" path="res://assets/ui/inventory/weapon_thumbnails/Quantum Inferno.png" id="12_n6lli"]
 [ext_resource type="Texture2D" uid="uid://bqbo8o5bmrwvf" path="res://assets/ui/inventory/weapon_thumbnails/space_booster.png" id="14_0tga4"]
+[ext_resource type="Texture2D" uid="uid://ct6sfmderyy6h" path="res://assets/ui/health_bars/Inventory Under.png" id="15_j3oxs"]
+[ext_resource type="Texture2D" uid="uid://d1w3xmm4p6kua" path="res://assets/ui/health_bars/Inventory Progress.png" id="16_g6a43"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aqkya"]
 
@@ -126,7 +128,7 @@ animations = [{
 
 [node name="InventorySlot" type="Panel"]
 offset_right = 1067.0
-offset_bottom = 1286.0
+offset_bottom = 1497.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_aqkya")
 script = ExtResource("1_psmy4")
 
@@ -146,3 +148,22 @@ position = Vector2(534, 664)
 scale = Vector2(0.540183, 0.540183)
 sprite_frames = SubResource("SpriteFrames_3ycks")
 animation = &"space_booster"
+
+[node name="InventoryHealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -533.5
+offset_top = 537.5
+offset_right = 533.5
+offset_bottom = 771.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(534, 117)
+value = 100.0
+texture_under = ExtResource("15_j3oxs")
+texture_progress = ExtResource("16_g6a43")

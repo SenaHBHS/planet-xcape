@@ -27,6 +27,7 @@ var dummy_profile = {
 }
 var loaded_profiles = [] # this is initialised in _ready()
 var current_profile_index = 0
+var is_resetting = false # set to true when the current profile is reset!
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -108,7 +109,8 @@ func _load_saved_game_profiles():
 			_create_a_new_profiles_set()
 
 func save_game_profiles():
-	_save_current_profile()
+	if not is_resetting:
+		_save_current_profile()
 	
 	var file = FileAccess.open_encrypted_with_pass(save_path, FileAccess.WRITE, "TOP SECRET PLANET X")
 	if file:
@@ -120,3 +122,6 @@ func handle_reset_current_profile():
 	var new_dummy_profile = dummy_profile.duplicate(true)
 	new_dummy_profile["inventory"] = dummy_saved_inventory.duplicate(true)
 	loaded_profiles[current_profile_index] = new_dummy_profile
+	is_resetting = true
+	save_game_profiles()
+	is_resetting = false

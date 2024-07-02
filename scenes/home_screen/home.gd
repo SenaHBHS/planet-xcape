@@ -1,7 +1,7 @@
 extends Control
 
 # rendering related global variables
-var Y_GAP_BETWEEN_ELEMENTS = -20
+var Y_GAP_BETWEEN_ELEMENTS = -40
 const BUTTON = preload("res://scenes/common_ui_comps/button/button.tscn")
 
 # child nodes
@@ -106,7 +106,7 @@ func _on_start_game():
 	SceneManager.change_to_select_profile_scene()
 	
 func _on_options():
-	print("OPTIONS OPENED")
+	SceneManager.change_to_options_scene()
 
 func _on_credits():
 	SceneManager.change_to_credits_scene()

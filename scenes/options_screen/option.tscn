@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://xw4gymi8ienm"]
+
+[ext_resource type="FontFile" uid="uid://drd3xowq8frki" path="res://assets/font/TitilliumWeb-Bold.ttf" id="1_7asjm"]
+[ext_resource type="Script" path="res://scenes/options_screen/option.gd" id="1_i3st4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_arcr1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3begx"]
+font = ExtResource("1_7asjm")
+font_size = 48
+
+[node name="Option" type="Panel"]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_arcr1")
+script = ExtResource("1_i3st4")
+
+[node name="OptionLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_3begx")
