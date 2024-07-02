@@ -81,7 +81,7 @@ _data = {
 "idle": SubResource("Animation_ovdeb")
 }
 
-[node name="BuilderBox" type="StaticBody2D"]
+[node name="BuilderBox" type="StaticBody2D" groups=["object"]]
 script = ExtResource("1_4ko5f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
