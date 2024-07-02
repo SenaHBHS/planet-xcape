@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b201jtqmjw4ol"
-path="res://.godot/imported/Toggle On.png-607f38957694cd4d990b76777e56fd1e.ctex"
+uid="uid://8s0n8jox2jo2"
+path="res://.godot/imported/Off Toggled.png-e9a581f5a3367e49268e5deda0a0c773.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/btns/Toggle On.png"
-dest_files=["res://.godot/imported/Toggle On.png-607f38957694cd4d990b76777e56fd1e.ctex"]
+source_file="res://assets/ui/btns/Off Toggled.png"
+dest_files=["res://.godot/imported/Off Toggled.png-e9a581f5a3367e49268e5deda0a0c773.ctex"]
 
 [params]
 
