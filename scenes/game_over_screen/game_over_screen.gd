@@ -14,6 +14,9 @@ var BTN_Y_OFFSET = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# resetting the player profile:
+	SignalManager.reset_current_profile.emit()
+	
 	place_home_button()
 	
 	# playing music

@@ -52,3 +52,6 @@ func play_background_music():
 		background_music_player.play()
 	else:
 		background_music_player.stop()
+
+func _on_auto_save_timer_timeout():
+	GameProfilesManager.save_game_profiles()
