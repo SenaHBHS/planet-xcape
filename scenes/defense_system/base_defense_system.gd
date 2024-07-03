@@ -29,6 +29,7 @@ var DEFENSE_SYSTEM_PROPS = {
 }
 var ELAPSED_TIME_IN_SECONDS = 0 # in seconds
 var ALIEN_BODIES_IN_ATTACK_REGION = []
+var ATTACK_RANGE_SPRITE_SIZE = Vector2(1024, 1024)
 
 # variables used for defense systems that have a load time
 var TIME_TO_WAIT = 0
@@ -46,6 +47,7 @@ const NEBULA_BOOM = preload("res://scenes/defense_system/defense_system_types/ne
 # child nodes used
 @onready var time_bar = $TimeBar
 @onready var attack_range_shape_2d = $AttackRange/CollisionShape2D
+@onready var attack_range_sprite = $AttackRangeSprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -53,6 +55,21 @@ func _ready():
 	
 	scale = DEFENSE_SYSTEM_PROPS[SYSTEM_NAME]["scale"]
 	attack_range_shape_2d.shape.radius = DEFENSE_SYSTEM_PROPS[SYSTEM_NAME]["attack_range_radius"]
+	
+	# displaying the attack range sprite
+	var attack_range_sprite_scale_factor = (attack_range_shape_2d.shape.radius * 2) / ATTACK_RANGE_SPRITE_SIZE.x
+	attack_range_sprite.scale = Vector2(attack_range_sprite_scale_factor, attack_range_sprite_scale_factor)
+	if SYSTEM_NAME != "electro":
+		attack_range_sprite.visible = true
+	else:
+		attack_range_sprite.visible = false
+	
+	# displaying the time bar
+	if SYSTEM_NAME != "electro_grenade":
+		time_bar.visible = true
+	else:
+		time_bar.visible = false
+	
 	# initialising the defense system scene
 	match SYSTEM_NAME:
 		"electro":
