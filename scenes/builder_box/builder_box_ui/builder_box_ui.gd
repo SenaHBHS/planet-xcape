@@ -16,15 +16,15 @@ var ITEMS_LIST = [
 	},
 	{
 		"name": "electro_grenade",
-		"price": 1000
+		"price": 3
 	},
 	{
 		"name": "electro",
-		"price": 1000
+		"price": 3
 	},
 	{
 		"name": "nebula_boom",
-		"price": 1000
+		"price": 3
 	},
 	{
 		"name": "heal",

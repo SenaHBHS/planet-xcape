@@ -11,7 +11,7 @@ func _ready():
 	place_next_button()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	position_next_button()
 
 func place_next_button():
