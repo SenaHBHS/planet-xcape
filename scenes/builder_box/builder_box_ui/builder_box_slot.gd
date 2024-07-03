@@ -14,7 +14,7 @@ var PRICE_TAG_X_OFFSETS = {
 var ITEM_CATEGORIES = {
 	"weapon": ["pulse_pistol", "beam_blaster", "plasma_streamer"],
 	"defense_system": ["electro_grenade", "electro", "quantum_inferno", "nebula_boom"],
-	"power_up": ["extra_slot", "extra_speed"],
+	"power_up": ["extra_slot", "extra_speed", "heal"],
 	"object": ["space_booster"]
 }
 
@@ -102,6 +102,8 @@ func purchase_item():
 						set_availability(false)
 						PERMENANTELY_UNAVAILABLE = true
 						animation_player.play("RESET")
+				elif NAME == "heal":
+					SignalManager.player_health_powered_up.emit()
 				else:
 					# this a speed boost
 					SignalManager.player_speed_powered_up.emit()

@@ -23,12 +23,12 @@ var ITEMS_LIST = [
 		"price": 1000
 	},
 	{
-		"name": "quantum_inferno",
+		"name": "nebula_boom",
 		"price": 1000
 	},
 	{
-		"name": "nebula_boom",
-		"price": 1000
+		"name": "heal",
+		"price": 80
 	},
 	{
 		"name": "extra_slot",
@@ -55,7 +55,7 @@ const BUILDER_BOX_SLOT = preload("res://scenes/builder_box/builder_box_ui/builde
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	render_items(0) # initial din amount is 0
+	render_items(DinManager.get_din_amount())
 	SignalManager.din_amount_updated.connect(update_din_amount)
 
 # handling the player input to close the builder box

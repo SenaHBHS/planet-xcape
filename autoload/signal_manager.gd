@@ -8,6 +8,7 @@ signal player_was_hit(hp_points_to_deduct)
 signal player_hp_points_updated
 signal player_died
 signal player_speed_powered_up
+signal player_health_powered_up
 signal player_fired
 signal player_hit_with_fist
 signal player_equip_weapon(weapon)
