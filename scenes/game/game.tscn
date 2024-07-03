@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://vyomsluakekc"]
+[gd_scene load_steps=13 format=3 uid="uid://vyomsluakekc"]
 
 [ext_resource type="PackedScene" uid="uid://j5pjiovx3jfe" path="res://scenes/player/player.tscn" id="1_dm88o"]
 [ext_resource type="PackedScene" uid="uid://dcxegedotcylx" path="res://scenes/builder_box/builder_box.tscn" id="1_klq5v"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://4pas3uoya5v1" path="res://scenes/alien_wave/alien_wave.tscn" id="3_mtkg4"]
 [ext_resource type="Texture2D" uid="uid://cv61yrnlrifbg" path="res://assets/background/background.png" id="3_nxomj"]
 [ext_resource type="PackedScene" uid="uid://dlom4mgelm7jx" path="res://scenes/hud/hud.tscn" id="6_niivx"]
+[ext_resource type="Texture2D" uid="uid://cvpmxiuhbxda6" path="res://assets/ui/cursor/Place Item.png" id="7_fnhih"]
 [ext_resource type="AudioStream" uid="uid://bofjwbjjgoa6o" path="res://assets/audio/main_music.mp3" id="7_so7wk"]
 [ext_resource type="AudioStream" uid="uid://bw8alc5m55qmm" path="res://assets/audio/din_collected.mp3" id="7_xyoqs"]
 [ext_resource type="PackedScene" uid="uid://b3etqvsepcp2d" path="res://scenes/builder_box/builder_box_ui/builder_box_ui.tscn" id="8_bn674"]
@@ -32,6 +33,9 @@ scale = Vector2(1.27822, 1.27822)
 texture = ExtResource("3_nxomj")
 
 [node name="AlienWave" parent="." instance=ExtResource("3_mtkg4")]
+
+[node name="PlaceItemCursor" type="Sprite2D" parent="."]
+texture = ExtResource("7_fnhih")
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_so7wk")

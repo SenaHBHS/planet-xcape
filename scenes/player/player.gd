@@ -9,6 +9,7 @@ var DIRECTION = null # configured later!
 var CAN_FIST_ATTACK = true
 var FIST_DAMAGE_POINTS = 1
 var ALIEN_BODIES_IN_FIST_RANGE = []
+var HEALTH_INCREASE_PER_POWER_UP = 35
 
 # child nodes
 @onready var animated_sprite_2d = $AnimatedSprite2D
@@ -24,6 +25,7 @@ func _ready():
 	
 	SignalManager.player_was_hit.connect(handle_player_was_hit)
 	SignalManager.player_speed_powered_up.connect(handle_speed_power_up)
+	SignalManager.player_health_powered_up.connect(handle_heal_power_up)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -147,6 +149,15 @@ func handle_player_was_hit(hp_points_to_deduct):
 func handle_speed_power_up():
 	# the speed is increased by 10%
 	SPEED *= 1.1
+
+func handle_heal_power_up():
+	var delta_health = GameManager.player_max_hp_points - GameManager.player_hp_points
+	if delta_health > HEALTH_INCREASE_PER_POWER_UP:
+		GameManager.player_hp_points += HEALTH_INCREASE_PER_POWER_UP
+	else:
+		GameManager.player_hp_points += delta_health
+		
+	SignalManager.player_hp_points_updated.emit()
 
 func _on_animation_finished():
 	ONE_TIME_ANIMATION_FINISHED = true

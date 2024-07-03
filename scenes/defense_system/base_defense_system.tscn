@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://pxkvq8b8lq87"]
+
+[ext_resource type="Script" path="res://scenes/defense_system/base_defense_system.gd" id="1_g1fgs"]
+[ext_resource type="Texture2D" uid="uid://ct6sfmderyy6h" path="res://assets/ui/health_bars/Inventory Under.png" id="2_4g34t"]
+[ext_resource type="Texture2D" uid="uid://d1w3xmm4p6kua" path="res://assets/ui/health_bars/Inventory Progress.png" id="3_svedp"]
+[ext_resource type="Texture2D" uid="uid://mt0u0n24sfmt" path="res://assets/sprites/defense_systems/Defense System Range.png" id="4_wrpod"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_50qd3"]
+radius = 512.0
+
+[node name="BaseDefenseSystem" type="Node2D"]
+script = ExtResource("1_g1fgs")
+
+[node name="AttackRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+shape = SubResource("CircleShape2D_50qd3")
+
+[node name="TimeBar" type="TextureProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -533.5
+offset_top = 185.0
+offset_right = 533.5
+offset_bottom = 419.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(533, 117)
+texture_under = ExtResource("2_4g34t")
+texture_progress = ExtResource("3_svedp")
+
+[node name="AttackRangeSprite" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("4_wrpod")
+
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]

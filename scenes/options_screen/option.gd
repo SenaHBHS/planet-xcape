@@ -28,7 +28,7 @@ func init_option(option_name: String):
 	OPTION_NAME = option_name
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	position_elements()
 	set_parent_size()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bdex2t53ybdoq"]
+[gd_scene load_steps=27 format=3 uid="uid://bdex2t53ybdoq"]
 
 [ext_resource type="Texture2D" uid="uid://cckieuyd1yrbg" path="res://assets/ui/builder_box/Beam Blaster.png" id="1_6n0pj"]
 [ext_resource type="Script" path="res://scenes/builder_box/builder_box_ui/builder_box_slot.gd" id="1_nigvl"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b8d443sbya4tm" path="res://assets/ui/builder_box/Extra Inventory Slot.png" id="4_3gbyi"]
 [ext_resource type="Texture2D" uid="uid://djyi66t7rqp8s" path="res://assets/ui/builder_box/Speed.png" id="5_c5ntl"]
 [ext_resource type="Texture2D" uid="uid://ckvhlohridw3c" path="res://assets/ui/builder_box/Nebula Boom.png" id="6_6x4jo"]
+[ext_resource type="Texture2D" uid="uid://c40dxhimfnbo" path="res://assets/ui/builder_box/Heal.png" id="7_7o10f"]
 [ext_resource type="Texture2D" uid="uid://csv8w5u71gm16" path="res://assets/ui/builder_box/Plasma Streamer.png" id="7_no5hy"]
 [ext_resource type="Texture2D" uid="uid://lv77u7ox0xyn" path="res://assets/ui/builder_box/Pulse Pistol.png" id="8_euscq"]
 [ext_resource type="Texture2D" uid="uid://btikqrrnh6k05" path="res://assets/ui/builder_box/Space Booster.png" id="9_io0rb"]
@@ -58,6 +59,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"extra_speed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_7o10f")
+}],
+"loop": true,
+"name": &"heal",
 "speed": 5.0
 }, {
 "frames": [{
@@ -161,7 +170,7 @@ script = ExtResource("1_nigvl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wk0m1")
-animation = &"quantum_inferno"
+animation = &"heal"
 centered = false
 
 [node name="PriceTag" type="Panel" parent="."]
