@@ -152,7 +152,7 @@ func handle_speed_power_up():
 
 func handle_heal_power_up():
 	var delta_health = GameManager.player_max_hp_points - GameManager.player_hp_points
-	if delta_health < HEALTH_INCREASE_PER_POWER_UP:
+	if delta_health > HEALTH_INCREASE_PER_POWER_UP:
 		GameManager.player_hp_points += HEALTH_INCREASE_PER_POWER_UP
 	else:
 		GameManager.player_hp_points += delta_health
