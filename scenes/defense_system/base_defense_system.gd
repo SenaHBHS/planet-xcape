@@ -8,7 +8,7 @@ var DEFENSE_SYSTEM_PROPS = {
 		"type": "time_period_bound",
 		"lasting_time_period": 30, # in seconds
 		"load_time": 0.5, # in seconds
-		"damage_points": 10,
+		"damage_points": 12,
 		"scale": Vector2(0.2, 0.2),
 		"attack_range_radius": 800
 	},
@@ -16,12 +16,12 @@ var DEFENSE_SYSTEM_PROPS = {
 		"type": "one_shot",
 		"damage_points": 8,
 		"scale": Vector2(0.1, 0.1),
-		"attack_range_radius": 600
+		"attack_range_radius": 2700
 	},
 	"nebula_boom": {
 		"type": "time_period_bound",
-		"lasting_time_period": 30, # in seconds
-		"load_time": 0.8, # in seconds
+		"lasting_time_period": 20, # in seconds
+		"load_time": 1.2, # in seconds
 		"damage_points": 20,
 		"scale": Vector2(0.2, 0.2),
 		"attack_range_radius": 800
