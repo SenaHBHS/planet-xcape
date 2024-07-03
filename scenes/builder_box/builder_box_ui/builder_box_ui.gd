@@ -8,34 +8,34 @@ var ITEMS_LIST = [
 	},
 	{
 		"name": "beam_blaster",
-		"price": 25
+		"price": 20
 	},
 	{
 		"name": "plasma_streamer",
-		"price": 50
+		"price": 40
 	},
 	{
 		"name": "electro_grenade",
-		"price": 3
+		"price": 12
 	},
 	{
 		"name": "electro",
-		"price": 3
+		"price": 30
 	},
 	{
 		"name": "nebula_boom",
-		"price": 3
-	},
-	{
-		"name": "heal",
-		"price": 80
+		"price": 90
 	},
 	{
 		"name": "extra_slot",
-		"price": 2
+		"price": 5
 	},
 	{
 		"name": "extra_speed",
+		"price": 30
+	},
+	{
+		"name": "heal",
 		"price": 75
 	},
 	{
@@ -55,7 +55,7 @@ const BUILDER_BOX_SLOT = preload("res://scenes/builder_box/builder_box_ui/builde
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	render_items(DinManager.get_din_amount())
+	render_items(0)
 	SignalManager.din_amount_updated.connect(update_din_amount)
 
 # handling the player input to close the builder box

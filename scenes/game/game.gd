@@ -73,7 +73,7 @@ func handle_defense_systems():
 		place_item_cursor.visible = false
 		is_defense_system_enabled = false
 	
-	if Input.is_action_just_pressed("place_item") and is_defense_system_enabled:
+	if Input.is_action_just_pressed("attack") and is_defense_system_enabled:
 		# adding a defense system
 		var new_defense_system = BASE_DEFENSE_SYSTEM.instantiate()
 		new_defense_system.init_defense_system(selected_item["name"])
